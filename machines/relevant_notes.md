@@ -4,6 +4,8 @@
 
 ----------------------------------------------------------------
 
+###  Pre-Engagement Briefing
+
 You have been assigned to a client that wants a penetration test conducted on an environment due to be released to production in seven days. 
 
 Scope of Work

@@ -23,7 +23,7 @@ Additionally, the client has provided the following scope allowances:
 
 --------------------------------------------------------------------------    
 
-10524728b2b462e8d164efe4e67ed087.jpeg
+![10524728b2b462e8d164efe4e67ed087.jpeg](..assets/relevant_assets/10524728b2b462e8d164efe4e67ed087.jpeg)
 
 ### Enumeration
 

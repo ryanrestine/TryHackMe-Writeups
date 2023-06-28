@@ -115,13 +115,17 @@ Navigating to the site on port 80 we find an IIS default landing page:
 
 Before enumerating http let's take a look at the SMB shares to see if we can find anything interesting.
 
-Using CrackMapExec we see that we have read and write access to the nt4wrksv share using the guest account with null for a password. Let's use SMBClient to further enumerate:
+Using CrackMapExec we see that we have read and write access to the nt4wrksv share using the guest account with null for a password. 
+
+![cme_shares.png](../assets/relevant_assets/cme_shares.png)
+
+Let's use SMBClient to further enumerate the share:
 
 ![smb_passwords.png](../assets/relevant_assets/smb_passwords.png)
 
 Ok interesting, looks like we've found a couple passwords. This appears to be Base64, so lets try to decode these:
 
-![b64_passwds.png](../assets/relevant_assets/b64_passwds.png)
+![b64_passwords.png](../assets/relevant_assets/b64_passwords.png)
 
 So it appears we now have two sets of credentials:
 
@@ -152,7 +156,7 @@ I set up a NetCat listener and turned my attention to the browser to see where m
 
 I had no luck on port 80 at http://10.10.28.224/nt4wrksv/shell.aspx
 
-![shell_fail.png](../assets/relevant_assets/shell_fail.png)
+![fail_shell.png](../assets/relevant_assets/fail_shell.png)
 
 But looking back over my nmap scans I noticed the box had another http port open. I was able to succesfully trigger my shell by navigating to http://10.10.28.224:49663/nt4wrksv/shell.aspx
 

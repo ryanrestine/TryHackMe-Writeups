@@ -5,7 +5,8 @@
 
 ----------------------------------------------------------------------
 
-915c0170a4d0a50cac23bac0f0b1f739.png
+![915c0170a4d0a50cac23bac0f0b1f739.png](../assets/allinone_assets/915c0170a4d0a50cac23bac0f0b1f739.png)
+
 
 ### Enumeration
 

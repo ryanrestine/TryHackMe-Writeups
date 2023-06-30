@@ -180,7 +180,7 @@ Cool, looks like elyana can run socat with root permissions. This should make fo
 
 Executing `sudo socat stdin exec:/bin/sh` elevates my session to root and I can grab the root.txt flag after decoding it from Base64.
 
-![root_flag.png](../assets/allinone_assets/root_flag.png)
+![root_flag.png](../assets/allinone_assets/root_flag.png) 
 
 That's that! This was a fun box that reinforced some valuable concepts. 
 

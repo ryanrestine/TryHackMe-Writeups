@@ -76,7 +76,7 @@ Navigating to the site we find a default landing page for Apache.
 
 ![apache_page.png](../assets/allinone_assets/apache_page.png)
 
-I'll now use Ferroxbuster to try to enumerate any interesting directories I can find.
+I'll now use Feroxbuster to try to enumerate any interesting directories I can find.
 
 ![dir_wp.png](../assets/allinone_assets/dir_wp.png)
 
@@ -134,6 +134,8 @@ Going to Plugins > Add New Plugin we can upload the PHP shell as a plugin, navig
 
 Once uploaded I navigate to http://10.10.143.12/wordpress/wp-content/uploads/2023/06/php-reverse-shell.php and catch a shell back as www-data.
 
+It's worth noting that WP uploads like this are always stored in `/wp-content/uploads/<current_year>/<current_month>/filename`.
+
 From here I stabilize the shell and try to grab the user.txt, but get an access denied.
 
 ```text
@@ -178,7 +180,7 @@ Cool, looks like elyana can run socat with root permissions. This should make fo
 
 Executing `sudo socat stdin exec:/bin/sh` elevates my session to root and I can grab the root.txt flag after decoding it from Base64.
 
-![root_flag.png](../assets/allinone_assets/root_flag.ong)
+![root_flag.png](../assets/allinone_assets/root_flag.png)
 
 That's that! This was a fun box that reinforced some valuable concepts. 
 

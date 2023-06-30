@@ -68,31 +68,37 @@ Nmap done: 1 IP address (1 host up) scanned in 11.63 seconds
 
 Ok cool, looks like anonymous access is enabled for FTP, so let's check that out first.
 
-ftp.png
+![ftp.png](../assets/allinone_assets/ftp.png)
 
 It is always a good idea to check out FTP servers with anonymous access in hopes to find something juicy, but no luck today. Didn't find and files in there and was also unable to use the `put` command to upload files. Let's move on to enumerating HTTP next. 
 
-Navigating to the site we find a default landing page for Apache. I'll now use Ferroxbuster to try to enumerate any interesting directories I can find.
+Navigating to the site we find a default landing page for Apache. 
 
-dir_wp.png
+![apache_page.png](../assets/allinone_assets/apache_page.png)
+
+I'll now use Ferroxbuster to try to enumerate any interesting directories I can find.
+
+![dir_wp.png](../assets/allinone_assets/dir_wp.png)
 
 Nice! We're dealing with WordPress here, which gives us tons of oppurtunity to find a vulnerability. 
 
 Navigating to http://10.10.143.12/wordpress/ we see a classic WordPress layout. Also of note is our first potential username, elyana.
 
-wp_page.png
+![wp_page.png](../assets/allinone_assets/wp_page.png)
 
 First thing I like to do when pentesting WordPress is to hit `ctrl + u` and check out the page source, in hopes I can find a WP plugin that may be vulnerable.
 
-Cool, looks like several plugins to choode from. Based on past experience I recall that some versions of the Mail Masta plugin are vulnerable to local file inclusion. Let's start with that. 
+![source.png](../assets/allinone_assets/source.png)
+
+Cool, looks like several plugins to choose from. Based on past experience, I recall that some versions of the Mail Masta plugin are vulnerable to local file inclusion. Let's start with that. 
 
 A quick Google search lands me at https://www.exploit-db.com/exploits/40290, which outlines a potential LFI at: http://server/wp-content/plugins/mail-masta/inc/campaign/count_of_send.php?pl=/etc/passwd
 
 Let's try it:
 
-passwd.png
+![passwd.png](../assets/allinone_assets/passwd.png)
 
-Success! We were able to read the /etc/passwd file, and also confirm user elyana is a valid user. Lets see if we can use this to get anyting more interesting off the box. 
+Success! We were able to read the `/etc/passwd` file, and also confirm user elyana is a valid user. Lets see if we can use this to get anyting more interesting off the box. 
 
 ### Exploitation
 
@@ -102,7 +108,7 @@ I'll try this by navigating to view-source:http://10.10.143.12/wordpress/wp-cont
 
 That worked!
 
-encode.png
+![encode.png](../assets/allinone_assets/encode.png)
 
 I can decode the Base64 in the termial using:
 
@@ -112,7 +118,7 @@ I can decode the Base64 in the termial using:
 ```
 This gives us some credentials! Lets try to login to the WP site with them.
 
-creds.png
+![creds.png](../assets/allinone_assets/creds.png)
 
 ```
 elyana:H@ckme@123
@@ -122,7 +128,7 @@ After logging in to the WP site it should be smooth sailing from here. Let's try
 
 Let's go ahead and update the script with the local IP and the port we'll be listening on:
 
-php_code.png
+![php_code.png](../assets/allinone_assets/php_code.png)
 
 Going to Plugins > Add New Plugin we can upload the PHP shell as a plugin, navigate to in in the browser, and catch a shell back. 
 
@@ -158,21 +164,21 @@ password: E@syR18ght
 
 We can now use `su elyana` and enter the discovered password to switch users. Lets grab the user.txt after decoding it from Base64:
 
-local_flag.png
+![local_flag.png](../assets/allinone_assets/local_flag.png)
 
 ### Privilege Escalation
 
 Now that we are user elyana, I'll run `sudo -l` to see what, if anything, I can run with root permisions:
 
-sudo.png
+![sudo.png](../assets/allinone_assets/sudo.png)
 
 Cool, looks like elyana can run socat with root permissions. This should make for an easy win. Navigating to https://gtfobins.github.io and searching for socat I find:
 
-gtfobins.png
+![gtfobins.png](../assets/allinone_assets/gtfobins.png)
 
 Executing `sudo socat stdin exec:/bin/sh` elevates my session to root and I can grab the root.txt flag after decoding it from Base64.
 
-root_flag.png
+![root_flag.png](../assets/allinone_assets/root_flag.ong)
 
 That's that! This was a fun box that reinforced some valuable concepts. 
 

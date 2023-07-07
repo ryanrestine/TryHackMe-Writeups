@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-internal.jpeg
+![internal.jpeg](../assets/internal_assets/internal.jpeg)
 
 ### Pre-Engagement Briefing
 

@@ -72,17 +72,17 @@ Nmap done: 1 IP address (1 host up) scanned in 11.03 seconds
 
 Navigating to the the website on port 80 we find a default Apache landing page.
 
-it_works.png
+![it_works.png](../assets/internal_assets/it_works.png)
 
 Per the pre-engagement briefing I'll aslo add internal.thm to my `/etc/hosts` file. 
 
 Using Feroxbuster to search for subdirectories yields some interesting results:
 
-directories.png
+![directories.png](../assets/internal_assets/directories.png)
 
 Navigating to http://internal.thm/blog/ we find a WordPress site. 
 
-blog.png
+![blog.png](../assets/internal_assets/blog.png)
 
 Looking at the Hello World! post, we find a username of Admin. Lets use the WPScan tool to try and brute force the admin user's password:
 
@@ -92,13 +92,13 @@ wpscan --url http://internal.thm/blog/wp-login.php --usernames admin --passwords
 
 Nice! wpscan found a valid credential.
 
-pw.png
+![pw.png](../assets/internal_assets/pw.png)
 
 admin:my2boys
 
 We can now login to the administrator dashboard.
 
-admin_dash.php
+![admin_dash.php](../assets/internal_assets/admin_dash.png)
 
 ### Exploitation
 
@@ -106,7 +106,7 @@ With admin access like this, getting a shell on the machine should be easy.
 
 Lets grab a copy of php-reverse-shell.php from PentestMonkey and update the code with our IP and the port we'll have a NetCat listener on.
 
-php.png
+![php.png](../assets/internal_assets/php.png)
 
 Once this is updated we can go to Appearance > Theme Editor and click into the 404 Template page. I'll go ahead and delete the code and replace it with the php-reverse-shell code we updated. 
 
@@ -114,13 +114,17 @@ Once this is saved we can set up a netcat listener and navigate to: http://inter
 
 and catch a shell back as www-data.
 
-shell.png
+![shell.png](../assets/internal_assets/shell.png)
 
 and stabilize the shell using Python `python3 -c 'import pty;pty.spawn("bash")'`
 
 Once the shell is stabilized, I tried to grab ther user.txt flag in aubreanna's home directory, but got a permission denied. Looks like I'll need to escalate my privileges first. 
 
-denied.png
+![denied.png](../assets/internal_assets/denied.png)
+
+Interestingly, back in the WordPress site, I found a private note the admin left themselves, but was never able to do anything meaningful with the credentials:
+
+![will_creds.png](../assets/internal_assets/will_creds.png)
 
 Checking out the machine a bit more I find an interesting file in the `/opt` directory.
 
@@ -137,7 +141,8 @@ aubreanna:bubb13guM!@#123
 
 Great! I can now use `su aubreanna` enter the password and grab the first flag.
 
-user_flag.png
+![user_flag.png](../assets/internal_assets/user_flag.png)
+
 
 ### Privilege Escalation
 
@@ -161,13 +166,13 @@ c : Connected to server.
 
 We can now navigate to the Jenkins page on port 8080:
 
-jenkins.png
+![jenkins.png](../assets/internal_assets/jenkins.png)
 
 None of the passwords we've discovered so far are working here, so looks like its back to bruteforcing this login page. We can do that with Hydra. 
 
 Before kicking off the brutefotce attack, lets capture an attempted logon in Burp to see how its behaving:
 
-burp.png
+![burp.png](../assets/internal_assets/burp.png)
 
 Interesting, it appears an attempted logon is sending a POST request to `/j_acegi_security_check` and the username and password fields are titled `j_username` and `j_password` respectively. 
 
@@ -175,11 +180,11 @@ We'll need to include that in our Hydra command.
 
 Nice! We were able to brute force the admin's password:
 
-hydra.png
+![hydra.png](../assets/internal_assets/hydra.png)
 
-Once logged in we can navigate to http://172.17.0.2:8080/script/ 
+Once logged in we can navigate to http://172.17.0.2:8080/script/. 
 
-script_page.png
+![script_page.png](../assets/internal_assets/script_page.png)
 
 After setting up a netcat listener, inside the script console we can run:
 
@@ -233,9 +238,9 @@ Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 4.15.0-112-generic x86_64)
 
 And grab the final flag:
 
-root_flag.png
+![root_flag.png](../assets/internal_assets/root_flag.png)
 
-That's all she wrote! Thanks for following along!
+That's that! Thanks for following along!
 
 -Ryan
 

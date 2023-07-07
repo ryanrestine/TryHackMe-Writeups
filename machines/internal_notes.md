@@ -86,6 +86,8 @@ Navigating to http://internal.thm/blog/ we find a WordPress site.
 
 Looking at the Hello World! post, we find a username of Admin. Lets use the WPScan tool to try and brute force the admin user's password:
 
+![admin.png](../assets/internal_assets/admin.png)
+
 ```text
 wpscan --url http://internal.thm/blog/wp-login.php --usernames admin --passwords /usr/share/wordlists/rockyou.txt
 ```

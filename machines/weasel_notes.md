@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-weasel.png
+![weasel.png](../assets/weasel_assets/weasel.png)
 
 ### Enumeration
 
@@ -98,13 +98,13 @@ Ok cool, looks like we have a Windows machine here. It's a bit interesting to se
 
 Taking a quick peak at the page, it looks like we may need to find a token somewhere, or maybe we can create an account later on. 
 
-jupyter.png
+![jupyter.png](../assets/weasel_assets/jupyter.png)
 
 Either way lets keep enumerating the machine to see what else we can find.
 
 Checking out the SMB shares, I see we can access the `datasci-team` and the `IPC$` shares. Cool. Knowing that data science teams frequently use Jupyter Notebooks, lets start there. 
 
-cme.png
+![cme.png](../assets/weasel_assets/cme.png)
 
 Logging into the share using smbclient, we find several interesting files. I'll pull all of them back to my machine locally for inspection.
 
@@ -131,7 +131,7 @@ smb: \> ls
 
 Several of the discovered files were random articles on weasels.
 
-random.png
+![random.png](../assets/weasel_assets/random.png)
 
 But in the `/misc` directory I found jupyter-token.txt, which is especially interesting.
 
@@ -143,11 +143,11 @@ But in the `/misc` directory I found jupyter-token.txt, which is especially inte
 
 Using this token allows me to login on port 8888
 
-login.png
+![login.png](../assets/weasel_assets/login.png)
 
 Once logged in we can click on New > Terminal and we will be dropped into a web terminal. 
 
-web_term.png
+![web_term.png](../assets/weasel_assets/web_term.png)
 
 From there we can head over to https://www.revshells.com/ and grab a Python reverse shell oneliner.
 
@@ -169,14 +169,13 @@ dev-datasci
 $ hostname
 hostname
 DEV-DATASCI-JUP
-
 ```
 
 Interestingly, this is a Windows machine, but I appear to be in a Linux environment. This must be Windows Subsystem for Linux (WSL), something I haven't played much with.
 
 Not seeing any flags in the home directory I ran `sudo -l` to see what we can run with elevated permissions.
 
-sudo.png
+![sudo.png](../assets/weasel_assets/sudo.png)
 
 Interestingly, this file doesn't seem to exist.
 
@@ -209,11 +208,11 @@ Documents\ and\ Settings  Program\ Files  ProgramData		 System\ Volume\ Informat
 
 I can now grab the user.txt flag from dev-datasci-lowpriv's Desktop
 
-user_flag.png
+![user_flag.png](../assets/weasel_assets/user_flag.png)
 
 As well  as the root.txt from the Administrator's Desktop
 
-root_flag.png
+![root_flag.png](../assets/weasel_assets/root_flag.png)
 
 Thanks for following along!
 

@@ -16,7 +16,7 @@ Lets join the room and begin enumerating the website!
 ## Task 2 Whois Registration
 
 
-#### Question 1:  What is the name of the company the domain was registered with? 
+### Question 1:  What is the name of the company the domain was registered with? 
 
 Lets use the whois tool from the command line to begin answering the questions.
 
@@ -24,59 +24,59 @@ Lets use the whois tool from the command line to begin answering the questions.
 whois RepublicOfKoffee.com
 ```
 
-q1.png
+[q1.png](../assets/webosint_assets/q1.png)
 
-#### Question 2: What phone number is listed for the registration company?
+### Question 2: What phone number is listed for the registration company?
 
-q2.png
+![q2.png](../assets/webosint_assets/q2.png)
 
-###### Question 3: What is the first nameserver listed for the site?
+### Question 3: What is the first nameserver listed for the site?
 
-q3.png
+![q3.png](../assets/webosint_assets/q3.png)
 
-###### Question 4: What is listed for the name of the registrant?
+### Question 4: What is listed for the name of the registrant?
 
-q4.png
+![q4.png](../assets/webosint_assets/q4.png)
 
-###### Question 5: What country is listed for the registrant?
+### Question 5: What country is listed for the registrant?
 
 https://www.whoxy.com/republicofkoffee.com#history
 
-q5.png
+![q5.png](../assets/webosint_assets/q5.png)
 
-### Task 3 Ghosts of Websites Past
+## Task 3 Ghosts of Websites Past
 
 "Don't be discouraged when your initial searches on a website turn up empty.That's where Archive.org and the Internet Wayback Machine come into play."
 
-###### Question 6: What is the first name of the blog's author? 
+### Question 6: What is the first name of the blog's author? 
 
-q6.png
+![q6.png](../assets/webosint_assets/q6.png)
 
-###### Question 7: What city and country was the author writing from?
+### Question 7: What city and country was the author writing from?
 
-q7.png
+![q7.png](../assets/webosint_assets/q7.png)
 
-###### Question 8: [Research] What is the name (in English) of the temple inside the National Park the author frequently visits?
+### Question 8: [Research] What is the name (in English) of the temple inside the National Park the author frequently visits?
 
-q8a.png
+![q8a.png](../assets/webosint_assets/q8a.png)
 
-q8b.png
+![q8b.png](../assets/webosint_assets/q8b.png)
 
-### Task 4 Digging Into DNS
+## Task 4 Digging Into DNS
 
-###### Question 9: What was RepublicOfKoffee.com's IP address as of October 2016?
+### Question 9: What was RepublicOfKoffee.com's IP address as of October 2016?
 
-q9.png
+![q9.png](../assets/webosint_assets/q9.png)
 
-###### Question 10: Based on the other domains hosted on the same IP address, what kind of hosting service can we safely assume our target uses?
+### Question 10: Based on the other domains hosted on the same IP address, what kind of hosting service can we safely assume our target uses?
 
-q10.png
+![q10.png](../assets/webosint_assets/q10.png)
 
-###### Question 11: How many times has the IP address changed in the history of the domain?
+### Question 11: How many times has the IP address changed in the history of the domain?
 
 q11.png
 
-### Task 5 Taking Off The Training Wheels 
+## Task 5 Taking Off The Training Wheels 
 
 ```text
 "Congratulations on making it this far.
@@ -89,7 +89,7 @@ heat[dot]net
 
 Good luck!"
 ```
-###### Question 12:  What is the second nameserver listed for the domain? 
+### Question 12:  What is the second nameserver listed for the domain? 
 
 ```text
 whois heat.net
@@ -97,33 +97,33 @@ whois heat.net
 
 q12.png
 
-###### Question 13: What IP address was the domain listed on as of December 2011?
+### Question 13: What IP address was the domain listed on as of December 2011?
 
 q13.png
 
-###### Question 14: Based on domains that share the same IP, what kind of hosting service is the domain owner using?
+### Question 14: Based on domains that share the same IP, what kind of hosting service is the domain owner using?
 
 shared
 
 q14.png
 
-###### Question 15: On what date did was the site first captured by the internet archive? (MM/DD/YY format)
+### Question 15: On what date did was the site first captured by the internet archive? (MM/DD/YY format)
 
 q15.png
 
-###### Question 16: What is the first sentence of the first body paragraph from the final capture of 2001?
+### Question 16: What is the first sentence of the first body paragraph from the final capture of 2001?
 
 q16.png
 
-###### Question 17: Using your search engine skills, what was the name of the company that was responsible for the original version of the site? 
+### Question 17: Using your search engine skills, what was the name of the company that was responsible for the original version of the site? 
 
 q17.png
 
-###### Question 18: What does the first header on the site on the last capture of 2010 say?
+### Question 18: What does the first header on the site on the last capture of 2010 say?
 
 q18.png
 
-### Task 6 Taking A Peek Under The Hood Of A Website
+## Task 6 Taking A Peek Under The Hood Of A Website
 
 ```text
 "Isn't it kind of interesting how the website disappeared for a period of time and came back?
@@ -131,33 +131,33 @@ q18.png
 Clearly the purpose of the site is different now. Let's roll up our sleeves and figure out what's going on."
 ```
 
-###### Question 19: How many internal links are in the text of the article? 
+### Question 19: How many internal links are in the text of the article? 
 
 5
 
 q19.png
 
-###### Question 20: How many external links are in the text of the article? 
+### Question 20: How many external links are in the text of the article? 
 
 q20.png
 
-###### Question 21: Website in the article's only external link ( that isn't an ad)
+### Question 21: Website in the article's only external link ( that isn't an ad)
 
 q21.png
 
-###### Question 22: Try to find the Google Analytics code linked to the site
+### Question 22: Try to find the Google Analytics code linked to the site
 
 q22.png
 
-###### Question 23: Is the the Google Analytics code in use on another website? Yay or nay
+### Question 23: Is the the Google Analytics code in use on another website? Yay or nay
 
 nay
 
-###### Question 24: Does the link to this website have any obvious affiliate codes embedded with it? Yay or Nay
+### Question 24: Does the link to this website have any obvious affiliate codes embedded with it? Yay or Nay
 
 nay
 
-### Task 7 Final Exam: Connect the Dots 
+## Task 7 Final Exam: Connect the Dots 
 
 ```text
 
@@ -174,7 +174,7 @@ This is your final exam, and there is exactly one question.
 Get busy!"
 ```
 
-###### Question 23:  Use the tools in Task 4 to confirm the link between the two sites. Try hard to figure it out without the hint. 
+### Question 23:  Use the tools in Task 4 to confirm the link between the two sites. Try hard to figure it out without the hint. 
 
 q23a.png
 

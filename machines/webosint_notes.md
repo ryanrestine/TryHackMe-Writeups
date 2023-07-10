@@ -24,7 +24,7 @@ Lets use the whois tool from the command line to begin answering the questions.
 whois RepublicOfKoffee.com
 ```
 
-[q1.png](../assets/webosint_assets/q1.png)
+![q1.png](../assets/webosint_assets/q1.png)
 
 ### Question 2: What phone number is listed for the registration company?
 
@@ -74,7 +74,7 @@ https://www.whoxy.com/republicofkoffee.com#history
 
 ### Question 11: How many times has the IP address changed in the history of the domain?
 
-q11.png
+![q11.png](../assets/webosint_assets/q11.png)
 
 ## Task 5 Taking Off The Training Wheels 
 
@@ -95,33 +95,33 @@ Good luck!"
 whois heat.net
 ```
 
-q12.png
+![q12.png](../assets/webosint_assets/q12.png)
 
 ### Question 13: What IP address was the domain listed on as of December 2011?
 
-q13.png
+![q13.png](../assets/webosint_assets/q13.png)
 
 ### Question 14: Based on domains that share the same IP, what kind of hosting service is the domain owner using?
 
 shared
 
-q14.png
+![q14.png](../assets/webosint_assets/q14.png)
 
 ### Question 15: On what date did was the site first captured by the internet archive? (MM/DD/YY format)
 
-q15.png
+![q15.png](../assets/webosint_assets/q15.png)
 
 ### Question 16: What is the first sentence of the first body paragraph from the final capture of 2001?
 
-q16.png
+![q16.png](../assets/webosint_assets/q16.png)
 
 ### Question 17: Using your search engine skills, what was the name of the company that was responsible for the original version of the site? 
 
-q17.png
+![q17.png](../assets/webosint_assets/q17.png)
 
 ### Question 18: What does the first header on the site on the last capture of 2010 say?
 
-q18.png
+![q18.png](../assets/webosint_assets/q18.png)
 
 ## Task 6 Taking A Peek Under The Hood Of A Website
 
@@ -135,19 +135,19 @@ Clearly the purpose of the site is different now. Let's roll up our sleeves and 
 
 5
 
-q19.png
+![q19.png](../assets/webosint_assets/q19.png)
 
 ### Question 20: How many external links are in the text of the article? 
 
-q20.png
+![q20.png](../assets/webosint_assets/q20.png)
 
 ### Question 21: Website in the article's only external link ( that isn't an ad)
 
-q21.png
+![q21.png](../assets/webosint_assets/q21.png)
 
 ### Question 22: Try to find the Google Analytics code linked to the site
 
-q22.png
+![q22.png](../assets/webosint_assets/q22.png)
 
 ### Question 23: Is the the Google Analytics code in use on another website? Yay or nay
 
@@ -176,12 +176,14 @@ Get busy!"
 
 ### Question 23:  Use the tools in Task 4 to confirm the link between the two sites. Try hard to figure it out without the hint. 
 
-q23a.png
+![q23a.png](../assets/webosint_assets/q23a.png)
 
-q23b.png
+![q23b.png](../assets/webosint_assets/q23b.png)
 
-q23c.png
+![q23c.png](../assets/webosint_assets/q23c.png)
 
 Thanks for following along!
 
 -Ryan
+
+---------------------------------------------------------------------------------------------

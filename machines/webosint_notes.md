@@ -5,18 +5,18 @@
 
 ----------------------------------------------------------------------
 
-webosint.jpeg
+![webosint.jpeg](../assets/webosint_assets/webosint.jpeg)
 
-#### Task 1 When A Website Does Not Exist
+## Task 1 When A Website Does Not Exist
 
 "Your job is to find as much information as you can about the website RepublicofKoffee.com."
 
 Lets join the room and begin enumerating the website!
 
-### Task 2 Whois Registration
+## Task 2 Whois Registration
 
 
-###### Question 1:  What is the name of the company the domain was registered with? 
+#### Question 1:  What is the name of the company the domain was registered with? 
 
 Lets use the whois tool from the command line to begin answering the questions.
 
@@ -26,7 +26,7 @@ whois RepublicOfKoffee.com
 
 q1.png
 
-###### Question 2: What phone number is listed for the registration company?
+#### Question 2: What phone number is listed for the registration company?
 
 q2.png
 

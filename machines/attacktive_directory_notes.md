@@ -201,7 +201,7 @@ Armed with these credentials we can use impacket-secretsdump against the domain 
 
 ![secrets.png](../assets/attacktive_directory_assets/secrets.png)
 
-Great! We've got the administor's hash now. We should now just be able to perform a simple pass-the-hash and login as the admin. Lets use impacket-psexec for this.
+Great! We've got the administrator's hash now. We should now just be able to perform a simple pass-the-hash and login as the admin. Lets use impacket-psexec for this.
 
 ![admin.png](../assets/attacktive_directory_assets/admin.png)
 

@@ -197,7 +197,7 @@ Cool, looks like we've got another set of credentials now.
 
 backup:backup2517860
 
-Aremed with these credentials we can use impacket-secretsdump against the domain and grab some hashes.
+Armed with these credentials we can use impacket-secretsdump against the domain and grab some hashes.
 
 ![secrets.png](../assets/attacktive_directory_assets/secrets.png)
 
@@ -218,7 +218,7 @@ Lets grab them:
 
 svc-admin
 
-![svc_flag.png](../assets/attacktive_directory_assets/svc-admin.png)
+![svc_flag.png](../assets/attacktive_directory_assets/svc_flag.png)
 
 backup
 

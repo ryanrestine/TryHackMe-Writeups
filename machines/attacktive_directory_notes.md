@@ -6,10 +6,10 @@
 
 ----------------------------------------------------------------------
 
-AD.png
+![AD.png](../assets/attacktive_directory_assets/AD.png)
 
 ```text
-99% of Corporate networks run off of AD. But can you exploit a vulnerable Domain Controller?
+"99% of Corporate networks run off of AD. But can you exploit a vulnerable Domain Controller?"
 ```
 
 ### Enumeration
@@ -121,7 +121,7 @@ One of my favorite ways to begin enumerating a DC is to use Kerbrute, and see if
 
 Note: This box provided both a username list as well as a password list to cut down on bruteforcing times. 
 
-kerbrute.png
+![kerbrute.png](../assets/attacktive_directory_assets/kerbrute.png)
 
 Nice! Easy win with kerbrute, we were able to drop a hash!
 
@@ -163,7 +163,7 @@ Note: I worked on this machine over two different sessions; so you'll notice a d
 
 We can use these credentials to login to SMB and see if we can find anything interesting.
 
-cme.png
+![cme.png](../assets/attacktive_directory_assets/cme.png)
 
 Cool, looks like quite a few shares we can choose from. Lets take a look at the `/backup` share. We can do this by using smbclient.
 
@@ -199,11 +199,11 @@ backup:backup2517860
 
 Aremed with these credentials we can use impacket-secretsdump against the domain and grab some hashes.
 
-secrets.png
+![secrets.png](../assets/attacktive_directory_assets/secrets.png)
 
 Great! We've got the administor's hash now. We should now just be able to perform a simple pass-the-hash and login as the admin. Lets use impacket-psexec for this.
 
-admin.png
+![admin.png](../assets/attacktive_directory_assets/admin.png)
 
 
 All thats left now is to grab the flags! This room requests three flags from different users:
@@ -218,15 +218,15 @@ Lets grab them:
 
 svc-admin
 
-svc_flag.png
+![svc_flag.png](../assets/attacktive_directory_assets/svc-admin.png)
 
 backup
 
-backup_flag.png
+![backup_flag.png](../assets/attacktive_directory_assets/backup_flag.png)
 
 Administrator
 
-admin_flag.png
+![admin_flag.png](../assets/attacktive_directory_assets/admin_flag.png)
 
 And that's all there is to it! Thanks for following along,
 

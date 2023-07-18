@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-valley.png
+![valley.png](../assets/valley_assets/valley.png)
 
 ```text
 Can you find your way into the Valley?
@@ -60,19 +60,19 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 11.95 seconds
 ```
 
-Navigating to the site on port 80 we find an (extremely ugly) webpage. 
+Navigating to the site on port 80 we find a webpage. 
 
-site.png
+![site.png](../assets/valley_assets/site.png)
 
 Clicking on one of the pictures we see that we are redirected to http://10.10.130.63/static/1
 
-static_1.png
+![static_1.png](../assets/valley_assets/static_1.png)
 
 This is interesting, first thing I want to test for is an IDOR vulnerability, and see if I can manually change the `/1` id form, to something else and perhaps access other materials.
 
 After playing around for a bit I found this page, which definitely seems like it wasn't intended to be accessed externally like this:
 
-static_00.png
+![static_00.png](../assets/valley_assets/static_00.png)
 
 ```text
 dev notes from valleyDev:
@@ -84,13 +84,13 @@ dev notes from valleyDev:
 
 Of extra intrest here is the `/dev1243224123123` directory. Lets check it out:
 
-login.png
+![login.png](../assets/valley_assets/login.png)
 
 Before trying to brute force a login or trying to bypass authentication via SQL injection, I love to poke around in the source code for a bit. This is espcially true here, as I already know the developers may be a bit careless and leave comments laying around.
 
 Nice! Just the type of thing you love to find:
 
-login_creds.png
+![login_creds.png](../assets/valley_assets/login_creds.png)
 
 Looks like weve discovered a new directory to checkout, as well as some credentials.
 
@@ -98,7 +98,7 @@ Looks like weve discovered a new directory to checkout, as well as some credenti
 
 Checking out the new directory at `http://10.10.130.63/dev1243224123123/devNotes37370.txt`we find another note:
 
-another_note.png
+![another_note.png](../assets/valley_assets/another_note.png)
 
 Based on knowing that FTP is running on port 37370, as well as the note mentioning password reuse, I'll try the credentials in FTP.
 
@@ -130,7 +130,7 @@ Looks like we have 3 pcap files here. Lets bring them all back locally for inspe
 
 Looking through these files using Wireshark, I initially wasn;t finding much of interest. But deep down in the siemHTTP2 file I found a `/POST` request, and discovered some credentials.
 
-pcap.png
+![pcap.png](../assets/valley_assets/pcap.png)
 
 Knowing these developers are reusing their credentials, I tried them in SSH and was able to get on the box.
 
@@ -161,7 +161,7 @@ valley
 ```
 I can now grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/valley_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -192,7 +192,7 @@ Ol: /passwXd.
 
 Cool, this appears to be a password hash. I can throw this into Crackstation and crack it:
 
-crack.png
+![crack.png](../assets/valley_assets/crack.png)
 
 I can now ssh in as user valley:
 
@@ -220,7 +220,7 @@ valley
 
 Looking at active conjobs on the machine I find something interesting:
 
-crontab.png
+![crontab.png](../assets/valley_assets/crontab.png)
 
 Taking a look at the file:
 
@@ -251,7 +251,7 @@ Ok cool, looks like this file is running base64 as root. Lets insert a reverse s
 
 First lets update the base64 file with the following:
 
-base64.png
+![base64.png](../assets/valley_assets/base64.png)
 
 And then we can set up a Netcat listener and simply wait for our reverse shell.
 
@@ -270,7 +270,7 @@ valley
 
 Cool, all that's left to do now is grab the final flag:
 
-root_flag.png
+![root_flag.png](../assets/valley_assets/root_flag.png)
 
 Thanks for following along!
 

@@ -80,7 +80,7 @@ Going back to Github we find a repo called 'ETH' which stands for Ethereum
 
 ### What is the attacker's cryptocurrency wallet address?
 
-In the same ETH repo we can take a look at the commit history and see they had their ETH wallet hardoced at one point:
+In the same ETH repo we can take a look at the commit history and see they had their ETH wallet hardcoded at one point:
 
 ![q4.png](../assets/sakura_assets/q4.png)
 
@@ -131,7 +131,7 @@ Based on their tweets, it appears our cybercriminal is indeed heading home as th
 
 ### What airport is closest to the location the attacker shared a photo from prior to getting on their flight?
 
-Looking back at the Tweet `Checking out some last minute cherry blossoms before heading home!` we see a picture with some cherry orchards and a monument in the background. This appears to be the Washington Munument in the US. 
+Looking back at the Tweet `Checking out some last minute cherry blossoms before heading home!` we see a picture with some cherry blossom trees and a monument in the background. This appears to be the Washington Munument in the US. 
 
 ![q10a.png](../assets/sakura_assets/q10a.png)
 

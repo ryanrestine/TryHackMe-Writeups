@@ -229,7 +229,7 @@ Nice, we are now user apaar and can grab the local.txt flag:
 
 Browsing around the box a bit I found the file `/var/www/files/index.php` which had some hard coded mysql credentials.
 
-![mysql_creds.png](../assets/chill_hack_assets/mysql_creds.png)
+![msql_creds.png](../assets/chill_hack_assets/msql_creds.png)
 
 Lets use these to access the database:
 

@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-Simple.png
+![Simple.png](../assets/simple_ctf_assets/Simple.png)
 
 ### Enumeration
 
@@ -120,15 +120,15 @@ Dammit man... you'te the worst dev i've seen. You set the same pass for the syst
 
 Lets check out HTTP. Navigating to the site we find the default Apache "It Works" page. 
 
-page.png
+![page.png](../assets/simple_ctf_assets/page.png)
 
 Lets kick off some directory fuzzing to try and find something interesting.
 
-simplecms.png
+![simplecms.png](../assets/simple_ctf_assets/simplecms.png)
 
 Navigating to http://10.10.2.89/simple/ we find a page using CMS Made Simple. If we poke around a bit we can see the version number in the lower left corner:
 
-version.png
+![version.png](../assets/simple_ctf_assets/version.png)
 
 Turning to Google we can quickly find a publically available exploit for this version.
 
@@ -136,9 +136,9 @@ https://www.exploit-db.com/exploits/46635
 
 Looks like this version is vulnerable to SQL injection which can be used to crack passwords. Lets try it out!
 
-### Exploitation
+![edb.png](../assets/simple_ctf_assets/edb.png)
 
-edb.png
+### Exploitation
 
 Note: While I believe this was the intended path, the script above was giving me lots of trouble, and took tons of troubleshooting, so in the end I decided to brute force SSH with mitch as a username. I chose to do this because based on the FTP note discovered earlier, I knew the password had to be relatively common, and easily crackable. I'll have to revisit the ExploitDB script and figure out why it wasn't working for me at another time. 
 
@@ -173,7 +173,7 @@ $ pwd
 
 From here we can go ahead and grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/simple_ctf_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -187,7 +187,7 @@ User mitch may run the following commands on Machine:
 
 Nice! Lets head over to https://gtfobins.github.io/ and see if we can find anything on Vim:
 
-gtfobins.png
+![gtfobins.png](../assets/simple_ctf_assets/gtfobins.png)
 
 Looks like smooth sailing, lets go ahead and drop that command in the terminal:
 
@@ -204,7 +204,7 @@ uid=0(root) gid=0(root) groups=0(root)
 ```
 Lets grab that final root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/simple_ctf_assets/root_flag.png)
 
 That's that! Thanks for following along,
 

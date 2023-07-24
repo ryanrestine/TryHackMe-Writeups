@@ -142,7 +142,11 @@ Looks like this version is vulnerable to SQL injection which can be used to crac
 
 Note: While I believe this was the intended path, the script above was giving me lots of trouble, and took tons of troubleshooting, so in the end I decided to brute force SSH with mitch as a username. I chose to do this because based on the FTP note discovered earlier, I knew the password had to be relatively common, and easily crackable. I'll have to revisit the ExploitDB script and figure out why it wasn't working for me at another time. 
 
-Nice! Hydra was able to discover Mitch's password. Lets use these credentials to login to ssh as user Mitch:
+Nice! Hydra was able to discover Mitch's password. 
+
+![hydra.png](../assets/simple_ctf_assets/hydra.png)
+
+Lets use these credentials to login to ssh as user Mitch:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/Simple_CTF]

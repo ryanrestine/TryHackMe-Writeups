@@ -1,12 +1,12 @@
 # THM - RootMe
 
-#### Ip: 10.10.204.78
+#### Ip: 10.10.0.217
 #### Name: RootMe
 #### Rating: Easy
 
 ----------------------------------------------------------------------
 
-chill.png
+![rootme.png](../assets/rootme_assets/rootme.png)
 
 ### Enumeration
 
@@ -57,11 +57,11 @@ Nmap done: 1 IP address (1 host up) scanned in 11.38 seconds
 
 Navigating to the site we find this webpage:
 
-page.png
+![page.png](../assets/rootme_assets/page.png)
 
 I'm not seeing any links nor am I finding anything of interest in the page source, so lets kick off some directory fuzzing:
 
-ferox.png
+![ferox.png](../assets/rootme_assets/ferox.png)
 
 Cool, the /uploads and /panel directories seem interesting. Navigating to http://10.10.0.217/panel/ we see a file upload feature. Lets try using a PHP reverse shell from PentestMonkey.
 
@@ -69,31 +69,31 @@ Cool, the /uploads and /panel directories seem interesting. Navigating to http:/
 
 We'll need to go ahead and update the IP adress field, as well as add which port we'll be listening on:
 
-php.png
+![php.png](../assets/rootme_assets/php.png)
 
 After setting up a NetCat listener on port 443 we can try to upload the script:
 
-nophp.png
+![nophp.png](../assets/rootme_assets/nophp.png)
 
 Dang, looks like the site is filtering out the PHP extension. No problem, there are a few potential ways around this.
 
 First lets copy the magic bytes (or file signatures) for a .png file and paste them at the beginning of the PHP shell:
 
-bytes.png
+![bytes.png](../assets/rootme_assets/bytes.png)
 
 From here we can save the script and it will hopefully be interpreted as an image. Lets save the script with the magic bytes as not_a_php_shell.png
 
 We can then succesfully upload our disguised shell:
 
-success.png
+![success.png](../assets/rootme_assets/success.png)
 
 Recalling that we also found an /uploads directory, we can navigate there and trigger our exploit:
 
-uploads.png
+![uploads.png](../assets/rootme_assets/uploads.png)
 
 Rats, that failed as well. Another approach we can take is modifying the .php file extension. Perhaps the app is simply blacklisting vanilla PHP, but maybe not something like .phtml. Lets save our script now as shell.phtml and try to upload again.
 
-success2.png
+![success2.png](../assets/rootme_assets/success2.png)
 
 And we can execute the script by clicking on the file in the /uploads directory to get a shell back on our listener:
 
@@ -119,21 +119,21 @@ www-data@rootme:/$
 
 Nice!, Now we should be able to grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/rootme_assets/user_flag.png)
 
 ### Privilege Escalation #1
 
 Lets move into the `/tmp` directory and copy over LinPeas to help find the privilege escalation vector.
 
-transfer.png
+![transfer.png](../assets/rootme_assets/transfer.png)
 
 Cool, looks like Python has the SUID bit set. This should be a walk in the park from here on out.
 
-suid.png
+![suid.png](../assets/rootme_assets/suid.png)
 
 Heading over to https://gtfobins.github.io/ and searching for Python, we find the exact command we'll need to escalate privileges:
 
-gtfobins.png
+![gtfobins.png](../assets/rootme_assets/gtfobins.png)
 
 Changing directories to `/usr/bin` all we need to do is run:
 
@@ -143,14 +143,13 @@ Changing directories to `/usr/bin` all we need to do is run:
 ```
 And we'll drop into a root shell, from which we can grab the root.txt flag:
 
-root_flag.png
-
+![root_flag.png](../assets/rootme_assets/root_flag.png)
 
 ### Privilege Escalation #2
 
 Another vector identified by LinPeas was PwnKit.
 
-pwnkit.png
+![pwnkit.png](../assets/rootme_assets/pwnkit.png)
 
 This is an extremely common finding on older, upatched boxes, and can be a very quick win. Exploiting it takes just a second or two:
 

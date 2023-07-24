@@ -65,6 +65,8 @@ I'm not seeing any links nor am I finding anything of interest in the page sourc
 
 Cool, the /uploads and /panel directories seem interesting. Navigating to http://10.10.0.217/panel/ we see a file upload feature. Lets try using a PHP reverse shell from PentestMonkey.
 
+![panel.png](../assets/rootme_assets/panel.png)
+
 ### Exploitation
 
 We'll need to go ahead and update the IP adress field, as well as add which port we'll be listening on:

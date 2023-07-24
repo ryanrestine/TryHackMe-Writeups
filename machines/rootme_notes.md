@@ -91,7 +91,11 @@ Recalling that we also found an /uploads directory, we can navigate there and tr
 
 ![uploads.png](../assets/rootme_assets/uploads.png)
 
-Rats, that failed as well. Another approach we can take is modifying the .php file extension. Perhaps the app is simply blacklisting vanilla PHP, but maybe not something like .phtml. Lets save our script now as shell.phtml and try to upload again.
+Rats, that failed as well. 
+
+![fail2.png](../assets/rootme_assets/fail2.png)
+
+Another approach we can take is modifying the .php file extension. Perhaps the app is simply blacklisting vanilla PHP, but maybe not something like .phtml. Lets save our script now as shell.phtml and try to upload again.
 
 ![success2.png](../assets/rootme_assets/success2.png)
 

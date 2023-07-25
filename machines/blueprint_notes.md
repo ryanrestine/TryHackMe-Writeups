@@ -140,6 +140,8 @@ Yet interestingly, if we navigate to either port 443 or to port 8080, we find a 
 
 The directory is oscommerce-4.3.4. Clicking into the directory we can navigate to `catalog` and we are presented with an estore. 
 
+![eshop.png](../assets/blueprint_assets/eshop.png)
+
 Search for oscommerce vulnerabilites, I find this public exploit: https://www.exploit-db.com/exploits/50128
 
 ![edb.png](../assets/blueprint_assets/edb.png)

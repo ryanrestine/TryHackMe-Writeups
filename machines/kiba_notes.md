@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-Simple.png
+![kiba.png](../assets/kiba_assets/kiba.png)
 
 ### Enumeration
 
@@ -131,11 +131,11 @@ Lets check out 5601 first.
 
 Navigating to the site on 5601 we see Nmap was correct and we are forwarded to `/app/kibana`
 
-kibana.png
+![kibana.png](../assets/kiba_assets/kibana.png)
 
 Browsing around the app for a bit I see there is something called Timelion installed, and the page has what almost appears to be a terminal. 
 
-timelion.png
+![timelion.png](../assets/kiba_assets/timelion.png)
 
 Doing some googling I find this GitHub outlining a vulnerability:
 
@@ -187,7 +187,7 @@ ubuntu
 
 From here we can go ahead and grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/kiba_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -211,11 +211,11 @@ kiba@ubuntu:/tmp$ ./linpeas.sh
 
 Cool, LinPeas finds Python capabilities.
 
-cap.png
+![cap.png](../assets/kiba_assets/cap.png)
 
 Which also reminds me of a huge hint that was posted on HTTP/port 80:
 
-hint.png
+![hint.png](../assets/kiba_assets/hint.png)
 
 This should be really easy for us to exploit:
 
@@ -242,7 +242,7 @@ uid=0(root) gid=1000(kiba) groups=1000(kiba),4(adm),24(cdrom),27(sudo),30(dip),4
 
 Lets grab that root.txt flag now:
 
-root_flag.png
+![root_flag.png](../assets/kiba_assets/root_flag.png)
 
 And that's that! Thanks for following along!
 

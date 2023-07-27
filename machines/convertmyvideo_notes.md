@@ -57,6 +57,8 @@ Let's capture this in Burp so we can take a closer look at what is going on here
 
 Here I entered 'hey!' into the field and captured it in Burp. It looks like it is in fact making a POST request, and is appending the entered info into youtube.com. 
 
+![hey.png](../assets/convertmyvideo_assets/hey.png)
+
 Playing around with this field a bit more, I tried entering in `id` into the field and saw that we have code execution here!
 
 ![id.png](../assets/convertmyvideo_assets/id.png)

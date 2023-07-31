@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-ultra.png
+![ultra.png](../assets/ultratech_assets/ultra.png)
 
 ```text
 
@@ -86,53 +86,53 @@ Becuase FTP doesn't have anonymous logins enabled, lets start by enumerating HTT
 
 Looking at the sites we find a traditional looking website, as well as what appears to be an API. 
 
-31331.png
+![31331.png](../assets/ultratech_assets/31331.png)
 
-8081.png
+![8081.png](../assets/ultratech_assets/8081.png)
 
 I'm definitely interested in exploring this API a bit more. Lets kick off some directory fuzzing against it:
 
-dir.png
+![dir.png](../assets/ultratech_assets/dir.png)
 
 Ok interesting. Before diving into this lets explore port 31331 a bit too.
 
 Looking at the robots.txt directory we find:
 
-robots.txt
+![robots.png](../assets/ultratech_assets/robots.png)
 
 From there if we navigate to http://10.10.112.141:31331/utech_sitemap.txt we find a few more directories:
 
-sitemap.png
+![sitemap.png](../assets/ultratech_assets/sitemap.png)
 
 Back on the main site we find a page that lists some potential usernames. We can keep this in mind for later.
 
-users.png
+![users.png](../assets/ultratech_assets/users.png)
 
 using feroxbuster to enumerate port 31331 more we find a `/js` directory:
 
-dir2.png
+![dir2.png](../assets/ultratech_assets/dir2.png)
 
 And in there we find a api.js file. 
 
-api.js
+![api.png](../assets/ultratech_assets/api.png)
 
 I'm especially interested in the `http://${getAPIURL()}/ping?ip=${window.location.hostname}` line. This seems to suggest that in `/ping` we can actually interact with the server. Lets try it:
 
-ping.png
+![ping.png](../assets/ultratech_assets/ping.png)
 
 Cool, that worked! Lets see what other commands we can run:
 
-ls.png
+![ls.png](../assets/ultratech_assets/ls.png)
 
 ### Exploitation
 
 We've got what appears to be LFI here, and the sqlite DB seems especially juicy. Lets see whats in there:
 
-hashes.png
+![hashes.png](../assets/ultratech_assets/hashes.png)
 
 And just like that we have some hashes! Lets try to crack them using https://crackstation.net/:
 
-crack.png
+![crack.png](../assets/ultratech_assets/crack.png)
 
 Awesome, we can now use these credentials to SSH in as user r00t:
 
@@ -162,11 +162,11 @@ docker run -v /:/mnt --rm -it bash chroot /mnt sh
 
 That worked! We are now root on this box!
 
-root.png
+![root.png](../assets/ultratech_assets/root.png)
 
 And we can even grab the root user's SSH key:
 
-id_rsa.png
+![id_rsa.png](../assets/ultratech_assets/id_rsa.png)
 
 Thanks for following along!
 

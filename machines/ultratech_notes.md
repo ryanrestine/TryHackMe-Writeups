@@ -32,7 +32,7 @@ Start this room by hitting the "deploy" button on the right!
 Good luck and more importantly, have fun!
 ```
 
-Note: This room doesn't have the traditional user.txt and root.txt flags. in this CTF I will still work my way up to the root level user, but won't have any flags to show along the way. 
+Note: This room doesn't have the traditional user.txt and root.txt flags. In this CTF I will still work my way up to the root level user, but won't have any flags to show along the way. 
 
 ### Enumeration
 

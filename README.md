@@ -1,1 +1,1 @@
-# TryHackMe-Writeups
+# TryHackMe_Writeups

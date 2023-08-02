@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-corridor.png
+![corridor.png](../assets/corridor_assets/corridor.png)
 
 ```text
 You have found yourself in a strange corridor. Can you find your way back to where you came?
@@ -53,9 +53,11 @@ Nmap done: 1 IP address (1 host up) scanned in 10.13 seconds
 
 Navigating to the site, we have a background of a hall or corridor, and each of the doors is a link. Each of the links appear to be a hash of somekind.
 
-link.png
+![link.png](../assets/corridor_assets/link.png)
 
 Inspecting the page source (CTRL + U) we can get a list of all the links/ hashes. 
+
+![hashes.png](../assets/corridor_assets/hashes.png)
 
 I can copy all of these (with quotes and all) into a file called messy_links, and then use awk and sed to cut out everything but the hashes:
 
@@ -64,11 +66,11 @@ I can copy all of these (with quotes and all) into a file called messy_links, an
 └─$ cat messy_links | sed 's/title=//g'| sed 's/"//g'| awk '{print $4}' > hashes.txt
 ```
 
-only_hash.png
+![only_hash.png](../assets/corridor_assets/only_hash.png)
 
 We can now paste these into crackstation to try and crack the hashes.
 
-cracked.png
+![cracked.png](../assets/corridor_assets/cracked.png)
 
 Interesting, the hashes just appear to be md5 and are sequential numbers going from 1-12. 
 
@@ -76,7 +78,7 @@ Because we know from the box instructions we're looking for IDOR vulnerabilites,
 
 Simply going to http://10.10.146.177/0 won't work because the numbers/ links were hashed:
 
-nope.png
+![nope.png](../assets/corridor_assets/nope.png)
 
 So we'll need to generate the md5 hash of the number 0. We can do this in the terminal:
 
@@ -88,7 +90,7 @@ cfcd208495d565ef66e7dff9f98764da
 
 Cool, we can now navigate to http://10.10.146.177/cfcd208495d565ef66e7dff9f98764da and sure enough we find our flag!
 
-flag.png
+![flag.png](../assets/corridor_assets/flag.png)
 
 Thanks for following along!
 

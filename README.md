@@ -1,6 +1,6 @@
 # TryHackMe_Writeups
 
-A Place for writeups of various THM challenges.
+A place for writeups of various THM challenges.
 
 - AlinOne
 - Attacktive Directory

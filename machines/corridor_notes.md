@@ -51,7 +51,11 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 10.13 seconds
 ```
 
-Navigating to the site, we have a background of a hall or corridor, and each of the doors is a link. Each of the links appear to be a hash of somekind.
+Navigating to the site, we have a background of a hall or corridor, and each of the doors is a link. 
+
+![site.png](../assets/corridor_assets/site.png)
+
+Each of the links appear to be a hash of somekind.
 
 ![link.png](../assets/corridor_assets/link.png)
 

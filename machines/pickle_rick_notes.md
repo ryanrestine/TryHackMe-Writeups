@@ -56,37 +56,37 @@ Nmap done: 1 IP address (1 host up) scanned in 11.07 seconds
 
 Heading to the sight we see a note from Rick to Morty:
 
-site.png
+![site.png](../assets/pickle_rick_assets/site.png)
 
 Checking out the source of the page we find a username left as a comment:
 
-note.png
+![note.png](../assets/pickle_rick_assets/note.png)
 
 Cool. Lets also manually check for a robots.txt page while we're here:
 
-robots.png
+![robots.png](../assets/pickle_rick_assets/robots.png)
 
-Ok, not exactly positive what this is. trying to go to http://10.10.103.60/Wubbalubbadubdub we get a Not Found page. 
+Ok, not exactly positive what this is. Trying to go to http://10.10.103.60/Wubbalubbadubdub we get a Not Found page. 
 
 Lets do some directory fuzzing to see if we can find any other pages:
 
-ferox.png
+![ferox.png](../assets/pickle_rick_assets/ferox.png)
 
-Cool, looks like we've found a login page. Let's check that out:
+Looks like we've found a login page. Let's check that out:
 
-login.png
+![login.png](../assets/pickle_rick_assets/login.png)
 
 Nice! We were able to login with the found username and used Wubbalubbadubdub for the password.
 
 Interesting, looks like there is a panel to execute commands on the server with. Running `whoami` we see we have execution:
 
-panel.png
+![panel.png](../assets/pickle_rick_assets/panel.png)
 
 Trying to go to access any other materials on the site we get redirected to `/denied.php`
 
-denied.png
+![denied.png](../assets/pickle_rick_assets/denied.png)
 
-Funily enough, checking out the source code of the login page we find another comment:
+Funily enough, checking out the source code of the page we find another comment:
 
 ```text
 Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==
@@ -125,13 +125,13 @@ drwxrwxr-x 2 ubuntu ubuntu 4096 Feb 10  2019 assets
 
 Trying to view any of these files using the `cat` command is blocked:
 
-cmd.png
+![cmd.png](../assets/pickle_rick_assets/cmd.png)
 
 Ok, so there must be some command filtering happing here. Lets try and bypass this by using the panel to get a reverse shell.
 
 ### Exploitation
 
-First I'll set up a Netcat listener on my attacking machine and then head over to
+First I'll set up a Netcat listener on my attacking machine and then head over to revshells.com
 
 From there i can grab a Python reverse shell oneliner and run it:
 
@@ -173,7 +173,7 @@ From here I can answer the first question:
 What is the first ingredient that Rick needs?
 ```
 
-first.png
+![first.png](../assets/pickle_rick_assets/first.png)
 
 Looks like there was a clue left behind:
 
@@ -188,7 +188,7 @@ Poking around the box a bit more we find the second ingredient in rick's `/home`
 What is the second ingredient in Rick’s potion?
 ```
 
-second.png
+![second.png](../assets/pickle_rick_assets/second.png)
 
 ### Privilege Escalation
 
@@ -222,7 +222,7 @@ And from there we can answer the final question:
 What is the last and final ingredient?
 ```
 
-third.png
+![third.png](../assets/pickle_rick_assets/third.png)
 
 Thanks for following along!
 

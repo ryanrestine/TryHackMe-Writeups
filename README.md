@@ -11,6 +11,7 @@ A place for writeups of various THM challenges.
 - Enterprise
 - Internal
 - Kiba
+- Mr. Robot CTF
 - Pickle Rick
 - Quotient
 - Relevant

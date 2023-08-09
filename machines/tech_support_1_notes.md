@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-tech.png
+![tech.png](../assets/tech_support_1_assets/tech.png)
 
 ```text
 Hack into the scammer's under-development website to foil their plans.

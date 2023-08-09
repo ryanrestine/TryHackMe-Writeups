@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-robot.png
+![robot.jpeg](../assets/mr_robot_ctf_assets/robot.jpeg)
 
 ```text
 Can you root this Mr. Robot styled machine? This is a virtual machine meant for beginners/intermediate users. There are 3 hidden keys located on the machine, can you find them?
@@ -57,15 +57,15 @@ Interesting that SSH is being returned as closed here.
 
 Checking out the site we find an interactive page:
 
-site.png
+![site.png](../assets/mr_robot_ctf_assets/site.png)
 
 Trying out `robots.txt` we find a couple entries:
 
-robots.png
+![robots.png](../assets/mr_robot_ctf_assets/robots.png)
 
 Heading to http://10.10.67.233/key-1-of-3.txt we find the first flag:
 
-key1.png
+![key1.png](../assets/mr_robot_ctf_assets/key1.png)
 
 We can also download the file fsociety.dic, which appears to be a wordlist:
 
@@ -86,11 +86,11 @@ window
 
 If we scan for more directories, we're tipped of that we're dealing with WordPress here.
 
-ferox.png
+![ferox.png](../assets/mr_robot_ctf_assets/ferox.png)
 
 Feroxbouster also finds a `/license` directory:
 
-license.png
+![license.png](../assets/mr_robot_ctf_assets/license.png)
 
 and if we scroll down we find the text:
 
@@ -109,13 +109,13 @@ elliot:ER28-0652
 ```
 Nice! We have some credentials. Lets use these to login to the WordPress site:
 
-login.png
+![login.png](../assets/mr_robot_ctf_assets/login.png)
 
 ### Exploitation
 
 Once logged in we can navigate to Appearance > Themes, and from there we can copy in a PHP reverse shell into the 404 template:
 
-404.png
+![404.png](../assets/mr_robot_ctf_assets/404.png)
 
 Saving that and navigating to http://10.10.67.233/404.php we catch a reverse shell back:
 
@@ -154,25 +154,25 @@ robot:c3fcd3d76192e4007dfb496cca67e13b
 
 But we did find a potential password. Lets crack that using crackstation:
 
-crack.png
+![crack.png](../assets/mr_robot_ctf_assets/crack.png)
 
 Cool, we can now use the `su robot` command and grab the second key:
 
-key2.png
+![key2.png](../assets/mr_robot_ctf_assets/key2.png)
 
 ### Privilige Escalation
 
 Lets transfer LinPEAS over to the target to help with enumeration:
 
-transfer.png
+![transfer.png](../assets/mr_robot_ctf_assets/transfer.png)
 
 LinPEAS finds that the SUID bit is set for Nmap. This should make for an easy privesc:
 
-suid.png
+![suid.png](../assets/mr_robot_ctf_assets/suid.png)
 
 Lets head over to https://gtfobins.github.io/ and search for Nmap:
 
-gtfo.png
+![gtfo.png](../assets/mr_robot_ctf_assets/gtfo.png)
 
 Cool, this should work for us:
 
@@ -190,7 +190,7 @@ uid=1002(robot) gid=1002(robot) euid=0(root) groups=0(root),1002(robot)
 
 All that's left to do is grab the final key:
 
-key3.png
+![key3.png](../assets/mr_robot_ctf_assets/key3.png)
 
 Thanks for following along!
 

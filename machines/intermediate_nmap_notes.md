@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-nmap.png
+![nmap.png](../assets/intermediate_nmap_assets/nmap.png)
 
 ```text
 Can you combine your great nmap skills with other tools to log in to this machine?
@@ -98,7 +98,7 @@ Nmap done: 1 IP address (1 host up) scanned in 11.98 seconds
 
 Interesting, looks like Nmap picked up some potential credentials while fingerprinting port 31337.
 
-strings.png
+![strings.png](../assets/intermediate_nmap_assets/strings.png)
 
 Lets confirm that by connecting to the port using Netcat:
 
@@ -150,7 +150,7 @@ That was easy!
 
 Lets grab the flag to complete the room:
 
-flag.png
+![flag.png](../assets/intermediate_nmap_assets/flag.png)
 
 That was an incredibly short challenge.
 

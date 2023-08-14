@@ -9,6 +9,7 @@ A place for writeups of various THM challenges.
 - ConvertMyVideo
 - Corridor
 - Enterprise
+- Epoch
 - Intermediate Nmap
 - Internal
 - Kiba

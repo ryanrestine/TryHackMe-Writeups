@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-md2pdf.png
+![md2pdf.png](../assets/md2pdf_assets/md2pdf.png)
 
 ```text
 Hello Hacker!
@@ -149,13 +149,13 @@ Nmap done: 1 IP address (1 host up) scanned in 12.12 seconds
 
 Lets use Feroxbuster to scan for any directories we can find:
 
-ferox.png
+![ferox.png](../assets/md2pdf_assets/ferox.png)
 
 Cool, looks like there's an `/admin` directory.
 
 Navigating to the page we get an access denied/ forbidden error. But more importantly, the error message is really verbose:
 
-local.png
+![local.png](../assets/md2pdf_assets/local.png)
 
 Looks like we can only access the directory from localhost:5000
 
@@ -166,11 +166,11 @@ Lets try using an `iframe` to access this directory. iframes essentally allow us
  </iframe>
 ```
 
-iframe.png
+![iframe.png](../assets/md2pdf_assets/iframe.png)
 
 Cool, that worked!
 
-flag.png
+![flag.png](../assets/md2pdf_assets/flag.png)
 
 Thanks for following along!
 

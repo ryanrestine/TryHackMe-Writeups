@@ -10,6 +10,7 @@ A place for writeups of various THM challenges.
 - Corridor
 - Enterprise
 - Epoch
+- Fowsniff CTF
 - Intermediate Nmap
 - Internal
 - Kiba

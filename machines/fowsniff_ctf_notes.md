@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-![fowsniff.png](../assets/fowsniff_assets/fowsniff.png)
+![fowsniff.jpeg](../assets/fowsniff_assets/fowsniff.jpeg)
 
 I'll kick off enumerating this box with an Nmap scan covering all TCP ports. To speed this along I'll also user the `--min-rate 10000` flag:
 

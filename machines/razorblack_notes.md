@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-razorblack.jpeg
+![razorblack.jpeg](../assets/razorblack_assets/razorblack.jpeg)
 
 ### Enumeration
 
@@ -55,7 +55,7 @@ Nmap done: 1 IP address (1 host up) scanned in 19.51 seconds
 
 Woof, that's a lot of open ports. Rather than scanning for versions and using Nmap scripts, lets enumerate these manually. 
 
-Becauset his appears to be a domain controller, lets use CrackmapExec to get the domain name, which we can then add to our `/etc/hosts` file:
+Because this appears to be a domain controller, lets use CrackmapExec to get the domain name, which we can then add to our `/etc/hosts` file:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/RazorBlack]
@@ -63,7 +63,7 @@ Becauset his appears to be a domain controller, lets use CrackmapExec to get the
 SMB         10.10.59.200    445    HAVEN-DC         [*] Windows 10.0 Build 17763 x64 (name:HAVEN-DC) (domain:raz0rblack.thm) (signing:True) (SMBv1:False)
 ```
 
-Taking a look at RPC on port 111, we see we can mount a sheare:
+Taking a look at RPC on port 111, we see we can mount a share:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/RazorBlack]
@@ -84,7 +84,7 @@ employee_status.xlsx  sbradley.txt
 
 Cool, looks like two files, an employee status Excel document, and a file called sbradley.txt, which contains a flag (for this writeup I'll be skipping all the flag submissions for the challenge and just focusing on rooting the domain)
 
-Taking a look at the Exel document we find a list of names. We can follow the naming convention from the sbradley.txt file and assume the convention is first_initial_last_name. Lets create a username file based on this logic:
+Taking a look at the Excel document we find a list of names. We can follow the naming convention from the sbradley.txt file and assume the convention is first_initial_last_name. Lets create a username file based on this logic:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/RazorBlack]
@@ -110,21 +110,21 @@ Now that we have this, lets see what we can do with it.
 
 Trying impacket-GetNPUsers with the `-no-pass` flag set we are able to drop a hash!
 
-npu.png
+![npu.png](../assets/razorblack_assets/npu.png)
 
 Lets put this hash in a file called twilliams_hash and try to crack it using JohnTheRipper:
 
-twilliams.png
+![twilliams.png](../assets/razorblack_assets/twilliams.png)
 
 Nice, John cracked that easily. Now that we have some credentials, lets try using impacket-GetUserSPNs:
 
-spn.png
+![spn.png](../assets/razorblack_assets/spn.png)
 
-We've got another hash! THis time for user xyan1d3.
+We've got another hash! This time for user xyan1d3.
 
 Once again I'll ad this to a file called xyan1d3_hash and use John to crack it:
 
-john2.png
+![john2.png](../assets/razorblack_assets/john2.png)
 
 Cool, that worked! We can now use Evil-WinRM to logon to the target:
 
@@ -167,7 +167,7 @@ Info: Upload successful!
 
 We can now use DiskShadow to make a copy of the `C:\` drive:
 
-disk.png
+![disk.png](../assets/razorblack_assets/disk.png)
 
 Now lets use robocopy to grab the ntds.dit file:
 
@@ -197,7 +197,7 @@ The operation completed successfully.
 
 After using the `download` feature in Evil-WinRM to bring these files back to my attacking machine, I can use impacket-secretsdump to get the administrator's NTLM hash:
 
-secrets.png
+![secrets.png](../assets/razorblack_assets/secrets.png)
 
 From here I can pass-the-hash to their account:
 
@@ -208,11 +208,11 @@ From here I can pass-the-hash to their account:
 
 And in the `administrator` folder we find a file called root.xml, which appears to be in hex:
 
-hex.png
+![hex.png](../assets/razorblack_assets/hex.png)
 
 We can crack this using https://gchq.github.io/CyberChef/:
 
-root_flag.png
+![root_flag.png](../assets/razorblack_assets/root_flag.png)
 
 Thanks for following along!
 

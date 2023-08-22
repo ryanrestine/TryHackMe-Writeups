@@ -84,7 +84,11 @@ employee_status.xlsx  sbradley.txt
 
 Cool, looks like two files, an employee status Excel document, and a file called sbradley.txt, which contains a flag (for this writeup I'll be skipping all the flag submissions for the challenge and just focusing on rooting the domain)
 
-Taking a look at the Excel document we find a list of names. We can follow the naming convention from the sbradley.txt file and assume the convention is first_initial_last_name. Lets create a username file based on this logic:
+Taking a look at the Excel document we find a list of names. 
+
+![users.png](../assets/razorblack_assets/users.png)
+
+We can follow the naming convention from the sbradley.txt file and assume the convention is first_initial_last_name. Lets create a username file based on this logic:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/RazorBlack]

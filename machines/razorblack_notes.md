@@ -139,7 +139,9 @@ Cool, that worked! We can now use Evil-WinRM to logon to the target:
 
 ### Privilege Escalation
 
-Taking a look at our privileges by running `whoami /all` we see the SeBackupPrivilege, which should hopefully be a way to escalate privileges by allowing us to obtain the ntds.dit file. 
+Taking a look at our privileges by running `whoami /all` we see the SeBackupPrivilege, which should hopefully be a way to escalate privileges by allowing us to obtain the ntds.dit file.
+
+![backup.png](../assets/razorblack_assets/backup.png)
 
 To do this we'll need to creat a .dsh file and convert it to be compatible with Windows:
 

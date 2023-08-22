@@ -18,6 +18,7 @@ A place for writeups of various THM challenges.
 - Mr. Robot CTF
 - Pickle Rick
 - Quotient
+- RazorBlack
 - Relevant
 - RootMe
 - Sakura

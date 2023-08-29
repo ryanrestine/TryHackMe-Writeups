@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-jpgchat.png
+![jpgchat.png](../assets/jpgchat_assets/jpgchat.png)
 
 ### Enumeration
 
@@ -70,9 +70,11 @@ Nmap done: 1 IP address (1 host up) scanned in 11.93 seconds
 
 Going off the Nmap scan we know there is a GitHub with the source code to the chat system. A quick Google takes us to https://github.com/Mozzie-jpg/JPChat/blob/main/jpchat.py
 
+![github.png](../assets/jpgchat_assets/github.png)
+
 Taking a look at the source code we see that it is using `os.system` to make bash commands. We should be able to exploit this:
 
-code.png
+![code.png](../assets/jpgchat_assets/code.png)
 
 ### Exploitation
 
@@ -107,11 +109,11 @@ Which is giving us interactive control via bash and echo to the target.
 
 We can set up a NetCat listener and issue a one-liner to get a real reverse shell back:
 
-shell.png
+![shell.png](../assets/jpgchat_assets/shell.png)
 
 Now that we have a shell we can grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/jpgchat_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -159,7 +161,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 Nice, that worked! Lets go ahead and grab the root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/jpgchat_assets/root_flag.png)
 
 Thanks for following along!
 

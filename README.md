@@ -13,6 +13,7 @@ A place for writeups of various THM challenges.
 - Fowsniff CTF
 - Intermediate Nmap
 - Internal
+- JPGChat
 - Kiba
 - MD2PDF
 - Mr. Robot CTF

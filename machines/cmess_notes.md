@@ -60,17 +60,17 @@ Navigating to the site we find a default Gila CMS landing page:
 
 Per the instructions/ hint, it looks like we'll need to do some fuzzing here. We can do that with wfuzz:
 
-fuzz.png
+![fuzz.png](../assets/cmess_assets/fuzz.png)
 
 Cool, looks like we've also got a dev.cmess.thm, lets add that to `/etc/hosts` as well. 
 
 Checking out the page we find a chat between user andre and the support team, and included in the chat is a password!
 
-dev.png
+![dev.png](../assets/cmess_assets/dev.png)
 
 Navigating to http://cmess.thm/admin we can use these credentials to login to andre's account:
 
-admin.png
+![admin.png](../assets/cmess_assets/admin.png)
 
 ### Exploitation
 
@@ -79,6 +79,10 @@ At the bottom of the page we find the version number for Gila: `Gila CMS version
 Searching for public exploits I came across https://www.exploit-db.com/exploits/51569 which looks promising. 
 
 Taking a look at the code it looks like we're exploiting the .htaccess mentioned in the dev notes. Lets give this a shot.
+
+![code.png](../assets/cmess_assets/code.png)
+
+(Note: I had to update the GSESSIONID field in the script)
 
 Lets fire off the script using:
 
@@ -89,7 +93,7 @@ Lets fire off the script using:
 
 And we can catch a shell back as www-data:
 
-shell.png
+![shell.png](../assets/cmess_assets/shell.png)
 
 Trying to access andre's home direcotory we get an access denied error:
 
@@ -117,7 +121,7 @@ UQfsdCB7aAP6
 
 We can use this password to switch users to andre and grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/cmess_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -152,7 +156,7 @@ echo "" > "/home/andre/backup/--checkpoint-action=exec=sh shell"
 
 After two minutes (or less) we should catch a shell in our netcat listener and be able to grab the root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/cmess_assets/root_flag.png)
 
 Thanks for following along!
 

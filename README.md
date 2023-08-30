@@ -6,6 +6,7 @@ A place for writeups of various THM challenges.
 - Attacktive Directory
 - Blueprint
 - Chill Hack
+- CMesS
 - ConvertMyVideo
 - Corridor
 - Enterprise

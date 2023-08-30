@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-cmess.png
+![cmess.png](../assets/cmess_assets/cmess.png)
 
 ### Enumeration
 
@@ -56,7 +56,7 @@ Nmap done: 1 IP address (1 host up) scanned in 14.00 seconds
 
 Navigating to the site we find a default Gila CMS landing page:
 
-site.png
+![site.png](../assets/cmess_assets/site.png)
 
 Per the instructions/ hint, it looks like we'll need to do some fuzzing here. We can do that with wfuzz:
 

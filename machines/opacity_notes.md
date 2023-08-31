@@ -72,29 +72,31 @@ Nmap done: 1 IP address (1 host up) scanned in 19.95 seconds
 
 Taking a look at the site we find a basic login page:
 
-![site.png
+![site.png](../assets/opacity_assets/site.png)
 
 Lets try some directory fuzzing with Feroxbuster:
 
-![ferox.png
+![ferox.png](../assets/opacity_assets/ferox.png)
 
 The `/cloud` directory seems interesting. 
 
 Navigating to the directory we find an image upload page:
 
-![cloud.png
+![cloud.png](../assets/opacity_assets/cloud.png)
 
 ### Exploitation
 
 Lets grab a copy of PentestMonkey's php-reverse-shell.php and update the IP and port fields:
 
-php.png
+![php.png](../assets/opacity_assets/php.png)
 
 This took some trial and error, but lets go ahead and save the file as shell.php, but when we upload it lets bypass the filtering by using http://10.2.6.181/shell.php#.png
 
+![url.png](../assets/opacity_assets/url.png)
+
 Looking back at our listener and web server we can see that worked!
 
-shell.png
+![shell.png](../assets/opacity_assets/shell.png)
 
 Trying to grab the local.txt we get a permission denied. Looks like we'll have to keep enumerating:
 
@@ -105,7 +107,7 @@ cat: local.txt: Permission denied
 
 Browsing around a bit more we find a KeePass file in `/opt`. Lets start a Python HTTP server on the target and grab the file on our attacking machine using wget:
 
-wget.png
+![wget.png](../assets/opacity_assets/wget.png)
 
 Once back on our machine we can try to access the contents, but it looks like it's password protected:
 
@@ -126,17 +128,17 @@ First we'll need to get it in a format John can work with:
 
 Then we can use John to crack the password:
 
-john.png
+![john.png](../assets/opacity_assets/john.png)
 
 Cool, now we can access the KeePass file using kpcli:
 
-kpcli.png
+![kpcli.png](../assets/opacity_assets/kpcli.png)
 
 Cool, looks like we've now get the sysadmin user's password!
 
 back in our shell we can issue `su sysadmin` and then grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/opacity_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -189,7 +191,7 @@ sysadmin@opacity:~$ cp backup.inc.php /home/sysadmin/scripts/lib/
 ```
 And then after waiting just a minute or two for the script to execute, we caught a shell back as root and were able to grab the final flag:
 
-root_flag.png
+![root_flag.png](../assets/opacity_assets/root_flag.png)
 
 Thanks for following along!
 

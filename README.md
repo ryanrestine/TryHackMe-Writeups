@@ -18,6 +18,7 @@ A place for writeups of various THM challenges.
 - Kiba
 - MD2PDF
 - Mr. Robot CTF
+- Opacity
 - Pickle Rick
 - Quotient
 - RazorBlack

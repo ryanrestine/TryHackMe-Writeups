@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-opacity.png
+![opacity.png](../assets/opacity_assets/opacity.png)
 
 ### Enumeration
 

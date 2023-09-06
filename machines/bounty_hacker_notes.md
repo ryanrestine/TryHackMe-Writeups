@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-bounty.jpeg
+![bounty.jpeg](../assets/bounty_hacker_assets/bounty.jpeg)
 
 ### Enumeration
 
@@ -69,7 +69,7 @@ Nmap done: 1 IP address (1 host up) scanned in 39.49 seconds
 
 Heading to the site we find a static page:
 
-site.png
+![site.png](../assets/bounty_hacker_assets/site.png)
 
 Looking over our Nmap results we see that FTP has anonymous access enabled- lets check that out:
 
@@ -151,7 +151,7 @@ Cool, we now have a potential username as well as what appears to be a password 
 
 ### Exploitation
 
-hydra.png
+![hydra.png](../assets/bounty_hacker_assets/hydra.png)
 
 Cool, Hydra found a valid password. Lets login to SSH.
 
@@ -180,7 +180,7 @@ bountyhacker
 
 We can now grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/bounty_hacker_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -198,7 +198,7 @@ User lin may run the following commands on bountyhacker:
 
 Lets head over to https://gtfobins.github.io/gtfobins/tar/#sudo for the commands we'll need to exploit this:
 
-tar.png
+![tar.png](../assets/bounty_hacker_assets/tar.png)
 
 ```text
 lin@bountyhacker:~/Desktop$ sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh
@@ -210,7 +210,7 @@ uid=0(root) gid=0(root) groups=0(root)
 ```
 Nice, that worked. Lets grab the final root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/bounty_hacker_assets/root_flag.png)
 
 Thanks for following along!
 

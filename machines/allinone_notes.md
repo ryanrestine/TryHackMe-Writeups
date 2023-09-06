@@ -70,7 +70,7 @@ Ok cool, looks like anonymous access is enabled for FTP, so let's check that out
 
 ![ftp.png](../assets/allinone_assets/ftp.png)
 
-It is always a good idea to check out FTP servers with anonymous access in hopes to find something juicy, but no luck today. Didn't find and files in there and was also unable to use the `put` command to upload files. Let's move on to enumerating HTTP next. 
+It is always a good idea to check out FTP servers with anonymous access in hopes to find something juicy, but no luck today. Didn't find any files in there and was also unable to use the `put` command to upload files. Let's move on to enumerating HTTP next. 
 
 Navigating to the site we find a default landing page for Apache. 
 

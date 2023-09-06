@@ -5,6 +5,7 @@ A place for writeups of various THM challenges.
 - AlinOne
 - Attacktive Directory
 - Blueprint
+- Bounty Hacker
 - Chill Hack
 - CMesS
 - ConvertMyVideo

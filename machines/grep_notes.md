@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-grep.png
+![grep.png](../assets/grep_assets/grep.png)
 
 ```text
 A challenge that tests your reconnaissance and OSINT skills.

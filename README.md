@@ -13,6 +13,7 @@ A place for writeups of various THM challenges.
 - Enterprise
 - Epoch
 - Fowsniff CTF
+- Grep
 - Intermediate Nmap
 - Internal
 - JPGChat

@@ -33,3 +33,4 @@ A place for writeups of various THM challenges.
 - Valley
 - Weasel
 - WebOSINT
+- Wgel CTF

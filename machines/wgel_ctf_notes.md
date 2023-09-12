@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-wgel.png
+![wgel.png](../assets/wgel_ctf_assets/wgel.png)
 
 ```text
 Can you exfiltrate the root flag?
@@ -42,19 +42,21 @@ Nmap done: 1 IP address (1 host up) scanned in 31.25 seconds
 
 Heading over to the site we find a Apache landing page:
 
-site.png
+![site.png](../assets/wgel_ctf_assets/site.png)
 
 But in the page source we see a comment left behind, revealing a potential username of jessie:
 
-jessie.png
+![jessie.png](../assets/wgel_ctf_assets/jessie.png)
 
 Doing some directory scanning we find an interesting directory:
 
-ferox.png
+![ferox.png](../assets/wgel_ctf_assets/ferox.png)
 
-map.png
+![map.png](../assets/wgel_ctf_assets/map.png)
 
 Wow, looks like we've got a private SSH key here:
+
+![ssh.png](../assets/wgel_ctf_assets/ssh.png)
 
 ### Exploitation
 
@@ -87,7 +89,7 @@ CorpOne
 
 From here we can grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/wgel_ctf_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -105,11 +107,11 @@ User jessie may run the following commands on CorpOne:
 
 Lets head over to https://gtfobins.github.io/gtfobins/wget/ for the commands we'll need to exploit this:
 
-gtfo.png
+![gtfo.png](../assets/wgel_ctf_assets/gtfo.png)
 
 Setting up a NetCat listener and running the commands, we are able to exfiltrate the root_flag.txt file:
 
-root_flag.png
+![root_flag.png](../assets/wgel_ctf_assets/root_flag.png)
 
 Thanks for following along!
 

@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-dig_dug.png
+![dig_dug.png](../assets/dig_dug_assets/dig_dug.png)
 
 ```text
 Oooh, turns out, this 10.10.182.160 machine is also a DNS server! If we could dig into it, I am sure we could find some interesting records! But... it seems weird, this only responds to a special type of request for a givemetheflag.com domain?
@@ -47,11 +47,11 @@ Lets modify the command to target the specific domain givemetheflag.com:
 
 Nice that gives us the flag:
 
-flag.png
+![flag.png](../assets/dig_dug_assets/flag.png)
 
 If for some reason dig wasn't available to us we could also access the flag using dnsrecon:
 
-recon.png
+![recon.png](../assets/dig_dug_assets/recon.png)
 
 Thanks for following along!
 

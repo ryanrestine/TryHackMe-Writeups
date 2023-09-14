@@ -17,19 +17,33 @@ Read user.txt and root.txt
 Lets scan the target using Nmap. Here I will use the `-p-` flag to scan all TCP ports, as well as the `-sC` and `-sV` flags to use basic scripts and to enumerate versions:
 
 ```text
+┌──(ryan㉿kali)-[~/THM/Dav]
+└─$ sudo nmap -p-  --min-rate 10000 10.10.187.168 -sC -sV
+[sudo] password for ryan: 
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-09-14 11:56 CDT
+Nmap scan report for 10.10.187.168
+Host is up (0.22s latency).
+Not shown: 65534 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 21.09 seconds
 ```
 
 Heading to the site on port 80 we find a default Apache landing page:
 
-site.png
+![site.png](../assets/dav_assets/site.png)
 
 With a name like Dav, I guessed the machine likely had to incorporate webdav, so I navigated to http://10.10.187.168/webdav/ and was prompted to authenticate.
 
-login.png
+![login.png](../assets/dav_assets/login.png)
 
 Luckily here I was able to use the default webdav credentials of wampp:xampp and was able to login:
 
-index.png
+![index.png](../assets/dav_assets/index.png)
 
 There is a password.dav file, but I'm not sure how useful that is to us as we already have working credentials.
 
@@ -37,7 +51,7 @@ There is a password.dav file, but I'm not sure how useful that is to us as we al
 
 Lets grab a copy of PentestMonkey's php-reverse-shell.php and update our IP and port we'll be listening on:
 
-php.png
+![php.png](../assets/dav_assets/php.png)
 
 We can then login using cadaver and use the `put` function to load our shell:
 
@@ -63,7 +77,7 @@ Connection to `10.10.187.168' closed.
 
 We can confirm the shell was uploaded:
 
-confirm.png
+![confirm.png](../assets/dav_assets/confirm.png)
 
 And if we click on it we trigger the call back to our listener:
 
@@ -88,7 +102,7 @@ www-data@ubuntu:/$
 
 From here we can grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/dav_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -111,13 +125,13 @@ So we can grab the final flag by running:
 sudo /bin/cat /root/root.txt
 ```
 
-root_flag.png
+![root_flag.png](../assets/dav_assets/root_flag.png)
 
 You can see in the screen shot above I tried to access a few other files in order to get an actual shell as root, rather than just grabbing the flag, but had no luck. 
 
 I couldn't recall having ever seen a (!) character in place of the root password hash in the `/etc/shadow` file before, but apparently that means the password is locked, which led me to believe this was as far as I was getting in the challenge.
 
-locked.png
+![locked.png](../assets/dav_assets/locked.png)
 
 Thanks for following along!
 

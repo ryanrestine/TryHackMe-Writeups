@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-dav.jpeg
+![dav.jpeg](../assets/dav_assets/dav.jpeg)
 
 ```text
 Read user.txt and root.txt

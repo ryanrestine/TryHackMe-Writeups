@@ -46,19 +46,19 @@ Nmap done: 1 IP address (1 host up) scanned in 27.82 seconds
 
 Heading to the site on port 80 we find a default IIS landing page:
 
-iis.png
+![iis.png](../assets/retro_assets/iis.png)
 
 Using Feroxbuster for directory fuzzing we find a `/retro` page, which appears to be running WordPress
 
-ferox.png
+![ferox.png](../assets/retro_assets/ferox.png)
 
 Checking out the site we find a blog about retro games and movies:
 
-retro.png
+![retro.png](../assets/retro_assets/retro.png)
 
 Looking around the page we find a Recent Comments section with an interesting comment from user wade:
 
-comment.png
+![comment.png](../assets/retro_assets/comment.png)
 
 ### Exploitation
 
@@ -73,13 +73,13 @@ Nice, that worked!
 
 We can now grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/retro_assets/user_flag.png)
 
 ### Privilege Escalation
 
 Looking in the Recycle Bin we see an executable hhupd.
 
-bin.png
+![bin.png](../assets/retro_assets/bin.png)
 
 Also of interest in Chrome is the bookmarked site https://nvd.nist.gov/vuln/detail/CVE-2019-1388
 
@@ -89,21 +89,21 @@ First we'll open up Chrome and IE and then drag the file from the Recycling Bin 
 
 Then we can right click on the file and select "Run as Administrator" and click on Show More Details
 
-admin.png
+![admin.png](../assets/retro_assets/admin.png)
 
 From here we can select "Show information about the publisher's certificate"
 
-info.png
+![info.png](../assets/retro_assets/info.png)
 
 We'll now get a warning that the page cant be displayed, but if we hit `ctrl + s` and navigate to `C:\Windows\System32\*.*`. We can now scroll down until we find cmd:
 
-cant.png
+![cant.png](../assets/retro_assets/cant.png)
 
-cmd.png
+![cmd.png](../assets/retro_assets/cmd.png)
 
 If we right click on cmd a command prompt will open for running as SYSTEM and we can grab the final flag:
 
-root_flag.png
+![root_flag.png](../assets/retro_assets/root_flag.png)
 
 Thanks for following along!
 

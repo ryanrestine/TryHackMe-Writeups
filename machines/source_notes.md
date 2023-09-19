@@ -60,6 +60,8 @@ Updating the options to:
 
 ![options.png](../assets/source_assets/options.png)
 
+### Exploitation
+
 We can then launch the exploit using the `run` command:
 
 ```text

@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-retro.jpeg
+![retro.jpeg](../assets/retro_assets/retro.jpeg)
 
 ### Enumeration
 

@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-source.png
+![source.png](../assets/source_assets/source.png)
 
 ### Enumeration
 
@@ -58,7 +58,7 @@ The webmin_backdoor seems interesting.
 
 Updating the options to:
 
-options.png
+![options.png](../assets/source_assets/options.png)
 
 We can then launch the exploit using the `run` command:
 
@@ -86,9 +86,9 @@ Nice, we caught a shell as root!
 
 All we need to do now is grab our flags:
 
-user_flag.png
+![user_flag.png](../assets/source_assets/user_flag.png)
 
-root_flag.png
+![root_flag.png](../assets/source_assets/root_flag.png)
 
 Thanks for following along!
 

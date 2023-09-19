@@ -27,6 +27,7 @@ A place for writeups of various THM challenges.
 - Quotient
 - RazorBlack
 - Relevant
+- Retro
 - RootMe
 - Sakura
 - Simple CTF

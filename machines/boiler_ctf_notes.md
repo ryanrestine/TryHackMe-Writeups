@@ -136,7 +136,7 @@ Trying out: http://10.10.122.19/joomla/_test/index.php?plot=;ls shows us the con
 
 (Note: I'm viewing the page source here for ease of screen-shotting. It is easier to just access the contents as described in the exploit)
 
-![log.txt](../assets/boiler_ctf_assets/log.txt)
+![log.png](../assets/boiler_ctf_assets/log.png)
 
 Log.txt seems interesting, lets check that out: 
 

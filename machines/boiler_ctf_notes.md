@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-boiler.png
+![boiler.png](../assets/boiler_ctf_assets/boiler.png)
 
 Note: For this writeup I will be skipping the rooms guided questions and only be focusing on securing the user.txt and root.txt flags.
 

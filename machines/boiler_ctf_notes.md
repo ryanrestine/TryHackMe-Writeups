@@ -8,11 +8,11 @@
 
 ![boiler.png](../assets/boiler_ctf_assets/boiler.png)
 
-Note: For this writeup I will be skipping the rooms guided questions and only be focusing on securing the user.txt and root.txt flags.
+Note: For this writeup I will be skipping the room's guided questions and only be focusing on securing the user.txt and root.txt flags.
 
 ### Enumeration
 
-I'll kick off enumerating this box with an Nmap scan covering all TCP ports. To speed this along I'll also use the `--min-rate 10000` flag:
+I'll kick off enumerating this box with an Nmap scan covering all TCP ports. To speed this along I'll also use the `--min-rate 10000` flag as well as `-sV` and `-sC` to enumerate versions and use basic scripts:
 
 ```text
 ┌──(ryan㉿kali)-[~/THM/Boiler_CTF]
@@ -96,37 +96,37 @@ Whfg jnagrq gb frr vs lbh svaq vg. Yby. Erzrzore: Rahzrengvba vf gur xrl!
 
 Lets head over to https://gchq.github.io/CyberChef/ to decode this:
 
-rot.png
+![rot.png](../assets/boiler_ctf_assets/rot.png)
 
 Getting trolled a bit here. Lets keep looking around.
 
 Port 80 has a default Apache landing page:
 
-80.png
+![80.png](../assets/boiler_ctf_assets/80.png)
 
 And port 10000 has a redirect to an internal site I can't access:
 
-url.png
+![url.png](../assets/boiler_ctf_assets/url.png)
 
 Lets kick off some directory fuzzing against port 80 to see what we find:
 
-ferox.png
+![ferox.png](../assets/boiler_ctf_assets/ferox.png)
 
 Cool, looks like there is a `/joomla` directory. Heading to the site we find a basic Joomla page
 
-joomla.png
+![joomla.png](../assets/boiler_ctf_assets/joomla.png)
 
 Going back to our directory scan, we find another interesting directory `/joomla/_test`
 
-test.png
+![test.png](../assets/boiler_ctf_assets/test.png)
 
 This page is running sar2html which has some known vulnerabilites:
 
-sat2html.png
+![sar2html.png](../assets/boiler_ctf_assets/sar2html.png)
 
 Searching for exploits we find this page: https://www.exploit-db.com/exploits/47204
 
-exploit.png
+![exploit.png](../assets/boiler_ctf_assets/exploit.png)
 
 Interesting, lets give it a shot.
 
@@ -136,13 +136,13 @@ Trying out: http://10.10.122.19/joomla/_test/index.php?plot=;ls shows us the con
 
 (Note: I'm viewing the page source here for ease of screen-shotting. It is easier to just access the contents as described in the exploit)
 
-log.txt
+![log.txt](../assets/boiler_ctf_assets/log.txt)
 
 Log.txt seems interesting, lets check that out: 
 
 `http://10.10.122.19/joomla/_test/index.php?plot=;cat log.txt`
 
-creds.png
+![creds.png](../assets/boiler_ctf_assets/creds.png)
 
 Cool, looks like we've got some credentials now. Lets use these to login with SSH:
 
@@ -173,7 +173,7 @@ Vulnerable
 
 Looking around the box I find a file called backup.sh with user stoner's credentials, lets use those to `su stoner`
 
-stoner.png
+![stoner.png](../assets/boiler_ctf_assets/stoner.png)
 
 In stoner's directory we find a `.secret` file:
 
@@ -193,7 +193,7 @@ drwxrwxr-x 2 stoner stoner 4096 Aug 22  2019 .nano
 
 Which for this box serves as the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/boiler_ctf_assets/user_flag.png)
 
 ### Privilege Escalation
 
@@ -228,7 +228,7 @@ stoner@Vulnerable:~$ find / -perm -u=s 2>/dev/null
 
 If we head over to https://gtfobins.github.io/gtfobins/find/ we can get the command we'll need to exploit this:
 
-gtfo.png
+![gtfo.png](../assets/boiler_ctf_assets/gtfo.png)
 
 Lets run it:
 
@@ -243,7 +243,7 @@ uid=1000(stoner) gid=1000(stoner) euid=0(root) groups=1000(stoner),4(adm),24(cdr
 
 All we need to do now is grab the root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/boiler_ctf_assets/root_flag.png)
 
 Thanks for following along!
 

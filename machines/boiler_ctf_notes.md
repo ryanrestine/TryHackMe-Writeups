@@ -134,7 +134,7 @@ Interesting, lets give it a shot.
 
 Trying out: http://10.10.122.19/joomla/_test/index.php?plot=;ls shows us the contents of the directory:
 
-(Note: I'm viewing the page source here for ease of screen-shotting. It is easier to just access the contents as described in the exploit)
+(Note: I'm viewing the page source here for ease of screenshots. It is easier to just access the contents as described in the exploit)
 
 ![log.png](../assets/boiler_ctf_assets/log.png)
 

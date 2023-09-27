@@ -3,6 +3,7 @@
 A place for writeups of various THM challenges.
 
 - AlinOne
+- Anonymous
 - Attacktive Directory
 - Blueprint
 - Boiler CTF

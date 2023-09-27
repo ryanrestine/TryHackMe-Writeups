@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-anonymous.png
+![anonymous.png](../assets/anonymous_assets/anonymous.png)
 
 ### Enumeration
 

@@ -169,7 +169,7 @@ Looks like the cleanup script may be running as a cronjob?
 
 Lets look at the script itself:
 
-cleanup.png
+![cleanup.png](../assets/anonymous_assets/cleanup.png)
 
 Yeah looks like the script simply removes files and if there is nothing to remove echoes "nothing to delete" to the log file.
 
@@ -177,31 +177,31 @@ Yeah looks like the script simply removes files and if there is nothing to remov
 
 Lets try modifying the cleanup.sh script to execute a reverse shell when run. We can add a reverse shell one-liner to the end of the script:
 
-shell.png
+![shell.png](../assets/anonymous_assets/shell.png)
 
 Saving the file and logging back into FTP we can usee the `put` command to overwrite cleanup.sh with our reverse shell:
 
-put.png
+![put.png](../assets/anonymous_assets/put.png)
 
 Nice, that worked! 
 
 Now that we are on the box we can grab the user.txt flag:
 
-user_flag.png
+![user_flag.png](../assets/anonymous_assets/user_flag.png)
 
 ### Privilege Escalation
 
 Lets go ahead and transfer over LinPEAS to help enumerate a privilege escalation vector:
 
-transfer.png
+![transfer.png](../assets/anonymous_assets/transfer.png)
 
-LinPEAS find that `/usr/bin/env` has the SUID bit set. 
+LinPEAS finds that `/usr/bin/env` has the SUID bit set. 
 
-env.png
+![env.png](../assets/anonymous_assets/env.png)
 
 Lets head over to https://gtfobins.github.io/gtfobins/env/ for the command we'll need.
 
-gtfo.png
+![gtfo.png](../assets/anonymous_assets/gtfo.png)
 
 Lets give it a shot:
 
@@ -216,7 +216,7 @@ uid=1000(namelessone) gid=1000(namelessone) euid=0(root) groups=1000(namelessone
 
 Nice! All we need to do now is grab the root.txt flag:
 
-root_flag.png
+![root_flag.png](../assets/anonymous_assets/root_flag.png)
 
 Thanks for following along!
 

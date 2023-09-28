@@ -5,6 +5,7 @@ A place for writeups of various THM challenges.
 - AlinOne
 - Anonymous
 - Attacktive Directory
+- Basic Pentesting
 - Blueprint
 - Boiler CTF
 - Bounty Hacker

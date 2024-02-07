@@ -30,6 +30,7 @@ A place for writeups of various THM challenges.
 - Quotient
 - RazorBlack
 - Relevant
+- Reset
 - Retro
 - RootMe
 - Sakura

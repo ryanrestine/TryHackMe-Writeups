@@ -88,7 +88,7 @@ First things first lets add thm.corp to our `/etc/hosts` file.
 
 Using CrackMapExec I can see we have read/write access to the Data share as guest.
 
-reset_guest_shares.png
+![reset_guest_shares.png](../assets/reset_assets/reset_guest_shares.png)
 
 Logging in we find a few interesting files:
 
@@ -102,11 +102,11 @@ Cool, looks like we've found a credential: ResetMe123!
 
 Also of interest is a PDF on onboarding new employees. Opening it up we find an example template using the letter above, and perhaps a valid username?
 
-reset_pdf.png
+![reset_pdf.png](../assets/reset_assets/reset_pdf.png)
 
 Going back to CrackMapExec, we can brute force users using the `--rid-brute` flag:
 
-reset_rid.png
+![reset_rid.png](../assets/reset_assets/reset_rid.png)
 
 We can also confirm that Lily Oneill was indeed a valid user:
 ```
@@ -142,11 +142,11 @@ Then I used the `put` command to load the malicious shell.url to the onboarding 
 
 Within a matter of seconds the AUTOMATE user clicked on my file and I was able to capture their hash:
 
-reset_automate_hash.png
+![reset_automate_hash.png](../assets/reset_assets/reset_automate_hash.png)
 
 And was able to successfully crack it with John:
 
-reset_johna.png
+![reset_johna.png](../assets/reset_assets/reset_johna.png)
 
 Armed with the credentials AUTOMATE:Passw0rd1 I was able to use evil-wimrm to logon to the target:
 
@@ -169,7 +169,7 @@ HayStack
 ```
 And grab the user.txt flag:
 
-reset_user_flag.png
+![reset_user_flag.png](../assets/reset_assets/resetuser_flag.png)
 
 ### Privilege Escalation
 
@@ -219,45 +219,14 @@ $krb5asrep$23$LEANN_LONG@THM.CORP:4acf56478aa66337560fc52b3a84ad4a$e4e13ecd5c4f8
 
 Throwing these in a file called hash3, I was able to crack TABATHA_BRITT's hash:
 
-reset_john2.png
+![reset_john2.png](../assets/reset_assets/reset_john2.png)
 
 With this password I can RDP into the target with TABATHA_BRITT:marlboro(1985)
 
 But unfortuantely we still have AV to contend with:
 
-reset_av.png
+![reset_av.png](../assets/reset_assets/reset_av.png)
 
-Manually enumerating the target we can confirm that CELIA_WONG is in the Domain Admins group:
-
-```
-PS C:\Users> net user CECILE_WONG
-User name                    CECILE_WONG
-Full Name                    CECILE_WONG
-Comment
-User's comment
-Country/region code          000 (System Default)
-Account active               Yes
-Account expires              Never
-
-Password last set            7/14/2023 7:38:00 AM
-Password expires             Never
-Password changeable          7/15/2023 7:38:00 AM
-Password required            Yes
-User may change password     Yes
-
-Workstations allowed         All
-Logon script
-User profile
-Home directory
-Last logon                   1/26/2024 9:20:24 PM
-
-Logon hours allowed          All
-
-Local Group Memberships      *RDS Management Server*Remote Desktop Users
-Global Group memberships     *DnsUpdateProxy       *Domain Admins
-                             *Gu-gerardway-distlist*Domain Users
-The command completed successfully.
-```
 
 Not positive where to turn next, I ran bloodhound-python against the domain in hopes getting a visual picture of things may help me move forward:
 
@@ -268,11 +237,11 @@ Not positive where to turn next, I ran bloodhound-python against the domain in h
 
 Looking through the results under Transative Object Control for TABATHA_BRITT we see that shee has GenericAll contol over SHAWNA_BRAY, who in turn has ForceChangePassword control over CRUZ_HALL, who finally has GenericAll over DARLA_WINTERS.
 
-reset_bloodhound.png
+![reset_bloodhound.png](../assets/reset_assets/reset_bloodhound.png)
 
 That's a lot off password changing waiting to be done, lets get to it.
 
-reset_net_rpc.png
+![reset_net_rpc.png](../assets/reset_assets/reset_net_rpc.png)
 
 Now that we've updated these lets confirm we can login to SMB as DARLA_WINTERS:
 
@@ -338,7 +307,7 @@ thm\administrator
 
 And grab the final flag:
 
-reset_root.png
+![reset_root.png](../assets/reset_assets/reset_root.png)
 
 Thanks for following along!
 

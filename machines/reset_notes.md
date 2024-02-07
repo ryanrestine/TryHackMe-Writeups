@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-reset.png
+![reset.png](../assets/reset_assets/reset.png)
 
 Scenario:
 ```

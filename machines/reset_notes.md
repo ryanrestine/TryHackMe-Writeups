@@ -169,7 +169,7 @@ HayStack
 ```
 And grab the user.txt flag:
 
-![reset_user_flag.png](../assets/reset_assets/resetuser_flag.png)
+![reset_user_flag.png](../assets/reset_assets/reset_user_flag.png)
 
 ### Privilege Escalation
 

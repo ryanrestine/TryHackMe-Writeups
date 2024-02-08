@@ -235,7 +235,7 @@ Not positive where to turn next, I ran bloodhound-python against the domain in h
 └─$ bloodhound-python -c All -u 'TABATHA_BRITT' -p 'marlboro(1985)' -d thm.corp -ns 10.10.186.78 --zip
 ```
 
-Looking through the results under Transative Object Control for TABATHA_BRITT we see that shee has GenericAll contol over SHAWNA_BRAY, who in turn has ForceChangePassword control over CRUZ_HALL, who finally has GenericWrite over DARLA_WINTERS.
+Looking through the results under Transative Object Control for TABATHA_BRITT we see that she has GenericAll contol over SHAWNA_BRAY, who in turn has ForceChangePassword control over CRUZ_HALL, who finally has GenericWrite over DARLA_WINTERS.
 
 ![reset_bloodhound.png](../assets/reset_assets/reset_bloodhound.png)
 

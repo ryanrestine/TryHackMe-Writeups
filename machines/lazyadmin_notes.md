@@ -117,6 +117,11 @@ I'll then open it up and change the address I'll be listening on:
 
 Next I'll use the exploit to upload the file:
 
+```
+┌──(ryan㉿kali)-[~/THM/LazyAdmin]
+└─$ python sweetrice_upload.py
+```
+
 ![lazyadmin_exploit1](../assets/lazyadmin_assets/lazyadmin_exploit1.png)
 
 lazyadmin_exploit1.png

@@ -5,7 +5,7 @@
 ### Difficulty: Easy
 --------------------------------------------
 
-lazyadmin.jpeg
+![lazyadmin.jpeg](../assets/lazyadmin_assets/lazyadmin.jpeg)
 
 ### Enumeration
 

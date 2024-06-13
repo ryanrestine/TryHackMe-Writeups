@@ -1,9 +1,11 @@
 # TryHackMe
 
 ------------------------------------
+
 ### IP: 10.10.97.171
 ### Name: LazyAdmin
 ### Difficulty: Easy
+
 --------------------------------------------
 
 ![lazyadmin.jpeg](../assets/lazyadmin_assets/lazyadmin.jpeg)

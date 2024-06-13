@@ -1,4 +1,5 @@
 # TryHackMe
+
 ------------------------------------
 ### IP: 10.10.97.171
 ### Name: LazyAdmin
@@ -38,23 +39,23 @@ Navigating to port 80 we find an apache landing page.
 
 Kicking off some directory fuzzing we find a `/content` endpoint:
 
-lazyadmin_dirs.png
+![lazyadmin_dirs.png](../assets/lazyadmin_assets/lazyadmin_dirs.png)
 
 Checking it out we see it is running Sweet Rice:
 
-lazyadmin_sr.png
+![lazyadmin_sr.png](../assets/lazyadmin_assets/lazyadmin_sr.png)
 
 Navigating to http://10.10.183.91/content/as/ we find the sign-in page:
 
-lazyadmin_signin.png
+![lazyadmin_signin.png](../assets/lazyadmin_assets/lazyadmin_signin.png)
 
 Looking back at our directory scanning, we find a `/inc` page, and in that directory we find a mysql backup file:
 
-lazyadmin_backup.png
+![lazyadmin_backup.png](../assets/lazyadmin_assets/lazyadmin_backup.png)
 
 Taking a look at the file we find the manager's password hash:
 
-lazyadmin_hash.png
+![lazyadmin_hash.png](../assets/lazyadmin_assets/lazyadmin_hash.png)
 
 This appears to be MD5, so lets crack it using Hashcat:
 
@@ -79,7 +80,7 @@ Status...........: Cracked
 
 Nice, we can now login with `manager:Password123`. 
 
-lazyadmin_in.png
+![lazyadmin_in.png](../assets/lazyadmin_assets/lazyadmin_in.png)
 
 Looking for exploits for version 1.5.1 I find this arbitrary upload vulnerability: https://www.exploit-db.com/exploits/40716
 
@@ -112,9 +113,11 @@ Note: There is likely some file blacklisting going on, so it's important to upda
 
 I'll then open it up and change the address I'll be listening on:
 
-lazyadmin_script_update.png
+![lazyadmin_script_update.png](../assets/lazyadmin_assets/lazyadmin_script_update.png)
 
 Next I'll use the exploit to upload the file:
+
+![lazyadmin_exploit1](../assets/lazyadmin_assets/lazyadmin_exploit1.png)
 
 lazyadmin_exploit1.png
 
@@ -136,7 +139,7 @@ THM-Chal
 
 I can then grab the user.txt flag:
 
-lazyadmin_user_flag.png
+![lazyadmin_user_flag.png](../assets/lazyadmin_assets/lazyadmin_user_flag.png)
 
 ### Privilege Escalation
 
@@ -152,9 +155,9 @@ User www-data may run the following commands on THM-Chal:
     (ALL) NOPASSWD: /usr/bin/perl /home/itguy/backup.pl
 ```
 
-Digging a bit deeper, we see we can't modify backup.pl directly, but the script calls another script, copy.sh,  which we do have write access over. And oddly enough that script is a reverse shell one liner. So we should just be able to update copy.sh to our IP address, execute backup.pl with sudo, and catch a reverse shell as root.
+Digging a bit deeper, we see we can't modify backup.pl directly, but the script calls another script, copy.sh,  which we do have write access over. And oddly enough that script is a reverse shell one liner (for some reason?). So we should just be able to update copy.sh to our IP address, execute backup.pl with sudo, and catch a reverse shell as root.
 
-lazyadmin_why.png
+![lazyadmin_why.png](../assets/lazyadmin_assets/lazyadmin_why.png)
 
 Update /etc/copy.sh
 ```
@@ -168,7 +171,7 @@ www-data@THM-Chal:/home/itguy$ sudo /usr/bin/perl /home/itguy/backup.pl
 
 And we catch a shell as root where we can grab the final flag:
 
-lazyadmin_root_flag.png
+![lazyadmin_root_flag.png](../assets/lazyadmin_assets/lazyadmin_root_flag.png)
 
 Thanks for following along!
 

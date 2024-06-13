@@ -37,6 +37,7 @@ A place for writeups of various THM challenges.
 - Simple CTF
 - Source
 - Tech_Supp0rt: 1
+- Thompson
 - UltraTech
 - Valley
 - Weasel

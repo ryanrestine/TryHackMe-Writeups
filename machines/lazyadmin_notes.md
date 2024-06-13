@@ -126,7 +126,6 @@ Next I'll use the exploit to upload the file:
 
 ![lazyadmin_exploit1](../assets/lazyadmin_assets/lazyadmin_exploit1.png)
 
-lazyadmin_exploit1.png
 
 ```
 ┌──(ryan㉿kali)-[~/THM/LazyAdmin]

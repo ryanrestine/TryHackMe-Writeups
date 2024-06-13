@@ -5,11 +5,8 @@
 ### Difficulty: Hard
 --------------------------------------------
 
-```
-When the labyrinth is before you and you lose your way, sometimes thinking outside the walls is the way forward.
-```
 
-yoto.png
+![yoto.png](../assets/year_of_the_owl_assets/yoto.png)
 
 ### Enumeration
 

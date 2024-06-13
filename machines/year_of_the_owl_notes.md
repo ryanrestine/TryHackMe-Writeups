@@ -124,7 +124,7 @@ Not finding anything of interest (or maybe just missing it) using snmpwalk I tri
 
 I tried using Hydra to bruteforce RDP, and got an interesting result:
 
-![yoto_hydra1.png](../assets/year_of_the_owl_assets/yoto_yoto_hyrda1.png)
+![yoto_hydra1.png](../assets/year_of_the_owl_assets/yoto_hydra1.png)
 
 Looks like this may be a valid password, but jareth doesn't have an account with RDP.
 

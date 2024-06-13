@@ -44,3 +44,4 @@ A place for writeups of various THM challenges.
 - Weasel
 - WebOSINT
 - Wgel CTF
+- Year Of The Owl

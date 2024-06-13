@@ -101,7 +101,7 @@ Lets give it a shot.
 
 ### Exploitation
 
-First I'll grab a copy of PentestMonkey's php_reverse_shell.php and rename it to shell.php:
+First I'll grab a copy of PentestMonkey's php_reverse_shell.php and rename it to shell.php5:
 
 ```
 ┌──(ryan㉿kali)-[~/THM/LazyAdmin]

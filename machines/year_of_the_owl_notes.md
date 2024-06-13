@@ -79,9 +79,9 @@ Nmap done: 1 IP address (1 host up) scanned in 79.10 seconds
 
 Cool, looks like we've got a Windows box here.
 
-Looking at port 80 we find a page with a pucture of an owl:
+Looking at port 80 we find a page with a picture of an owl:
 
-yoto_site.png
+![yoto_site.png](../assets/year_of_the_owl_assets/yoto_site.png)
 
 After quite awhile enumerating and not finding anything of interest, I turned to UDP, and keyed in on SNMP:
 
@@ -118,19 +118,19 @@ iso.3.6.1.2.1.1.4.0 = ""
 iso.3.6.1.2.1.1.5.0 = STRING: "year-of-the-owl"
 ```
 
-Not finding anything of interest (or maybe just missing it) I tried using snmp-check against the disovered community string, and this timme found a username:
+Not finding anything of interest (or maybe just missing it) using snmpwalk I tried using snmp-check against the disovered community string, and this timme found a username:
 
-yoto_udp.png
+![yoto_udp.png](../assets/year_of_the_owl_assets/yoto_udp.png)
 
 I tried using Hydra to bruteforce RDP, and got an interesting result:
 
-yoto_hydra1.png
+![yoto_hydra1.png](../assets/year_of_the_owl_assets/yoto_yoto_hyrda1.png)
 
 Looks like this may be a valid password, but jareth doesn't have an account with RDP.
 
 I can confirm the credential works to read SMB shares:
 
-yoto_shares_jareth.png
+![yoto_shares_jareth.png](../assets/year_of_the_owl_assets/yoto_shares_jareth.png)
 
 And I can login using Evil-Winrm:
 
@@ -155,7 +155,7 @@ year-of-the-owl
 
 We can grab the user.txt flag:
 
-yoto_user_flag.png
+![yoto_user_flag.png](../assets/year_of_the_owl_assets/yoto_user_flag.png)
 
 ### Privilege Escalation
 
@@ -197,7 +197,7 @@ Mode                LastWriteTime         Length Name
 
 Okey dokey, lets bring these back locally with evil-winrm's Download feature and dump some hashes.
 
-But before we do that we'll need to copy these files out of the Recycle Bin first:
+But before we do that we'll need to copy these files out of the Recycle Bin:
 
 ```
 *Evil-WinRM* PS C:\$Recycle.bin\S-1-5-21-1987495829-1628902820-919763334-1001> copy sam.bak C:\temp
@@ -207,7 +207,7 @@ But before we do that we'll need to copy these files out of the Recycle Bin firs
 
 Once you have the files locally we can use impacket-secretsdump to extract the hashes:
 
-yoto_secrets.png
+![yoto_secrets.png](../assets/year_of_the_owl_assets/yoto_secrets.png)
 
 Nice, lets pass-the-hash and login with the administrator's password:
 
@@ -233,7 +233,7 @@ year-of-the-owl
 
 Nice, now lets grab that final flag:
 
-yoto_root_flag.png
+![yoto_root_flag.png](../assets/year_of_the_owl_assets/yoto_root_flag.png)
 
 Thanks for following along!
 

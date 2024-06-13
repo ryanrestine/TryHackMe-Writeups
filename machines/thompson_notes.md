@@ -39,7 +39,7 @@ Looking at the page on port 8080 we find an Apache Tomcat 8.5.5 page
 
 ![thompson_site.png](../assets/thompson_assets/thompson_site.png)
 
-Using Feroxbuster we disciver the `/manager` endpoint:
+Using Feroxbuster we discover the `/manager` endpoint:
 
 ![thompson_dirs.png](../assets/thompson_assets/thompson_dirs.png)
 

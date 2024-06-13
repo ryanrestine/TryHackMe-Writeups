@@ -23,6 +23,7 @@ A place for writeups of various THM challenges.
 - Internal
 - JPGChat
 - Kiba
+- LazyAdmin
 - MD2PDF
 - Mr. Robot CTF
 - Opacity

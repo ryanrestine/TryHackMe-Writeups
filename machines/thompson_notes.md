@@ -37,21 +37,23 @@ Nmap done: 1 IP address (1 host up) scanned in 31.48 seconds
 
 Looking at the page on port 8080 we find an Apache Tomcat 8.5.5 page
 
-thompson_site.png
+![thompson_site.png](../assets/thompson_assets/thompson_site.png)
 
 Using Feroxbuster we disciver the `/manager` endpoint:
 
-thompson_dirs.png
+![thompson_dirs.png](../assets/thompson_assets/thompson_dirs.png)
 
-This prompts a login:
+This page prompts a login:
 
-thompson_login.png
+![thompson_login.png](../assets/thompson_assets/thompson_login.png)
 
 And luckily for us we can use the default Tomcat credentials `tomcat:s3cret` to login:
 
-thompson_in.png
+![thompson_in.png](../assets/thompson_assets/thompson_in.png)
 
 From here we should be able to upload a malicious `.war` file to spawn a reverse shell.
+
+![thompson_war.png](../assets/thompson_assets/thompson_war.png)
 
 ### Exploitation
 
@@ -66,7 +68,7 @@ Final size of war file: 1095 bytes
 
 We can upload and then deploy it, and view it on the site:
 
-thompson_shell_file.png
+![thompson_shell_file.png](../assets/thompson_assets/thompson_shell_file.png)
 
 Setting up a netcat listener we catch our shell when the file is clicked on:
 
@@ -86,13 +88,13 @@ tomcat@ubuntu:/$
 
 We can then grab the user.txt flag in Jack's home directory:
 
-thompson_user_flag.png
+![thompson_user_flag.png](../assets/thompson_assets/thompson_user_flag.png)
 
 ### Privilege Escalation
 
-Looking at the other files in Jack's directory, we see an id.sh bash script, and it's output of test.txt.
+Looking at the other files in Jack's directory, we see an id.sh bash script and it's output of test.txt.
 
-thompson_files.png
+![thompson_files.png](../assets/thompson_assets/thompson_files.png)
 
 id.sh is simply running the `id` command and saving it to test.txt. Looking at test.txt we can see the user issuing the `id` command is root.
 
@@ -139,7 +141,7 @@ uid=1001(tomcat) gid=1001(tomcat) euid=0(root) groups=1001(tomcat)
 
 From here we can grab the final flag:
 
-thompson_root_flag.png
+![thompson_root_flag.png](../assets/thompson_assets/thompson_root_flag.png)
 
 Thanks for following along!
 

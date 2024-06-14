@@ -35,15 +35,15 @@ Nmap done: 1 IP address (1 host up) scanned in 65.79 seconds
 
 Looking at the page on port 12340 we get a 404 Not found error:
 
-zeno_site.png
+![zeno_site.png](../assets/zeno_assets/zeno_site.png)
 
 Scanning for directories we find several `/rms` directories. 
 
-zeno_dirs.png
+![zeno_dirs.png](../assets/zeno_assets/zeno_dirs.png)
 
 Heading to http://10.10.231.208:12340/rms/ we find a site for Pathfinder Hotel, which appears to be running something called Restaurant Management System:
 
-zeno_rms.png
+![zeno_rms.png](../assets/zeno_assets/zeno_rms.png)
 
 Looking for rms exploits I find https://www.exploit-db.com/exploits/47520
 
@@ -73,7 +73,7 @@ Credits : All InfoSec (Raja Ji's) Group
 
 We could then navigate to http://10.10.231.208:12340/rms/images/reverse-shell.php?cmd=id to execute commands:
 
-zeno_cmd.png
+![zeno_cmd.png](../assets/zeno_assets/zeno_cmd.png)
 
 Heading to revshell.com I URL encode a Python reverse shell one liner and issue it with:
 
@@ -229,6 +229,7 @@ sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
 apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
 edward:x:1000:1000::/home/edward:/bin/bash
 ```
+
 I decided to transfer over LinPEAS to help enumerate further:
 
 ```
@@ -247,11 +248,12 @@ bash-4.2$ ./lp.sh
 
 Linpeas finds that `/etc/systemd/system/zeno-monitoring.service` is writable, as well as some new credentials.
 
-zeno_lp.png
+![zeno_lp.png](../assets/zeno_assets/zeno_lp.png)
 
-zeno_lp3.png
 
-This is interesting, especially as it's owned by root:
+![zeno_lp3.png](../assets/zeno_assets/zeno_lp3.png)
+
+This is interesting, especially as its owned by root:
 
 ```
 bash-4.2$ ls -la /etc/systemd/system/zeno-monitoring.service
@@ -269,7 +271,7 @@ edward
 
 Lets go ahead and grab that user flag in Edward's home directory:
 
-zeno_user_flag.png
+![zeno_user_flag.png](../assets/zeno_assets/zeno_user_flag.png)
 
 ### Privilege Escalation
 
@@ -365,7 +367,7 @@ root
 
 Nice, that worked, lets grab the final flag:
 
-zeno_root_flag.png
+![zeno_root_flag.png](../assets/zeno_assets/zeno_root_flag.png)
 
 Thanks for following along!
 

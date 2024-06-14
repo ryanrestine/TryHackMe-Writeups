@@ -45,3 +45,4 @@ A place for writeups of various THM challenges.
 - WebOSINT
 - Wgel CTF
 - Year Of The Owl
+- Zeno

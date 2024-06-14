@@ -63,21 +63,23 @@ Disallow: /umbraco_client/
 
 If we head to `/umbraco` we find a login page:
 
-anthem_umbraco.png
+![anthem_umbraco.png](../assets/anthem_assets/anthem_umbraco.png)
 
 Poking around the blog a bit we find two posts:
 
-anthem_p1.png
+![anthem_p1.png](../assets/anthem_assets/anthem_p1.png)
 
-anthem_p2.png
+![anthem_p2.png](../assets/anthem_assets/anthem_p2.png)
 
 Ok cool, so we have an email JD@anthem.com and likely know the company's email naming convention, as well as a weird poem about the site admin.
 
 Pasting the poem into Google we find the Name Soloman Grundy, who may be the admin, and because we know the email naming convention we have a potential username of SG@anthem.com
 
+![anthem_google.png](../assets/anthem_assets/anthem_google.png)
+
 We can use this username with the password discovered in `/robots.txt` to login to the site:
 
-anthem_in.png
+![anthem_in.png](../assets/anthem_assets/anthem_in.png)
 
 Looking for authenticated exploits for Umbraco we find: https://github.com/noraj/Umbraco-RCE
 
@@ -108,7 +110,7 @@ This script contains malicious content and has been blocked by your antivirus so
 
 Rats, looks like AV is enabled.
 
-Remembering that RDP is open on the target I tried SG@anthem.com there, and to my surprise the credentials worked. 
+Remembering that RDP is open on the target I tried SG@anthem.com there, and to my surprise the credentials worked. This is much easier than bypassing Defender (at my skill level at least), so lets go this route.
 
 ```
 ┌──(ryan㉿kali)-[~/THM/Anthem]
@@ -117,7 +119,7 @@ Remembering that RDP is open on the target I tried SG@anthem.com there, and to m
 
 I can then grab the user.txt flag:
 
-anthem_user_flag.png
+![anthem_user_flag.png](../assets/anthem_assets/anthem_user_flag.png)
 
 ### Privilege Escalation
 
@@ -146,23 +148,25 @@ Looking around more I opened up Run, and searched for "recent".
 
 A new hidden folder called backup appeared for me, as well as a file called restore:
 
-anthem_run.png
+![anthem_run.png](../assets/anthem_assets/anthem_run.png)
 
 But when I click on restore I get access denied:
 
-anthem_denied.png
+![anthem_denied.png](../assets/anthem_assets/anthem_denied.png)
 
 However I can click into backup, right click on restore.txt, click into 'Security' and add my user SG to users who can access the file, and also click on 'Full Control'
 
-anthem_add2.png
+![anthem_add2.png](../assets/anthem_assets/anthem_add2.png)
 
 I can then click 'Apply' and then 'Ok'
 
 Now I can access the folder, which contains another password:
 
+![anthem_pw.png](../assets/anthem_assets/anthem_pw.png)
+
 I can now RDP in as the administrator with this password and grab the root.txt flag:
 
-anthem_root_flag.png
+![anthem_root_flag.png](../assets/anthem_assets/anthem_root_flag.png)
 
 Thanks for following along!
 

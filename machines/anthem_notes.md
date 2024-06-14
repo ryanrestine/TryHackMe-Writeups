@@ -44,7 +44,7 @@ Nmap done: 1 IP address (1 host up) scanned in 77.51 seconds
 
 Looking at port 80 we find a blog:
 
-anthem_blog.png
+![anthem_blog.png](../assets/anthem_assets/anthem_blog.png)
 
 Taking a look at robots.txt we find a few entries, and what looks to be a password?
 

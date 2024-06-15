@@ -33,23 +33,23 @@ Nmap done: 1 IP address (1 host up) scanned in 37.40 seconds
 
 Looking at the page we find an Alice in Wonderland themed site:
 
-wonderland_site.png
+![wonderland_site.png](../assets/wonderland_assets/wonderland_site.png)
 
 Finding an `/r` directory, the page says to keep going:
 
-wonderland_r.png
+![wonderland_r.png](../assets/wonderland_assets/wonderland_r.png)
 
 Going off a hunch I tried `/r/a` and confirmed these directories will spell `/r/a/b/b/i/t`
 
-wonderland_a.png
+![wonderland_a.png](../assets/wonderland_assets/wonderland_a.png)
 
-wonderland_dirs.png
+![wonderland_dirs.png](../assets/wonderland_assets/wonderland_dirs.png)
 
 Luckily `http://10.10.81.90/r/a/b/b/i/t/h/o/l/e` didn't return anything for us.
 
 Looking at the page source for http://10.10.81.90/r/a/b/b/i/t/ we find a hidden HTML paragraph element, and it looks like possible credentials:
 
-wonderland_pass.png
+![wonderland_pass.png](../assets/wonderland_assets/wonderland_pass.png)
 
 Trying these with SSH we find we can login as user Alice:
 
@@ -263,8 +263,6 @@ alice@wonderland:~$ ls -la walrus_and_the_carpenter.py
 -rw-r--r-- 1 root root 3577 May 25  2020 walrus_and_the_carpenter.py
 ```
 
-So looks like we need to do some lateral movement here.
-
 What we can do however is hijack the random function the script imports.
 
 Lets create our own file called random.py, and then run the script with `sudo` for rabbit:
@@ -282,7 +280,7 @@ rabbit
 ```
 Looking in rabbit's home directory we find a SUID binary:
 
-wonderland_teaparty.png
+![wonderland_teaparty.png](../assets/wonderland_assets/wonderland_teaparty.png)
 
 trying to run it:
 
@@ -298,7 +296,7 @@ Segmentation fault (core dumped)
 
 Lets use Python and wget to transfer this file back to our local machine for inspection.
 
-wonderland_transfer.png
+![wonderland_transfer.png](../assets/wonderland_assets/wonderland_transfer.png)
 
 Using the `strings` command against teaParty we can see it is calling the `date` command in Linux:
 
@@ -314,17 +312,17 @@ Lets hijack the date command in a similar way we hijacked the random module in P
 
 First we'll create a file called date that calls `/bin/bash`, then we'll make it executable, next we'll update our `$PATH` with our home directory, finally we'll run the SUID and our malicious `"date"` will be executed.
 
-wonderland_date.png
+![wonderland_date.png](../assets/wonderland_assets/wonderland_date.png)
 
 From here I loaded up LinPEAS to help enumerate I see that Perl has capabilities set:
 
-wonderland_lp1.png
+![wonderland_lp1.png](../assets/wonderland_assets/wonderland_lp1.png)
 
 Heading to GTFOBins.com we find the command we'll need to exploit this:
 
-wonderland_gtfobins.png
+![wonderland_gtfobins.png](../assets/wonderland_assets/wonderland_gtfobins.png)
 
-However everytime I issued the command I received Permission Denied errors, which was odd:
+However every time I issued the command I received Permission Denied errors, which was odd:
 
 ```
 hatter@wonderland:/home/hatter$ whoami
@@ -340,7 +338,7 @@ hatter@wonderland:/home/hatter$ cat password.txt
 WhyIsARavenLikeAWritingDesk?
 ```
 
-I used this to SSH with a new session and was able to execute the Perl command with no issues:
+I used this to SSH with a new session and was able to execute the Perl command with no issues, even if I'm not sure why.
 
 ```
 hatter@wonderland:~$ perl -e 'use POSIX qw(setuid); POSIX::setuid(0); exec "/bin/sh";'
@@ -352,7 +350,7 @@ uid=0(root) gid=1003(hatter) groups=1003(hatter)
 
 I can now grab the user.txt flag in `/root` and the root.txt flag in alice's home directory:
 
-wonderland_flags.png
+![wonderland_flags.png](../assets/wonderland_assets/wonderland_flags.png)
 
 Thanks for following along!
 

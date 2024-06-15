@@ -81,7 +81,7 @@ alice@wonderland:~$ cat root.txt
 cat: root.txt: Permission denied
 ```
 
-We can't read the root.txt file, and the Python script has a long poem, and seems to just randomly print a line:
+We can't read the root.txt file, and the Python script has a long poem, and seems to just randomly print 10 lines:
 
 ```python
 import random

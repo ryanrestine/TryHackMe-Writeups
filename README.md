@@ -14,6 +14,7 @@ A place for writeups of various THM challenges.
 - CMesS
 - ConvertMyVideo
 - Corridor
+- Daily Bugle
 - Dav
 - Dig Dug
 - Enterprise

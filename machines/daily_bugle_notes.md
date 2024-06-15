@@ -37,7 +37,7 @@ Nmap done: 1 IP address (1 host up) scanned in 119.84 seconds
 
 Looks like Nmap picked up the robots.txt entries and we can see the page on port 80 is running Joomla CMS.
 
-daily_bugle_page.png
+![daily_bugle_page.png](../assets/daily_bugle_assets/daily_bugle_page.png)
 
 Lets enumerate Joomla with joomscan:
 
@@ -124,15 +124,15 @@ This didn't pick up much of interest for us.
 
 Looking for vulnerabilities for Joomla 3.7.0 we find it is vulnerable to SQL injection in the `com_fields` component. Lets use joomblah.py to exploit this: https://github.com/stefanlucas/Exploit-Joomla
 
-daily_bugle_joomblah.png
+![daily_bugle_joomblah.png](../assets/daily_bugle_assets/daily_bugle_joomblah.png)
 
 Nice, looks like we've got a hash for user Jonah, and that he's a super user. Lets try cracking it:
 
-daily_bugle_john.png
+![daily_bugle_john.png](../assets/daily_bugle_assets/daily_bugle_john.png)
 
 Cool, we cracked it. Unfortunately we can't use this credential to just SSH in, so lets navigate to http://10.10.182.0/administrator/ found in robots.txt and joomscan to login:
 
-daily_bugle_in.png
+![daily_bugle_in.png](../assets/daily_bugle_assets/daily_bugle_in.png)
 
 We can exploit Joomla functionality to achieve RCE on the target.
 
@@ -142,13 +142,15 @@ Lets modify a Template to a PHP webshell.
 
 Clicking on Templates > ProStar we are brought to a page to customize the template.
 
+![daily_bugle_templates.png](../assets/daily_bugle_assets/daily_bugle_templates.png)
+
 Lets delete the PHP content for `error.php` and insert our own webshell code:
 
-daily_bugle_edit.png
+![daily_bugle_edit.png](../assets/daily_bugle_assets/daily_bugle_edit.png)
 
 Saving these changes we can navigate to http://10.10.182.0/templates/protostar/error.php?cmd=id to confirm code execution:
 
-daily_bugle_id.png
+![daily_bugle_id.png](../assets/daily_bugle_assets/daily_bugle_id.png)
 
 Lets head to revshells.com and grab a URL encoded Python reverse shell command.
 
@@ -184,7 +186,7 @@ bash: cd: jjameson: Permission denied
 
 Looking at the config file for Joomla in `/var/www/html` to find a password: `nv5uz9r3ZEDzVjNu`
 
-daily_bugle_pw.png
+![daily_bugle_pw.png](../assets/daily_bugle_assets/daily_bugle_pw.png)
 
 We can use this to `su jjameson`
 
@@ -197,7 +199,7 @@ jjameson
 
 And grab the user.txt flag:
 
-daily_bugle_user_flag.png
+![daily_bugle_user_flag.png](../assets/daily_bugle_assets/daily_bugle_user_flag.png)
 
 ### Privilege Escalation
 
@@ -222,7 +224,7 @@ Nice, this should make for an easy root.
 
 Lets head to gtofobins.com and crab the commands we'll need:
 
-daily_bugle_gtfobins.png
+![daily_bugle_gtfobins.png](../assets/daily_bugle_assets/daily_bugle_gtfobins.png)
 
 We can literally paste these commands into our shell and achieve root:
 
@@ -257,7 +259,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 We can then grab the final flag:
 
-daily_bugle_root_flag.png
+![daily_bugle_root_flag.png](../assets/daily_bugle_assets/daily_bugle_root_flag.png)
 
 Thanks for following along!
 

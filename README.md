@@ -46,5 +46,6 @@ A place for writeups of various THM challenges.
 - Weasel
 - WebOSINT
 - Wgel CTF
+- Wonderland
 - Year Of The Owl
 - Zeno

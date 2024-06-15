@@ -5,7 +5,7 @@
 ### Difficulty: Hard
 --------------------------------------------
 
-daily_bugle_profile.png
+![daily_bugle_profile.png](../assets/daily_bugle_assets/daily_bugle_profile.png)
 
 ### Enumeration
 

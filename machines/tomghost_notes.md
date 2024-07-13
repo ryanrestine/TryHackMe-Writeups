@@ -50,7 +50,7 @@ We can lauch the exploit with:
 
 Which drops some credentials for us:
 
-tomghost_creds.png
+![tomghost_creds.png](../assets/tomghost_assets/tomghost_creds.png)
 
 We can use these credentials to login via SSH:
 
@@ -83,17 +83,17 @@ ubuntu
 
 We can now grab the user.txt flag:
 
-tomghost_user_flag.png
+![tomghost_user_flag.png](../assets/tomghost_assets/tomghost_user_flag.png)
 
 ### Privilege Escalation
 
 Browsing around the target we find a file called tryhackme.asc, which is a PGP key:
 
-tomghost_pgp.png
+![tomghost_pgp.png](../assets/tomghost_assets/tomghost_pgp.png)
 
 Trying to import and decrypt the key we see it is passphrase protected:
 
-tomghost_nope.png
+![tomghost_nope.png](../assets/tomghost_assets/tomghost_nope.png)
 
 Lets transfer it over to our attacking machine and crack it with john by setting up a python http.server on the target:
 
@@ -121,7 +121,7 @@ tryhackme.asc                   100%[===========================================
 
 We can then use john to extract the hash from the PGP key:
 
-tomghost_john.png
+![tomghost_john.png](../assets/tomghost_assets/tomghost_john.png)
 
 Cool, now that we have the passphrase we can run:
 
@@ -179,7 +179,7 @@ User merlin may run the following commands on ubuntu:
 
 Heading to gtfobins.com we can get the command we'll need to exploit this:
 
-tomghost_gtfo.png
+![tomghost_gtfo.png](../assets/tomghost_assets/tomghost_gtfo.png)
 
 Lets run:
 
@@ -197,7 +197,7 @@ Which drops us into a root shell.
 
 We can now grab the final flag:
 
-tomghost_root_flag.png
+![tomghost_root_flag.png](../assets/tomghost_assets/tomghost_root_flag.png)
 
 Thanks for following along!
 

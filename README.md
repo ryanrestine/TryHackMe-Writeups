@@ -41,6 +41,7 @@ A place for writeups of various THM challenges.
 - Source
 - Tech_Supp0rt: 1
 - Thompson
+- TomGhost
 - UltraTech
 - Valley
 - Weasel

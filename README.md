@@ -2,6 +2,7 @@
 
 A place for writeups of various THM challenges.
 
+- Agent Sudo
 - AlinOne
 - Anonymous
 - Anthem

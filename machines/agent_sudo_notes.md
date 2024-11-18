@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_agentsudo_pic.png
+![thm_agentsudo_pic.png](../assets/agent_sudo_assets/thm_agentsudo_pic.png)
 
 #### Enumeration
 

@@ -1,8 +1,8 @@
 # THM - Agent Sudo
 
-##### Ip: 10.10.132.28
-##### Name: Agent Sudo
-##### Rating: Easy
+### Ip: 10.10.132.28
+### Name: Agent Sudo
+### Rating: Easy
 
 ------------------------------------------------
 
@@ -50,7 +50,7 @@ Agent R
 
 Capturing the request in Burp, and using `R` for the user-agent field, we get a new result:
 
-thm_agentsudo_r.png
+![thm_agentsudo_r.png](../assets/agent_sudo_assets/thm_agentsudo_r.png)
 
 Ok, interesting. 
 
@@ -69,15 +69,15 @@ G
 
 Sending the request to Intruder in Burp, pasting in the payload list, and starting the Sniper attack, we see that letter C has a 302 redirect:
 
-thm_agentsudo_c.png
+![thm_agentsudo_c.png](../assets/agent_sudo_assets/thm_agentsudo_c.png)
 
 Forwarding the request we find a new note, alongside a name of chris:
 
-thm_agentsudo_note.png
+![thm_agentsudo_note.png](../assets/agent_sudo_assets/thm_agentsudo_note.png)
 
 This is a nice little hint. We now have the username chris, and we know he has a weak password, so let's try brute forcing FTP with Hydra.
 
-thm_agentsudo_hydra.png
+![thm_agentsudo_hydra.png](../assets/agent_sudo_assets/thm_agentsudo_hydra.png)
 
 ### Exploitation
 
@@ -192,7 +192,7 @@ Welcome to Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-55-generic x86_64)
 
 We can now grab the user.txt flag:
 
-thm_agentsudo_user.png
+![thm_agentsudo_user.png](../assets/agent_sudo_assets/thm_agentsudo_user.png)
 
 ### Privilege Escalation
 
@@ -226,7 +226,7 @@ And elevate to root.
 
 We can now grab the final flag:
 
-thm_agentsudo_root.png
+![thm_agentsudo_root.png](../assets/agent_sudo_assets/thm_agentsudo_root.png)
 
 Thanks for following along!
 

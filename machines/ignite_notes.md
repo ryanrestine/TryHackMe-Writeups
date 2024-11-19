@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_ignite_pic.png
+![thm_ignite_pic.png](../assets/ignite_assets/ignite_pic.png)
 
 #### Enumeration
 

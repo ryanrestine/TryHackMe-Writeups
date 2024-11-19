@@ -40,6 +40,7 @@ A place for writeups of various THM challenges.
 - Sakura
 - Simple CTF
 - Source
+- Startup
 - Tech_Supp0rt: 1
 - Thompson
 - TomGhost

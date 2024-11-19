@@ -305,7 +305,7 @@ Last thing to check is to see if planner.sh is being run as a cronjob with root 
 
 Loading pspy64 to the target we find it is indeed being run as root:
 
-thm_strartup_cron.png
+![thm_strartup_cron.png](../assets/startup_assets/thm_startup_cron.png)
 
 So, in theory, we should be able to modify `/etc/print.sh` to something malicious, and when it is executed it will be run as root.
 

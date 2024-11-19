@@ -22,6 +22,7 @@ A place for writeups of various THM challenges.
 - Epoch
 - Fowsniff CTF
 - Grep
+- Ignite
 - Intermediate Nmap
 - Internal
 - JPGChat

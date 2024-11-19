@@ -33,17 +33,17 @@ Nmap done: 1 IP address (1 host up) scanned in 19.63 seconds
 
 Looking at the page on port 80 wee see it is running Fuel cms v 1.4.
 
-thm_ignite_site.png
+![thm_ignite_site.png](../assets/ignite_assets/thm_ignite_site.png)
 
 We also notice that Nmap found a robots.txt page with the `/fuel` endpoint.
 
 Heading to that page we find a simple login:
 
-thm_ignite_login.png
+![thm_ignite_login.png](../assets/ignite_assets/thm_ignite_login.png)
 
 We find we can login with `admin:admin`
 
-thm_ignite_in.png
+![thm_ignite_in.png](../assets/ignite_assets/thm_ignite_in.png)
 
 Looking for exploits I find: https://www.exploit-db.com/exploits/50477
 
@@ -90,7 +90,7 @@ www-data
 
 One the shell is fully stabilized we can grab the first flag:
 
-thm_ignite_user.png
+![thm_ignite_user.png](../assets/ignite_assets/thm_ignite_user.png)
 
 ### Privilege Escalation
 
@@ -123,7 +123,7 @@ $db['default'] = array(
 
 Fortunately for us, this password was reused by root on the target, and we can use it to `su -` and drop into a root shell, where we can then grab the final flag:
 
-thm_ignite_root.png
+![thm_ignite_root.png](../assets/ignite_assets/thm_ignite_root.png)
 
 Thanks for following along!
 

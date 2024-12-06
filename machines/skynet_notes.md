@@ -65,11 +65,11 @@ Nmap done: 1 IP address (1 host up) scanned in 27.28 seconds
 
 Looking at the site on port 80 we find what seems to be a search bar:
 
-thm_skynet_site.png
+![thm_skynet_site.png](../assets/skynet_assets/thm_skynet_site.png)
 
 While a directory scan is running against port 80, we can investigate SMB and discover we have read access to an `anonymous` share.
 
-thm_skynet_shares.png
+![thm_skynet_shares.png](../assets/skynet_assets/thm_skynet_shares.png)
 
 Looking at the share we can download a few files:
 
@@ -154,28 +154,27 @@ Oddly, log2.txt and log3.txt are empty files, which I could have noticed before 
 
 Going back and looking at our directories, we find several of interest.
 
-thm_skynet_dirs.png
+![thm_skynet_dirs.png](../assets/skynet_assets/thm_skynet_dirs.png)
 
 Squirrelmail seems particularly interesting as it is associated with some RCE vulnerabilities.
 
 Running enum4linx-ng we can also confirm the milesdyson is a valid username:
 
-thm_skynet_username.png
+![thm_skynet_username.png](../assets/skynet_assets/thm_skynet_username.png)
 
 Trying to brute force squirrelmail (which kept crashing) Hydra gives us several positives, and trying the first one: cyborg007haloterminator manually, we find it works:
 
+![thm_skynet_hydra.png](../assets/skynet_assets/thm_skynet_hydra.png)
 
-thm_skynet_hydra.png
-
-thm_skynet_in.png
+![thm_skynet_in.png](../assets/skynet_assets/thm_skynet_in.png)
 
 Looking at the emails we see that milesdyon's SAMBA password has been reset:
 
-thm_skynet_new.png
+![thm_skynet_new.png](../assets/skynet_assets/thm_skynet_new.png)
 
 We now have access to more shares:
 
-thm_skynet_newshares.png
+![thm_skynet_newshares.png](../assets/skynet_assets/thm_skynet_newshares.png)
 
 Before enumerating the new shares I looked for authenticated SquirrelMail exploits and find: https://www.exploit-db.com/exploits/41910
 
@@ -194,19 +193,17 @@ Going back to milesdyson's personal share we find an important.txt document in h
 
 Cool, we now have access to a new endpoint:
 
-thm_skynet_endpoint.png
+![thm_skynet_endpoint.png](../assets/skynet_assets/thm_skynet_endpoint.png)
 
 ### Exploitation
 
 Kicking off some directory scanning we find: http://10.10.90.184/45kra24zxs28v3yd/administrator/ which is running CuppaCMS.
 
-thm_skynet_cuppa.png
-
+![thm_skynet_cuppa.png](../assets/skynet_assets/thm_skynet_cuppa.png)
 
 Looking for cuppa exploits I find: https://www.exploit-db.com/exploits/25971
 
 We can confirm the vulnerability exists by viewing the `/etc/passwd` file at: http://10.10.90.184/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd
-
 
 Cool, let's now locate a copy of PentestMonkey's php-reverse-shell.php, set up a nc listener and an http server and download our script:
 
@@ -232,7 +229,7 @@ $ python -c 'import pty;pty.spawn("/bin/bash")'
 ```
 We can now grab the user.txt flag:
 
-thm_skynet_user.png
+![thm_skynet_user.png](../assets/skynet_assets/thm_skynet_user.png)
 
 ### Privilege Escalation
 
@@ -269,7 +266,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 <SNIP>
 ```
 
-First the script changes the directory to `/var/www/html` and then runs `tar` backing up all the contents to milesdyson's  home directory in a zip file.
+Looks like first the script changes the directory to `/var/www/html` and then runs `tar` backing up all the contents to milesdyson's home directory in a zip file.
 
 So to exploit this let's navigate to `var/www/html` and create a file called shell.sh, which will put the SUID bit on bash:
 
@@ -296,7 +293,7 @@ root
 
 And grab the final flag:
 
-thm_skynet_root.png
+![thm_skynet_root.png](../assets/skynet_assets/thm_skynet_root.png)
 
 Thanks for following along!
 

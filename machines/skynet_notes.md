@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_skynet_pic.png
+![thm_skynet_pic.png](../skynet_assets/thm_skynet_pic.png)
 
 #### Enumeration
 

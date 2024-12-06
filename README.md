@@ -40,6 +40,7 @@ A place for writeups of various THM challenges.
 - RootMe
 - Sakura
 - Simple CTF
+- Skynet
 - Source
 - Startup
 - Tech_Supp0rt: 1

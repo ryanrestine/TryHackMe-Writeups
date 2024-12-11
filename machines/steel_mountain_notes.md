@@ -273,7 +273,7 @@ nt authority\system
 
 We can now grab the final flag:
 
-![thm_steel_mountain_root.png](../assets/steel_mountain_assets/thm_steel_mountain_root.png)
+![thm_steel_mountain_root1.png](../assets/steel_mountain_assets/thm_steel_mountain_root1.png)
 
 Thanks for following along!
 

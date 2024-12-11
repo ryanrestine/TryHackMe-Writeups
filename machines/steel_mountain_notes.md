@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_steel_mountain_pic.jpeg
+![thm_steel_mountain_pic.jpeg](../assets/steel_mountain_assets/thm_steel_mountain_pic.jpeg)
 
 #### Enumeration
 

@@ -72,6 +72,8 @@ Nmap done: 1 IP address (1 host up) scanned in 92.17 seconds
 
 Not finding anything of interest on port 80 or in SMB, I looked at port 8080 HTTP and found it was running HttpFileServer 2.3.
 
+![thm_steel_mountain_8080.png](../assets/steel_mountain_assets/thm_steel_mountain_8080.png)
+
 Looking for exploits against this we find: https://www.exploit-db.com/exploits/39161
 
 
@@ -111,7 +113,7 @@ steelmountain
 
 From here we can grab the user.txt flag:
 
-thm_steel_mountain_user.png
+![thm_steel_mountain_user.png](../assets/steel_mountain_assets/thm_steel_mountain_user.png)
 
 
 ### Privilege Escalation
@@ -271,7 +273,7 @@ nt authority\system
 
 We can now grab the final flag:
 
-thm_steel_mountain_root.png
+![thm_steel_mountain_root.png](../assets/steel_mountain_assets/thm_steel_mountain_root.png)
 
 Thanks for following along!
 

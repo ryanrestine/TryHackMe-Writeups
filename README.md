@@ -43,6 +43,7 @@ A place for writeups of various THM challenges.
 - Skynet
 - Source
 - Startup
+- Steel Mountain
 - Tech_Supp0rt: 1
 - Thompson
 - TomGhost

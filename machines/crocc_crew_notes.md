@@ -263,13 +263,13 @@ INFO: Done in 01M 22S
 INFO: Compressing output into 20241217152700_bloodhound.zip
 ```
 
-Marking password-reset and visitor as owned, it's not exactly a surprise that password-reset has ForceChangePassword ACL enabled:
+Marking password-reset and visitor as owned, it's not exactly a surprise that password-reset has ForceChangePassword enabled for several users:
 
 ![thm_crocc_crew_bh1.png](../assets/crocc_crew_assets/thm_crocc_crew_bh1.png)
 
 But even more interesting is we see that password-reset is allowed to delegate:
 
-![thm_crocc_crew_delegate.png](../assets/crocc_crew_assets/thm_crocc_crew_delegate)
+![thm_crocc_crew_delegate.png](../assets/crocc_crew_assets/thm_crocc_crew_delegate.png)
 
 ```
 Allowed To Delegate	oakley/DC.COOCTUS.CORP/COOCTUS.CORP

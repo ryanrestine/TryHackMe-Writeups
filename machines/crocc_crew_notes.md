@@ -83,11 +83,11 @@ Lets add COOCTUS.CORP to `/etc/hosts`
 
 Looking at the site on port 80 we find:
 
-thm_crocc_crew_site.png
+![thm_crocc_crew_site.png](../assets/crocc_crew_assets/thm_crocc_crew_site.png)
 
 Turning our attention to Kerberos we can user Kerbrute to enumerate users.
 
-thm_crocc_crew_kerbrute.png
+![thm_crocc_crew_kerbrute.png](../assets/crocc_crew_assets/thm_crocc_crew_kerbrute.png)
 
 While this is running I can manually check for a `/robots.txt` page and find one:
 
@@ -101,13 +101,13 @@ Disallow:
 
 Looking at `/db-config.bak`:
 
-thm_croc_crew_db.png
+![thm_croc_crew_db.png](../assets/crocc_crew_assets/thm_crocc_crew_db.png)
 
 We find a pair of credentials: `C00ctusAdm1n:B4dt0th3b0n3`
 
 `/backdoor.php` also seems interesting, and appears to be a webshell, but as of now I can't execute basic commands:
 
-thm_crocc_crew_backdoor.png
+![thm_crocc_crew_backdoor.png](../assets/crocc_crew_assets/thm_crocc_crew_backdoor.png)
 
 Struggling to find a foothold as the discovered credentials don't work, we can use rdesktop to access the IP without providing any credentials:
 
@@ -118,7 +118,7 @@ Struggling to find a foothold as the discovered credentials don't work, we can u
 
 This loads the page:
 
-thm_crocc_crew_rdp.png
+![thm_crocc_crew_rdp.png](../assets/crocc_crew_assets/thm_crocc_crew_rdp.png)
 
 There is a sticky note on the desktop that has the account `visitor` (which we discovered using Kerbrute) and a partial password `GuestLo...`
 
@@ -165,7 +165,7 @@ SMB         10.10.202.195   445    DC               SYSVOL          READ        
 
 This gives us access to the first flag:
 
-thm_crocc_crew_user.png
+![thm_crocc_crew_user.png](../assets/crocc_crew_assets/thm_crocc_crew_user.png)
 
 Attempting kerberoasting with these credentials we drop the ticket for user password_reset:
 
@@ -188,7 +188,7 @@ $krb5tgs$23$*password-reset$COOCTUS.CORP$COOCTUS.CORP/password-reset*$a1521cdb75
 
 We can crack this with John:
 
-thm_crocc_crew_reset.png
+![thm_crocc_crew_reset.png](../assets/crocc_crew_assets/thm_crocc_crew_reset.png)
 
 Let's update our users.txt and pass.txt files:
 
@@ -265,11 +265,11 @@ INFO: Compressing output into 20241217152700_bloodhound.zip
 
 Marking password-reset and visitor as owned, it's not exactly a surprise that password-reset has ForceChangePassword ACL enabled:
 
-thm_crocc_crew_bh1.png
+![thm_crocc_crew_bh1.png](../assets/crocc_crew_assets/thm_crocc_crew_bh1.png)
 
 But even more interesting is we see that password-reset is allowed to delegate:
 
-thm_crocc_crew_delegate.png
+![thm_crocc_crew_delegate.png](../assets/crocc_crew_assets/thm_crocc_crew_delegate)
 
 ```
 Allowed To Delegate	oakley/DC.COOCTUS.CORP/COOCTUS.CORP
@@ -319,15 +319,15 @@ DC
 
 We can then grab the root.txt flag:
 
-thm_crocc_crew_root.png
+![thm_crocc_crew_root.png](../assets/crocc_crew_assets/thm_crocc_crew_root.png)
 
 As this shell is a bit buggy, lets also use impacket-secretsdump to extract hashes for persistence:
 
-thm_crocc_crew_secrets.png
+![thm_crocc_crew_secrets.png](../assets/crocc_crew_assets/thm_crocc_crew_secrets.png)
 
 We can find the other two flags in `C:\shares\Home`:
 
-thm_crocc_crew_flags.png
+![thm_crocc_crew_flags.png](../assets/crocc_crew_assets/thm_crocc_crew_flags.png)
 
 Thanks for following along!
 

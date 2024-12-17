@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_crocc_crew_pic.png
+![thm_crocc_crew_pic.png](../assets/crocc_crew_assets/thm_crocc_crew_pic.png)
 
 ```
 You just gained initial access into a segmented part of the network and you've found only one device -- A domain controller. It appears that it's already been hacked... Can you find out who did it?

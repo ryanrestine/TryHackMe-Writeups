@@ -15,6 +15,7 @@ A place for writeups of various THM challenges.
 - CMesS
 - ConvertMyVideo
 - Corridor
+- Crocc Crew
 - Daily Bugle
 - Dav
 - Dig Dug

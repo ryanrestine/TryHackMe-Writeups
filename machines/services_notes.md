@@ -95,7 +95,7 @@ Looks like we've got a Domain Controller here.
 
 Looking at the website on port 80 we find an `/about.html` which lists a few employees, and luckily for us also gives us the username naming convention.
 
-thm_services_about.png
+![thm_services_about.png](../assets/services_assets/thm_services_about.png)
 
 Lets use this to create a usernames list:
 
@@ -115,13 +115,13 @@ administrator
 
 Using this list we find we can as-rep roast the j.rock user:
 
-thm_services_asrep.png
+![thm_services_asrep.png](../assets/services_assets/thm_services_asrep.png)
 
 Lets add this to a file called j.rock_hash and try cracking it with John.
 
 Nice, that worked:
 
-thm_services_john.png
+![thm_services_john.png](../assets/services_assets/thm_services_john.png)
 
 `j.rock:Serviceworks1`
 
@@ -134,13 +134,13 @@ We can use evil-winrm to login:
 
 And grab the user.txt flag:
 
-thm_services_user.png
+![thm_services_user.png](../assets/services_assets/thm_services_user.png)
 
 ### Privilege Escalation
 
 Running `whoami /all` we see our user is in the Server Operators group:
 
-thm_services_group.png
+![thm_services_group.png](../assets/services_assets/thm_services_group.png)
 
 We should be able to abuse this for root access.
 
@@ -210,7 +210,7 @@ WIN-SERVICES
 
 We can now grab the root.txt flag:
 
-thm_services_root.png
+![thm_services_root.png](../assets/services_assets/thm_services_root.png)
 
 Thanks for following along!
 

@@ -40,6 +40,7 @@ A place for writeups of various THM challenges.
 - Retro
 - RootMe
 - Sakura
+- Services
 - Simple CTF
 - Skynet
 - Source

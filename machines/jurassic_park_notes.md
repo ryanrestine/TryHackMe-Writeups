@@ -6,7 +6,7 @@
 
 ----------------------------------------------------------------------
 
-thm_jpark_pic.jpeg
+![thm_jpark_pic.jpeg](../assets/jurassic_park_assets/thm_jpark_pic.jpeg)
 
 ```
 This medium-hard task will require you to enumerate the web application, get credentials to the server and find four flags hidden around the file system. Oh, Dennis Nedry has helped us to secure the app too.

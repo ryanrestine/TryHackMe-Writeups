@@ -27,6 +27,7 @@ A place for writeups of various THM challenges.
 - Intermediate Nmap
 - Internal
 - JPGChat
+- Jurassic Park
 - Kiba
 - LazyAdmin
 - MD2PDF

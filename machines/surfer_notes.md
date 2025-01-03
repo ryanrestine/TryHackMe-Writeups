@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_surfer_pic.png
+![thm_surfer_pic.png](../assets/surfer_assets/thm_surfer_pic.png)
 
 #### Enumeration
 

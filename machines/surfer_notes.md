@@ -67,7 +67,8 @@ Here we also see the note:
 ```
 Internal pages hosted at /internal/admin.php. It contains the system flag.
 ```
-Trying to simply navigate to this enpoint in the browser we get the error:
+
+Trying to simply navigate to this endpoint in the browser we get the error:
 
 ```
 This page can only be accessed locally.
@@ -81,7 +82,7 @@ If we click on this a PDF of server information for localhost is generated:
 
 ![thm_surfer_pdf.png](../assets/surfer_assets/thm_surfer_pdf.png)
 
-Let's capture this in Burp and manually update the endoint to `/internal/admin.php` to try retriving the flag:
+Let's capture this in Burp and manually update the endpoint to `/internal/admin.php` to try retriving the flag:
 
 ![thm_surfer_burp.png](../assets/surfer_assets/thm_surfer_burp.png)
 

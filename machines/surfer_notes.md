@@ -56,11 +56,11 @@ Kate: Hello.. ?
 
 Looking at the site on port 80 we are directed to `/login.php` and there is a 24x7 System+ login screen:
 
-thm_surfer_site.png
+![thm_surfer_site.png](../assets/surfer_assets/thm_surfer_site.png)
 
 Luckily we can login with the credentials `admin:admin`:
 
-thm_surfer_in.png
+![thm_surfer_in.png](../assets/surfer_assets/thm_surfer_in.png)
 
 Here we also see the note:
 
@@ -75,19 +75,19 @@ This page can only be accessed locally.
 
 Scrolling to the bottom of the page we find the export2pdf feature mentioned in the chat:
 
-thm_surfer_export.png
+![thm_surfer_export.png](../assets/surfer_assets/thm_surfer_export.png)
 
 If we click on this a PDF of server information for localhost is generated:
 
-thm_surfer_pdf.png
+![thm_surfer_pdf.png](../assets/surfer_assets/thm_surfer_pdf.png)
 
 Let's capture this in Burp and manually update the endoint to `/internal/admin.php` to try retriving the flag:
 
-thm_surfer_burp.png
+![thm_surfer_burp.png](../assets/surfer_assets/thm_surfer_burp.png)
 
 Forwarding the request we find the challenge's flag in the newly created PDF:
 
-thm_surfer_flag.png
+![thm_surfer_flag.png](../assets/surfer_assets/thm_surfer_flag.png)
 
 Thanks for following along!
 

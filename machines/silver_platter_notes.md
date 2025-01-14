@@ -89,7 +89,7 @@ Login=SilverAdmin&DomainId=0
 
 Forwarding the request we find ourselves authenticated:
 
-![thm_silver_platter_in.png](../assets/silver_platter_assets/thm_silver_platter_in.ong)
+![thm_silver_platter_in.png](../assets/silver_platter_assets/thm_silver_platter_in.png)
 
 Looking for more silverpeas exploits I find:
 

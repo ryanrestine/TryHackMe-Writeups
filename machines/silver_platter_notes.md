@@ -65,31 +65,31 @@ PORT     STATE SERVICE    VERSION
 
 Looking at the page on port 80 we find a simple site for a security company:
 
-thm_silver_platter_site.png
+![thm_silver_platter_site.png](../assets/silver_platter_assets/thm_silver_platter_site.png)
 
 Clicking on the Contact button we find:
 
-thm_silver_platter_contact.png
+![thm_silver_platter_contact.png](../assets/silver_platter_assets/thm_silver_platter_contact.png)
 
-We can access the SilvePeas login at http://10.10.234.44:8080/silverpeas
+We can access the SilverPeas login at http://10.10.234.44:8080/silverpeas
 
-thm_silver_platter_login.png
+![thm_silver_platter_login.png](../assets/silver_platter_assets/thm_silver_platter_login.png)
 
 ### Exploitation
 
 Looking for Silverpeas exploits I find some info about a login bypass at: https://gist.github.com/ChrisPritchard/4b6d5c70d9329ef116266a6c238dcb2d
 
-We can replicate this by capturing a login request in burp and removing the password field as demonstrated in the writeup:
+We can replicate this by capturing a login attempt in burp and removing the password field as demonstrated in the writeup:
 
 ```
 Login=SilverAdmin&DomainId=0
 ```
 
-thm_silver_platter_burp.png
+![thm_silver_platter_burp.png](../assets/silver_platter_assets/thm_silver_platter_burp.png)
 
 Forwarding the request we find ourselves authenticated:
 
-thm_silver_platter_in.png
+![thm_silver_platter_in.png](../assets/silver_platter_assets/thm_silver_platter_in.ong)
 
 Looking for more silverpeas exploits I find:
 
@@ -99,13 +99,13 @@ Which outlines a broken access control vulnerability that allows us to view all 
 
 Browsing the messages using the ID parameter we find:
 
-thm_silver_platter_creds.png
+![thm_silver_platter_creds.png](../assets/silver_platter_assets/thm_silver_platter_creds.png)
 
 Nice, looks like we've got some SSH credentials here: `tom:cm0nt!md0ntf0rg3tth!spa$$w0rdagainlol`
 
 We can use these to SSH onto the box and grab the user.txt flag:
 
-thm_silver_platter_user.png
+![thm_silver_platter_user.png](../assets/silver_platter_assets/thm_silver_platter_user.png)
 
 ### Privilege Escalation
 
@@ -118,7 +118,7 @@ uid=1001(tim) gid=1001(tim) groups=1001(tim),4(adm)
 
 In `/var/log` we find a few interesting log files and discover a credential in auth.log.2 and can use this to `su tyler`:
 
-thm_silver_platter_log.png
+![thm_silver_platter_log.png](../assets/silver_platter_assets/thm_silver_platter_log.png)
 
 ```
 tim@silver-platter:/var/log$ su tyler
@@ -149,7 +149,7 @@ root
 
 And grab the final flag:
 
-thm_silver_platter_root.png
+![thm_silver_platter_root.png](../assets/silver_platter_assets/thm_silver_platter_root.png)
 
 Thanks for following along!
 

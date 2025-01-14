@@ -42,6 +42,7 @@ A place for writeups of various THM challenges.
 - RootMe
 - Sakura
 - Services
+- Silver Platter
 - Simple CTF
 - Skynet
 - Source

@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_silver_platter_pic.png
+![thm_silver_platter_pic.png](../assets/silver_platter_assets/thm_silver_platter_pic.png)
 
 ### Intro:
 

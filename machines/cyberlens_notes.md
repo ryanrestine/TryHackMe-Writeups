@@ -6,7 +6,7 @@
 
 ------------------------------------------------
 
-thm_cyberlens_pic.svg
+![thm_cyberlens_pic.svg](../assets/cyberlens_assets/thm_cyberlens_pic.svg)
 
 ### Challenge Description
 

@@ -94,15 +94,15 @@ Let's add cyberlens.thm to `/etc/hosts`.
 
 Looking at the site we find a file upload that seems to extract metadata from images:
 
-thm_cyberlens_site.png
+![thm_cyberlens_site.png](../assets/cyberlens_assets/thm_cyberlens_site.png)
 
 I uploaded a copy of the screenshot above and it returned it's metadata:
 
-thm_cyberlens_meta.png
+![thm_cyberlens_meta.png](../assets/cyberlens_assets/thm_cyberlens_meta.png)
 
 Looking at port 61777 at http://cyberlens.thm:61777/ we find it is running Tika:
 
-thm_cyberlense_tika.png
+![thm_cyberlense_tika.png](../assets/cyberlens_assets/thm_cyberlens_tika.png)
 
 ### Exploitation
 
@@ -112,17 +112,17 @@ Which also has a helpful POC script at: https://github.com/RhinoSecurityLabs/CVE
 
 We can use this exploit script alongside a Base64 encoded PowerShell reverse shell oneliner from revshells.com and get a callback:
 
-thm_cyberlens_shell.png
+![thm_cyberlens_shell.png](../assets/cyberlens_assets/thm_cyberlens_shell.png)
 
 We can now grab the user.txt flag:
 
-thm_cyberlens_user.png
+![thm_cyberlens_user.png](../assets/cyberlens_assets/thm_cyberlens_user.png)
 
 ### Privilege Escalation
 
 We can load up PowerUp.ps1 to help enumerate a privilege escalation vector:
 
-thm_cyberlens_powerup.png
+![thm_cyberlens_powerup.png](../assets/cyberlens_assets/thm_cyberlens_powerup.png)
 
 Cool, looks like AlwaysInstallElevated is enabled.
 
@@ -157,11 +157,11 @@ Once the file is transferred to the target we can set up a nc listener and run: 
 
 Which catches us a shell back as system:
 
-thm_cyberlens_system.png
+![thm_cyberlens_system.png](../assets/cyberlens_assets/thm_cyberlens_system.png)
 
 And we can now grab the final flag:
 
-thm_cyberlens_root.png
+![thm_cyberlens_root.png](../assets/cyberlens_assets/thm_cyberlens_root.png)
 
 Thanks for following along!
 
